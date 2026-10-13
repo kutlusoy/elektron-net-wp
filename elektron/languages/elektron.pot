@@ -1,0 +1,861 @@
+# Copyright (C) 2026 Ali Kutlusoy
+# This file is distributed under the GNU GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Elektron 0.0.1\n"
+"Report-Msgid-Bugs-To: https://elektron-net.org\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-13T00:00:00+00:00\n"
+"Language: en\n"
+"X-Domain: elektron\n"
+
+#: 404.php:20
+msgid "This page could not be found."
+msgstr ""
+
+#: 404.php:23
+msgid "Nothing was found at this location. Try a search instead."
+msgstr ""
+
+#: 404.php:25
+msgid "Back to the home page"
+msgstr ""
+
+#: comments.php:48
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:38
+msgid "&copy; %1$s %2$s"
+msgstr ""
+
+#: footer.php:45
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: footer.php:48
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: footer.php:54
+msgid "Footer menu"
+msgstr ""
+
+#: footer.php:68
+msgid "Social links"
+msgstr ""
+
+#: front-page.php:75
+msgid "Latest news"
+msgstr ""
+
+#: functions.php:58
+msgid "Elektron Blue"
+msgstr ""
+
+#: functions.php:63
+msgid "Deep Blue"
+msgstr ""
+
+#: functions.php:68
+msgid "Night"
+msgstr ""
+
+#: functions.php:73
+msgid "Surface"
+msgstr ""
+
+#: functions.php:78
+msgid "Mist"
+msgstr ""
+
+#: functions.php:83
+msgid "White"
+msgstr ""
+
+#: functions.php:96
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:97
+msgid "Footer Menu"
+msgstr ""
+
+#: functions.php:98
+msgid "Social Links Menu"
+msgstr ""
+
+#: functions.php:110 sidebar.php:17
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:112
+msgid "Widgets shown beside posts and archives."
+msgstr ""
+
+#: functions.php:124
+msgid "Footer %d"
+msgstr ""
+
+#: functions.php:126
+msgid "Widgets shown in the footer."
+msgstr ""
+
+#: functions.php:158
+msgid "Expand child menu"
+msgstr ""
+
+#: functions.php:159
+msgid "Collapse child menu"
+msgstr ""
+
+#: header.php:23
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:32
+msgid "Switch between light and dark mode"
+msgstr ""
+
+#: header.php:39
+msgid "Menu"
+msgstr ""
+
+#: header.php:44
+msgid "Primary menu"
+msgstr ""
+
+#: inc/customizer.php:80
+msgid "Theme Options"
+msgstr ""
+
+#: inc/customizer.php:95
+msgid "Default color scheme"
+msgstr ""
+
+#: inc/customizer.php:99
+msgid "Dark"
+msgstr ""
+
+#: inc/customizer.php:100
+msgid "Light"
+msgstr ""
+
+#: inc/customizer.php:101
+msgid "Follow system setting"
+msgstr ""
+
+#: inc/customizer.php:116
+msgid "Show light/dark switch in the header"
+msgstr ""
+
+#: inc/customizer.php:132
+msgid "Show latest posts on the front page"
+msgstr ""
+
+#: inc/customizer.php:148
+msgid "Footer text"
+msgstr ""
+
+#: inc/customizer.php:149
+msgid "Leave empty to show the copyright line."
+msgstr ""
+
+#: inc/customizer.php:158
+msgid "Front Page Hero"
+msgstr ""
+
+#: inc/customizer.php:159
+msgid "Texts shown on the front page."
+msgstr ""
+
+#: inc/customizer.php:165
+msgid "Eyebrow"
+msgstr ""
+
+#: inc/customizer.php:166
+msgid "Headline"
+msgstr ""
+
+#: inc/customizer.php:167
+msgid "Description"
+msgstr ""
+
+#: inc/customizer.php:168
+msgid "Primary button label"
+msgstr ""
+
+#: inc/customizer.php:169
+msgid "Primary button link"
+msgstr ""
+
+#: inc/customizer.php:170
+msgid "Secondary button label"
+msgstr ""
+
+#: inc/customizer.php:171
+msgid "Secondary button link"
+msgstr ""
+
+#: inc/customizer.php:202
+msgid "Animated 3D network background"
+msgstr ""
+
+#: inc/customizer.php:203
+msgid "Shows a three.js node and block chain effect behind the front page hero. It stays still for visitors who prefer reduced motion."
+msgstr ""
+
+#: inc/customizer.php:219
+msgid "Source repository URL"
+msgstr ""
+
+#: inc/customizer.php:220
+msgid "Used for the source code links on the Protocol, Build and front pages. HTTPS only."
+msgstr ""
+
+#: inc/customizer.php:229
+msgid "Live Network Data"
+msgstr ""
+
+#: inc/customizer.php:230
+msgid "Shows block height, difficulty retarget progress and the fastest fee in the overview card. The data is requested by your server from a public block explorer API, never by the visitor, and cached for one minute."
+msgstr ""
+
+#: inc/customizer.php:245
+msgid "Enable live data"
+msgstr ""
+
+#: inc/customizer.php:261
+msgid "Explorer API base URL"
+msgstr ""
+
+#: inc/customizer.php:262
+msgid "HTTPS only, for example https://explorer.example.org/api/v1"
+msgstr ""
+
+#: inc/customizer.php:271
+msgid "Front Page Features"
+msgstr ""
+
+#: inc/customizer.php:277
+msgid "Section title"
+msgstr ""
+
+#: inc/customizer.php:281
+msgid "Feature %d title"
+msgstr ""
+
+#: inc/customizer.php:283
+msgid "Feature %d text"
+msgstr ""
+
+#: inc/customizer.php:307
+msgid "Front Page Overview Card"
+msgstr ""
+
+#: inc/customizer.php:313
+msgid "Card title"
+msgstr ""
+
+#: inc/customizer.php:314
+msgid "Footnote"
+msgstr ""
+
+#: inc/customizer.php:318
+msgid "Value %d"
+msgstr ""
+
+#: inc/customizer.php:320
+msgid "Label %d"
+msgstr ""
+
+#: inc/network.php:62
+msgid "Home"
+msgstr ""
+
+#: inc/network.php:65
+msgid "Protocol & Technology"
+msgstr ""
+
+#: inc/network.php:66
+msgid "Network"
+msgstr ""
+
+#: inc/network.php:67
+msgid "Build & Verify"
+msgstr ""
+
+#: inc/template-functions.php:85
+msgid "A different kind of money"
+msgstr ""
+
+#: inc/template-functions.php:86
+msgid "Money should remember its value. Not its history."
+msgstr ""
+
+#: inc/template-functions.php:87
+msgid "Bitcoin made digital scarcity possible. Elektron Net explores a different approach to digital cash: verify the current state, without keeping the entire transaction history forever."
+msgstr ""
+
+#: inc/template-functions.php:88
+msgid "Explore the protocol"
+msgstr ""
+
+#: inc/template-functions.php:90
+msgid "View source code"
+msgstr ""
+
+#: inc/template-functions.php:92
+msgid "Network overview"
+msgstr ""
+
+#: inc/template-functions.php:93
+msgid "Illustrative design preview, not live network data."
+msgstr ""
+
+#: inc/template-functions.php:95
+msgid "Proof of Work"
+msgstr ""
+
+#: inc/template-functions.php:97
+msgid "Current state verification"
+msgstr ""
+
+#: inc/template-functions.php:99
+msgid "Target block interval"
+msgstr ""
+
+#: inc/template-functions.php:101
+msgid "Open-source license"
+msgstr ""
+
+#: inc/template-functions.php:102
+msgid "The protocol principle"
+msgstr ""
+
+#: inc/template-functions.php:103
+msgid "Verify the current state"
+msgstr ""
+
+#: inc/template-functions.php:104
+msgid "Nodes validate the live UTXO set, the coins that can be spent right now, instead of an ever-growing archive of the past."
+msgstr ""
+
+#: inc/template-functions.php:105
+msgid "Prune the history"
+msgstr ""
+
+#: inc/template-functions.php:106
+msgid "Blocks deeper than 197,280 (about 137 days) are pruned on every node. Pruning is mandatory, there is no archival mode."
+msgstr ""
+
+#: inc/template-functions.php:107
+msgid "Attest the state"
+msgstr ""
+
+#: inc/template-functions.php:108
+msgid "Every block carries an on-chain attestation of the UTXO set, so new nodes can bootstrap from a peer snapshot and verify it cryptographically."
+msgstr ""
+
+#: inc/template-tags.php:75
+msgid "Posted in %s"
+msgstr ""
+
+#: inc/template-tags.php:81
+msgid "Tagged %s"
+msgstr ""
+
+#: inc/template-tags.php:91
+msgid "Leave a Comment<span class="screen-reader-text"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:104 template-parts/content-page.php:40
+msgid "Edit <span class="screen-reader-text">%s</span>"
+msgstr ""
+
+#: page-templates/template-build.php:17 page-templates/template-protocol.php:61
+msgid "Repository"
+msgstr ""
+
+#: page-templates/template-build.php:18
+msgid "Clone the node, read the history and follow every change in the open."
+msgstr ""
+
+#: page-templates/template-build.php:20
+msgid "Source repository"
+msgstr ""
+
+#: page-templates/template-build.php:21
+msgid "Security policy"
+msgstr ""
+
+#: page-templates/template-build.php:22
+msgid "Contributing"
+msgstr ""
+
+#: page-templates/template-build.php:26
+msgid "Installation"
+msgstr ""
+
+#: page-templates/template-build.php:27
+msgid "Step-by-step instructions and a short copy-and-paste path to build the node from source."
+msgstr ""
+
+#: page-templates/template-build.php:29
+msgid "Installation guide"
+msgstr ""
+
+#: page-templates/template-build.php:30
+msgid "Quick install"
+msgstr ""
+
+#: page-templates/template-build.php:31
+msgid "Build on Unix"
+msgstr ""
+
+#: page-templates/template-build.php:32
+msgid "Build on Windows"
+msgstr ""
+
+#: page-templates/template-build.php:36
+msgid "Run a node"
+msgstr ""
+
+#: page-templates/template-build.php:37
+msgid "Technical setup for operators, plus the guide for mining pools that connect through Stratum."
+msgstr ""
+
+#: page-templates/template-build.php:39
+msgid "Technical setup"
+msgstr ""
+
+#: page-templates/template-build.php:40
+msgid "Mining pool integration"
+msgstr ""
+
+#: page-templates/template-build.php:44
+msgid "Releases"
+msgstr ""
+
+#: page-templates/template-build.php:45
+msgid "Download tagged releases and read the change log of each one."
+msgstr ""
+
+#: page-templates/template-build.php:47
+msgid "All releases"
+msgstr ""
+
+#: page-templates/template-build.php:51
+msgid "Reproducible builds"
+msgstr ""
+
+#: page-templates/template-build.php:52
+msgid "Build the release binaries yourself with Guix and compare them with the published ones."
+msgstr ""
+
+#: page-templates/template-build.php:54
+msgid "Guix build guide"
+msgstr ""
+
+#: page-templates/template-build.php:55
+msgid "Verify binaries"
+msgstr ""
+
+#: page-templates/template-build.php:59
+msgid "Verify the code"
+msgstr ""
+
+#: page-templates/template-build.php:60
+msgid "Check signed commits and run the unit and functional test suites yourself."
+msgstr ""
+
+#: page-templates/template-build.php:62
+msgid "Verify commits"
+msgstr ""
+
+#: page-templates/template-build.php:63
+msgid "Tests"
+msgstr ""
+
+#: page-templates/template-build.php:64
+msgid "Continuous integration"
+msgstr ""
+
+#: page-templates/template-network.php:20 template-parts/front-hero.php:25
+msgid "Block height"
+msgstr ""
+
+#: page-templates/template-network.php:22
+msgid "Network hash rate"
+msgstr ""
+
+#: page-templates/template-network.php:25
+msgid "Difficulty"
+msgstr ""
+
+#: page-templates/template-network.php:28
+msgid "Mempool transactions"
+msgstr ""
+
+#: page-templates/template-network.php:32 template-parts/front-hero.php:33
+msgid "Fastest fee"
+msgstr ""
+
+#: page-templates/template-network.php:32 page-templates/template-network.php:36 template-parts/front-hero.php:33
+msgid "%s lep/vB"
+msgstr ""
+
+#: page-templates/template-network.php:36
+msgid "One hour fee"
+msgstr ""
+
+#: page-templates/template-network.php:41
+msgid "Proof of work"
+msgstr ""
+
+#: page-templates/template-network.php:42
+msgid "Block time"
+msgstr ""
+
+#: page-templates/template-network.php:42
+msgid "60 seconds"
+msgstr ""
+
+#: page-templates/template-network.php:43
+msgid "Difficulty retarget"
+msgstr ""
+
+#: page-templates/template-network.php:43
+msgid "Every 2,016 blocks"
+msgstr ""
+
+#: page-templates/template-network.php:44
+msgid "Halving interval"
+msgstr ""
+
+#: page-templates/template-network.php:44
+msgid "2,102,400 blocks"
+msgstr ""
+
+#: page-templates/template-network.php:45
+msgid "Maximum supply"
+msgstr ""
+
+#: page-templates/template-network.php:46
+msgid "Smallest unit"
+msgstr ""
+
+#: page-templates/template-network.php:46
+msgid "1 Elek = 100,000,000 Lep"
+msgstr ""
+
+#: page-templates/template-network.php:47
+msgid "Genesis reward"
+msgstr ""
+
+#: page-templates/template-network.php:48
+msgid "Pruning depth"
+msgstr ""
+
+#: page-templates/template-network.php:48
+msgid "197,280 blocks (about 137 days)"
+msgstr ""
+
+#: page-templates/template-network.php:49
+msgid "Address prefix"
+msgstr ""
+
+#: page-templates/template-network.php:50
+msgid "SLIP-44 coin type"
+msgstr ""
+
+#: page-templates/template-network.php:51
+msgid "P2P port"
+msgstr ""
+
+#: page-templates/template-network.php:52
+msgid "RPC port"
+msgstr ""
+
+#: page-templates/template-network.php:53
+msgid "Network magic"
+msgstr ""
+
+#: page-templates/template-network.php:64
+msgid "Live network data"
+msgstr ""
+
+#: page-templates/template-network.php:66 template-parts/front-hero.php:74
+msgid "Live data"
+msgstr ""
+
+#: page-templates/template-network.php:82 page-templates/template-network.php:187
+msgid "Latest block hash"
+msgstr ""
+
+#: page-templates/template-network.php:92
+msgid "Difficulty retarget: %s%% of the current period"
+msgstr ""
+
+#: page-templates/template-network.php:101
+msgid "%s blocks remaining"
+msgstr ""
+
+#: page-templates/template-network.php:109
+msgid "Next retarget at block %s"
+msgstr ""
+
+#: page-templates/template-network.php:117
+msgid "Estimated: %s"
+msgstr ""
+
+#: page-templates/template-network.php:125
+msgid "Expected difficulty change: %s%%"
+msgstr ""
+
+#: page-templates/template-network.php:136
+msgid "Data from the block explorer, updated at most every minute. Last update %s ago."
+msgstr ""
+
+#: page-templates/template-network.php:147
+msgid "No live data available. Enter a block explorer API address under <a href="%s">Appearance, Customize, Live Network Data</a>. Nothing is shown here until real data can be loaded."
+msgstr ""
+
+#: page-templates/template-network.php:155
+msgid "Live network data is currently unavailable."
+msgstr ""
+
+#: page-templates/template-network.php:162
+msgid "Network parameters"
+msgstr ""
+
+#: page-templates/template-network.php:174
+msgid "Source of the mainnet parameters"
+msgstr ""
+
+#: page-templates/template-network.php:180
+msgid "API"
+msgstr ""
+
+#: page-templates/template-network.php:181
+msgid "The figures above come from these public endpoints."
+msgstr ""
+
+#: page-templates/template-network.php:186
+msgid "Latest block height"
+msgstr ""
+
+#: page-templates/template-network.php:188 template-parts/front-hero.php:29
+msgid "Difficulty retarget progress"
+msgstr ""
+
+#: page-templates/template-network.php:189
+msgid "Hash rate and difficulty"
+msgstr ""
+
+#: page-templates/template-network.php:190
+msgid "Mempool summary"
+msgstr ""
+
+#: page-templates/template-network.php:191
+msgid "Recommended fees"
+msgstr ""
+
+#: page-templates/template-protocol.php:17
+msgid "Consensus"
+msgstr ""
+
+#: page-templates/template-protocol.php:18
+msgid "SHA-256d proof of work and the Bitcoin script engine, with a 60-second block target, a 2,016-block difficulty retarget and a halving every 2,102,400 blocks."
+msgstr ""
+
+#: page-templates/template-protocol.php:20
+msgid "Chain parameters"
+msgstr ""
+
+#: page-templates/template-protocol.php:21 template-parts/front-start.php:25
+msgid "Differences from Bitcoin Core"
+msgstr ""
+
+#: page-templates/template-protocol.php:25
+msgid "Pruning"
+msgstr ""
+
+#: page-templates/template-protocol.php:26
+msgid "Every node prunes blocks deeper than 197,280 (about 137 days). There is no archival mode: headers, checkpoints and the current UTXO set remain."
+msgstr ""
+
+#: page-templates/template-protocol.php:28
+msgid "Prune depth in validation.h"
+msgstr ""
+
+#: page-templates/template-protocol.php:29
+msgid "Pruning and snapshot audit"
+msgstr ""
+
+#: page-templates/template-protocol.php:33
+msgid "UTXO attestation"
+msgstr ""
+
+#: page-templates/template-protocol.php:34
+msgid "Every block carries a compact attestation of the UTXO set, kept up to date with an incremental MuHash accumulator instead of a full rescan."
+msgstr ""
+
+#: page-templates/template-protocol.php:36
+msgid "MuHash accumulator"
+msgstr ""
+
+#: page-templates/template-protocol.php:37
+msgid "Scalability design"
+msgstr ""
+
+#: page-templates/template-protocol.php:38
+msgid "Change log"
+msgstr ""
+
+#: page-templates/template-protocol.php:42
+msgid "Snapshots"
+msgstr ""
+
+#: page-templates/template-protocol.php:43
+msgid "After the first checkpoint, fresh nodes bootstrap from a peer-to-peer UTXO snapshot that is verified against the on-chain attestation."
+msgstr ""
+
+#: page-templates/template-protocol.php:45
+msgid "Bootstrap trust model"
+msgstr ""
+
+#: page-templates/template-protocol.php:46
+msgid "Whitepaper"
+msgstr ""
+
+#: page-templates/template-protocol.php:50
+msgid "Wallet recovery"
+msgstr ""
+
+#: page-templates/template-protocol.php:51
+msgid "Wallets use SLIP-44 coin type 1370. Coins from an old coin type 0 wallet can be moved to a new wallet with a documented sweep."
+msgstr ""
+
+#: page-templates/template-protocol.php:53 template-parts/front-start.php:17
+msgid "Move coins from a legacy wallet"
+msgstr ""
+
+#: page-templates/template-protocol.php:54 template-parts/front-start.php:26
+msgid "Wallet integration guide"
+msgstr ""
+
+#: page-templates/template-protocol.php:58
+msgid "Source code"
+msgstr ""
+
+#: page-templates/template-protocol.php:59
+msgid "The node is a focused fork of Bitcoin Core. Every deliberate change is documented file by file."
+msgstr ""
+
+#: page-templates/template-protocol.php:62
+msgid "Source tree"
+msgstr ""
+
+#: search.php:22
+msgid "Search results for: %s"
+msgstr ""
+
+#: searchform.php:15
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:16
+msgid "Search&hellip;"
+msgstr ""
+
+#: searchform.php:17
+msgid "Search"
+msgstr ""
+
+#: single.php:25
+msgid "Previous"
+msgstr ""
+
+#: single.php:26
+msgid "Next"
+msgstr ""
+
+#: template-parts/content-none.php:15
+msgid "Nothing found"
+msgstr ""
+
+#: template-parts/content-none.php:25
+msgid "Ready to publish your first post? <a href="%s">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:33
+msgid "Sorry, nothing matched your search terms. Please try again with different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:36
+msgid "It seems we cannot find what you are looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:26
+msgid "Page parts"
+msgstr ""
+
+#: template-parts/content-page.php:26 template-parts/content-single.php:36
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-single.php:27
+msgid "Continue reading<span class="screen-reader-text"> &ldquo;%s&rdquo;</span>"
+msgstr ""
+
+#: template-parts/content-single.php:36
+msgid "Post pages"
+msgstr ""
+
+#: template-parts/content.php:18
+msgid "Featured"
+msgstr ""
+
+#: template-parts/front-hero.php:29
+msgid "%s%%"
+msgstr ""
+
+#: template-parts/front-start.php:16
+msgid "Download a release"
+msgstr ""
+
+#: template-parts/front-start.php:20
+msgid "See the live network"
+msgstr ""
+
+#: template-parts/front-start.php:24
+msgid "Browse the source code"
+msgstr ""
+
+#: template-parts/front-start.php:29
+msgid "Build and verify"
+msgstr ""
+
+#: template-parts/front-start.php:33
+msgid "For users"
+msgstr ""
+
+#: template-parts/front-start.php:33
+msgid "Get the wallet and node, move your coins and watch the network."
+msgstr ""
+
+#: template-parts/front-start.php:34
+msgid "For developers"
+msgstr ""
+
+#: template-parts/front-start.php:34
+msgid "Read the code, build the node, verify the release and integrate."
+msgstr ""
+
+#: template-parts/front-start.php:39
+msgid "Start here"
+msgstr ""
+

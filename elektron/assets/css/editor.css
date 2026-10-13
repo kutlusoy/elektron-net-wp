@@ -1,0 +1,58 @@
+/* Editor styles for Elektron. */
+:root {
+	--e-blue: #2da4fa;
+	--e-text: #e8eef8;
+	--e-muted: #a3b1c6;
+	--e-border: #213049;
+}
+
+.editor-styles-wrapper {
+	background: #0b1220;
+	color: var(--e-text);
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 17px;
+	line-height: 1.7;
+}
+
+.editor-styles-wrapper a {
+	color: #52bcfc;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+}
+
+.editor-styles-wrapper .wp-block-post-title,
+.editor-styles-wrapper .editor-post-title__input {
+	color: var(--e-text);
+	font-weight: 800;
+}
+
+.editor-styles-wrapper blockquote {
+	border-left: 4px solid var(--e-blue);
+	color: var(--e-muted);
+}
+
+.editor-styles-wrapper pre {
+	border: 1px solid var(--e-border);
+	border-radius: 14px;
+	background: #111a2b;
+}
+
+.editor-styles-wrapper .wp-block {
+	max-width: 760px;
+}
+
+.editor-styles-wrapper .wp-block[data-align="wide"] {
+	max-width: 1160px;
+}
+
+.editor-styles-wrapper .wp-block[data-align="full"] {
+	max-width: none;
+}

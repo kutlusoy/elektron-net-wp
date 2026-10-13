@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "elektron-live/overview",
+	"version": "0.0.1",
+	"title": "Network Overview",
+	"category": "elektron-live",
+	"icon": "chart-area",
+	"description": "Block height, hash rate, mempool, fees and adjustment progress in one card.",
+	"keywords": [
+		"elektron",
+		"blockchain",
+		"live"
+	],
+	"textdomain": "elektron-live-blocks",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"showHeading": {
+			"type": "boolean",
+			"default": true
+		},
+		"showUpdated": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "elnb-editor",
+	"style": "elnb-blocks"
+}
