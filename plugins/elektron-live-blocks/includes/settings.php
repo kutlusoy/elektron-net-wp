@@ -25,6 +25,43 @@ function elnb_sanitize_api_base( $value ) {
 }
 
 /**
+ * Sanitizes an HTTPS URL setting, keeping the old value when the input is invalid.
+ *
+ * @param string $value Submitted value.
+ * @param string $name  Option name.
+ * @param string $keep  Default.
+ * @return string
+ */
+function elnb_sanitize_https_option( $value, $name, $keep ) {
+	$url = esc_url_raw( trim( (string) $value ), array( 'https' ) );
+	if ( '' === $url ) {
+		add_settings_error( $name, $name, __( 'Please enter a valid https:// address.', 'elektron-live-blocks' ) );
+		return get_option( $name, $keep );
+	}
+	return $url;
+}
+
+/**
+ * Sanitizes the node snapshot URL.
+ *
+ * @param string $value Submitted value.
+ * @return string
+ */
+function elnb_sanitize_nodes_api( $value ) {
+	return untrailingslashit( elnb_sanitize_https_option( $value, 'elnb_nodes_api', ELNB_DEFAULT_NODES_API ) );
+}
+
+/**
+ * Sanitizes the node map page URL.
+ *
+ * @param string $value Submitted value.
+ * @return string
+ */
+function elnb_sanitize_nodemap_url( $value ) {
+	return elnb_sanitize_https_option( $value, 'elnb_nodemap_url', ELNB_DEFAULT_NODEMAP );
+}
+
+/**
  * Sanitizes the cache lifetime.
  *
  * @param mixed $value Submitted value.
@@ -45,6 +82,24 @@ function elnb_register_settings() {
 			'type'              => 'string',
 			'sanitize_callback' => 'elnb_sanitize_api_base',
 			'default'           => ELNB_DEFAULT_API,
+		)
+	);
+	register_setting(
+		'elnb',
+		'elnb_nodes_api',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'elnb_sanitize_nodes_api',
+			'default'           => ELNB_DEFAULT_NODES_API,
+		)
+	);
+	register_setting(
+		'elnb',
+		'elnb_nodemap_url',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'elnb_sanitize_nodemap_url',
+			'default'           => ELNB_DEFAULT_NODEMAP,
 		)
 	);
 	register_setting(
@@ -97,6 +152,20 @@ function elnb_settings_page() {
 							printf( esc_html__( 'HTTPS only. Default: %s', 'elektron-live-blocks' ), '<code>' . esc_html( ELNB_DEFAULT_API ) . '</code>' );
 							?>
 						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="elnb_nodes_api"><?php esc_html_e( 'Node snapshot URL', 'elektron-live-blocks' ); ?></label></th>
+					<td>
+						<input type="url" id="elnb_nodes_api" name="elnb_nodes_api" class="regular-text code" value="<?php echo esc_attr( elnb_nodes_api() ); ?>">
+						<p class="description"><?php esc_html_e( 'JSON snapshot of the node crawler, used by the Network Nodes block. HTTPS only.', 'elektron-live-blocks' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="elnb_nodemap_url"><?php esc_html_e( 'Node map page URL', 'elektron-live-blocks' ); ?></label></th>
+					<td>
+						<input type="url" id="elnb_nodemap_url" name="elnb_nodemap_url" class="regular-text code" value="<?php echo esc_attr( elnb_nodemap_url() ); ?>">
+						<p class="description"><?php esc_html_e( 'Page that is embedded by the Node Map block. HTTPS only.', 'elektron-live-blocks' ); ?></p>
 					</td>
 				</tr>
 				<tr>

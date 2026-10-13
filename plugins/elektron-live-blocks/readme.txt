@@ -24,6 +24,8 @@ Blocks (category "Elektron Live Data"):
 * Recommended Fees
 * Halving Countdown: next halving block, blocks remaining, estimated date, block reward
 * Latest Blocks: table with up to 15 rows
+* Network Nodes: nodes online, nodes by network type (IPv4, IPv6, Tor, I2P, CJDNS) and top countries from the node crawler
+* Node Map: embeds the interactive node map page
 
 Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `rows="6"`, `showheading="false"`, `updated="true"`.
 

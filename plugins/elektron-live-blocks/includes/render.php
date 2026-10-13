@@ -98,7 +98,57 @@ function elnb_render( $slug, $attrs = array(), $is_block = true ) {
 	$time  = 0;
 	$label = '';
 
+	if ( ! $is_block ) {
+		wp_enqueue_style( 'elnb-blocks' );
+	}
+
 	switch ( $slug ) {
+		case 'nodes':
+			$label = __( 'Network nodes', 'elektron-live-blocks' );
+			$r     = elnb_get_nodes();
+			if ( $r ) {
+				$time  = $r['time'];
+				$d     = $r['data'];
+				$inner = '<div class="elnb-grid">' . elnb_tile( number_format_i18n( $d['online'] ), __( 'Nodes online', 'elektron-live-blocks' ) );
+				if ( $d['known'] > 0 ) {
+					$inner .= elnb_tile( number_format_i18n( $d['known'] ), __( 'Nodes seen in total', 'elektron-live-blocks' ) );
+				}
+				$inner .= '</div>';
+
+				if ( $d['networks'] ) {
+					$names  = array(
+						'ipv4'  => 'IPv4',
+						'ipv6'  => 'IPv6',
+						'tor'   => 'Tor',
+						'i2p'   => 'I2P',
+						'cjdns' => 'CJDNS',
+					);
+					$inner .= '<ul class="elnb-meta elnb-spaced">';
+					foreach ( $d['networks'] as $net => $count ) {
+						$inner .= '<li>' . esc_html( $names[ $net ] . ': ' . number_format_i18n( $count ) ) . '</li>';
+					}
+					$inner .= '</ul>';
+				}
+
+				if ( $d['countries'] ) {
+					$inner .= '<div class="elnb-table-wrap elnb-spaced"><table class="elnb-table"><thead><tr><th scope="col">' . esc_html__( 'Country', 'elektron-live-blocks' ) . '</th><th scope="col">' . esc_html__( 'Nodes', 'elektron-live-blocks' ) . '</th></tr></thead><tbody>';
+					foreach ( array_slice( $d['countries'], 0, isset( $attrs['rows'] ) ? min( 10, max( 1, (int) $attrs['rows'] ) ) : 5 ) as $country ) {
+						$inner .= '<tr><td>' . esc_html( $country['name'] ) . '</td><td>' . esc_html( number_format_i18n( $country['count'] ) ) . '</td></tr>';
+					}
+					$inner .= '</tbody></table></div>';
+				}
+			}
+			break;
+
+		case 'nodemap':
+			$label  = __( 'Node map', 'elektron-live-blocks' );
+			$height = min( 900, max( 300, isset( $attrs['height'] ) ? (int) $attrs['height'] : 520 ) );
+			$url    = elnb_nodemap_url();
+			$inner  = '<iframe class="elnb-frame" src="' . esc_url( $url ) . '" title="' . esc_attr__( 'Elektron Net node map', 'elektron-live-blocks' ) . '" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin" style="height:' . (int) $height . 'px"></iframe>'
+				. '<p class="elnb-updated"><a href="' . esc_url( $url ) . '" rel="noopener">' . esc_html__( 'Open the node map in a new view', 'elektron-live-blocks' ) . '</a></p>';
+			$time   = 0;
+			break;
+
 		case 'height':
 			$label = __( 'Block height', 'elektron-live-blocks' );
 			$r     = elnb_get_height();
@@ -293,6 +343,7 @@ function elnb_shortcode( $atts ) {
 			'type'        => 'overview',
 			'heading'     => '',
 			'rows'        => 6,
+			'height'      => 520,
 			'showheading' => 'true',
 			'updated'     => 'false',
 		),
@@ -305,6 +356,7 @@ function elnb_shortcode( $atts ) {
 		array(
 			'heading'     => sanitize_text_field( $atts['heading'] ),
 			'rows'        => absint( $atts['rows'] ),
+			'height'      => absint( $atts['height'] ),
 			'showHeading' => filter_var( $atts['showheading'], FILTER_VALIDATE_BOOLEAN ),
 			'showUpdated' => filter_var( $atts['updated'], FILTER_VALIDATE_BOOLEAN ),
 		),

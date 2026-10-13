@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "elektron-live/nodes",
+	"version": "0.0.1",
+	"title": "Network Nodes",
+	"category": "elektron-live",
+	"icon": "networking",
+	"description": "Online node count, networks and top countries from the node crawler.",
+	"keywords": [
+		"elektron",
+		"blockchain",
+		"live",
+		"nodes"
+	],
+	"textdomain": "elektron-live-blocks",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"showHeading": {
+			"type": "boolean",
+			"default": true
+		},
+		"showUpdated": {
+			"type": "boolean",
+			"default": false
+		},
+		"rows": {
+			"type": "integer",
+			"default": 5
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "elnb-editor",
+	"style": "elnb-blocks"
+}
