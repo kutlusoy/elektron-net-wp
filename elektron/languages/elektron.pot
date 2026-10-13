@@ -223,51 +223,55 @@ msgstr ""
 msgid "Shows block height, difficulty retarget progress and the fastest fee in the overview card. The data is requested by your server from a public block explorer API, never by the visitor, and cached for one minute."
 msgstr ""
 
-#: inc/customizer.php:245
+#: inc/customizer.php:239
+msgid "Live data is provided by the Elektron Live Blocks plugin, which is active. Change the explorer address and cache time in its <a href="%s">settings</a>."
+msgstr ""
+
+#: inc/customizer.php:254
 msgid "Enable live data"
 msgstr ""
 
-#: inc/customizer.php:261
+#: inc/customizer.php:270
 msgid "Explorer API base URL"
 msgstr ""
 
-#: inc/customizer.php:262
-msgid "HTTPS only, for example https://explorer.example.org/api/v1"
-msgstr ""
-
 #: inc/customizer.php:271
-msgid "Front Page Features"
-msgstr ""
-
-#: inc/customizer.php:277
-msgid "Section title"
+msgid "HTTPS only, for example https://mempool.elektron-net.org/api/v1"
 msgstr ""
 
 #: inc/customizer.php:281
+msgid "Front Page Features"
+msgstr ""
+
+#: inc/customizer.php:287
+msgid "Section title"
+msgstr ""
+
+#: inc/customizer.php:291
 msgid "Feature %d title"
 msgstr ""
 
-#: inc/customizer.php:283
+#: inc/customizer.php:293
 msgid "Feature %d text"
 msgstr ""
 
-#: inc/customizer.php:307
+#: inc/customizer.php:317
 msgid "Front Page Overview Card"
 msgstr ""
 
-#: inc/customizer.php:313
+#: inc/customizer.php:323
 msgid "Card title"
 msgstr ""
 
-#: inc/customizer.php:314
+#: inc/customizer.php:324
 msgid "Footnote"
 msgstr ""
 
-#: inc/customizer.php:318
+#: inc/customizer.php:328
 msgid "Value %d"
 msgstr ""
 
-#: inc/customizer.php:320
+#: inc/customizer.php:330
 msgid "Label %d"
 msgstr ""
 
@@ -285,6 +289,26 @@ msgstr ""
 
 #: inc/network.php:67
 msgid "Build & Verify"
+msgstr ""
+
+#: inc/plugin-recommendation.php:52
+msgid "Activate Elektron Live Blocks"
+msgstr ""
+
+#: inc/plugin-recommendation.php:55
+msgid "Upload the plugin"
+msgstr ""
+
+#: inc/plugin-recommendation.php:65
+msgid "Elektron recommends the Elektron Live Blocks plugin."
+msgstr ""
+
+#: inc/plugin-recommendation.php:66
+msgid "It adds blocks for live network data (block height, hash rate, fees, halving countdown and more) that you can place on any page. The theme then uses the same data source."
+msgstr ""
+
+#: inc/plugin-recommendation.php:72
+msgid "Dismiss"
 msgstr ""
 
 #: inc/template-functions.php:85

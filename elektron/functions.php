@@ -202,3 +202,6 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/network.php';
 require get_template_directory() . '/inc/customizer.php';
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/plugin-recommendation.php';
+}
