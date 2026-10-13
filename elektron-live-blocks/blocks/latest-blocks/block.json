@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "elektron-live/latest-blocks",
+	"version": "0.0.1",
+	"title": "Latest Blocks",
+	"category": "elektron-live",
+	"icon": "editor-table",
+	"description": "A table of the most recent blocks.",
+	"keywords": [
+		"elektron",
+		"blockchain",
+		"live"
+	],
+	"textdomain": "elektron-live-blocks",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"showHeading": {
+			"type": "boolean",
+			"default": true
+		},
+		"showUpdated": {
+			"type": "boolean",
+			"default": false
+		},
+		"rows": {
+			"type": "integer",
+			"default": 6
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "elnb-editor",
+	"style": "elnb-blocks"
+}
