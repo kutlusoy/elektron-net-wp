@@ -58,7 +58,7 @@ Go to Appearance > Menus and assign menus to the Primary, Footer and Social Link
 
 == Recommended plugin ==
 
-The theme recommends the companion plugin Elektron Live Blocks (folder elektron-live-blocks in the same repository). It adds blocks for live network data that you can place on any page. A dismissible notice in the admin area offers to activate or upload it.
+The theme recommends the companion plugin Elektron Live Blocks (folder plugins/elektron-live-blocks in the same repository). It adds blocks for live network data that you can place on any page. A dismissible notice in the admin area offers to activate or upload it.
 
 When the plugin is active, the theme uses its explorer address and its cache, so there is only one setting and one data source. Without the plugin, the theme keeps its own simple live data option described below.
 
