@@ -25,8 +25,6 @@ define( 'ELNB_VERSION', '0.0.1' );
 define( 'ELNB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ELNB_URL', plugin_dir_url( __FILE__ ) );
 define( 'ELNB_DEFAULT_API', 'https://mempool.elektron-net.org/api/v1' );
-define( 'ELNB_DEFAULT_NODES_API', 'https://nodemap.kutlusoy.workers.dev' );
-define( 'ELNB_DEFAULT_NODEMAP', 'https://elektron-net.org/nodemap/' );
 
 require ELNB_DIR . 'includes/api.php';
 require ELNB_DIR . 'includes/settings.php';

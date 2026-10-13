@@ -11,7 +11,7 @@
 	var RangeControl = wp.components.RangeControl;
 	var ServerSideRender = wp.serverSideRender;
 
-	var slugs = [ 'overview', 'height', 'tip-hash', 'hashrate', 'retarget', 'mempool', 'fees', 'halving', 'latest-blocks', 'nodes', 'nodemap' ];
+	var slugs = [ 'overview', 'height', 'tip-hash', 'hashrate', 'retarget', 'mempool', 'fees', 'halving', 'latest-blocks' ];
 
 	function makeEdit( name ) {
 		return function ( props ) {
@@ -47,17 +47,6 @@
 					max: 15,
 					value: attributes.rows,
 					onChange: function ( value ) { set( { rows: value } ); }
-				} ) );
-			}
-			if ( type && type.attributes && type.attributes.height ) {
-				controls.push( el( RangeControl, {
-					key: 'height',
-					label: __( 'Height in pixels', 'elektron-live-blocks' ),
-					min: 300,
-					max: 900,
-					step: 20,
-					value: attributes.height,
-					onChange: function ( value ) { set( { height: value } ); }
 				} ) );
 			}
 			return el(

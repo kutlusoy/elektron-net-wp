@@ -139,16 +139,3 @@
 .elnb-notice:first-of-type {
 	margin-top: 0;
 }
-
-.elnb-spaced {
-	margin-top: 1.25rem;
-}
-
-.elnb-frame {
-	display: block;
-	width: 100%;
-	min-height: 300px;
-	border: 1px solid var(--elnb-border);
-	border-radius: 10px;
-	background: #0b1220;
-}

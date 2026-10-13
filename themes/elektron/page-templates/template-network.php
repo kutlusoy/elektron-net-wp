@@ -158,12 +158,6 @@ while ( have_posts() ) :
 			<?php endif; ?>
 		</section>
 
-		<?php if ( elektron_plugin_active() && function_exists( 'elnb_render' ) ) : ?>
-			<section class="container section" aria-label="<?php esc_attr_e( 'Network nodes', 'elektron' ); ?>">
-				<?php echo elnb_render( 'nodes', array( 'rows' => 5 ), false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by the plugin. ?>
-			</section>
-		<?php endif; ?>
-
 		<section class="container section" aria-labelledby="params-title">
 			<h2 id="params-title" class="section-title"><?php esc_html_e( 'Network parameters', 'elektron' ); ?></h2>
 			<table class="spec-table">

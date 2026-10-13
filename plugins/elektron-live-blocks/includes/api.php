@@ -45,11 +45,10 @@ function elnb_ttl() {
  *
  * @param string $path  Endpoint path starting with a slash.
  * @param int    $limit Maximum response size in bytes.
- * @param string $base  API base URL. Defaults to the explorer API.
  * @return array{data:mixed,time:int}|null Data is an int, a hash string or a decoded array.
  */
-function elnb_request( $path, $limit = 16384, $base = null ) {
-	$base = null === $base ? elnb_api_base() : $base;
+function elnb_request( $path, $limit = 16384 ) {
+	$base = elnb_api_base();
 	$key  = 'elnb_' . md5( $base . $path );
 
 	$cached = get_transient( $key );
@@ -251,71 +250,4 @@ function elnb_get_blocks() {
 		'time' => $r['time'],
 		'data' => $blocks,
 	) : null;
-}
-
-/**
- * Returns the node map snapshot URL, HTTPS only.
- *
- * @return string
- */
-function elnb_nodes_api() {
-	$url = esc_url_raw( (string) get_option( 'elnb_nodes_api', ELNB_DEFAULT_NODES_API ), array( 'https' ) );
-	return untrailingslashit( $url ? $url : ELNB_DEFAULT_NODES_API );
-}
-
-/**
- * Returns the public node map page URL, HTTPS only.
- *
- * @return string
- */
-function elnb_nodemap_url() {
-	$url = esc_url_raw( (string) get_option( 'elnb_nodemap_url', ELNB_DEFAULT_NODEMAP ), array( 'https' ) );
-	return $url ? $url : ELNB_DEFAULT_NODEMAP;
-}
-
-/**
- * Gets node counts from the node map snapshot. Addresses of single nodes are never used.
- *
- * @return array|null
- */
-function elnb_get_nodes() {
-	$r = elnb_request( '', 1048576, elnb_nodes_api() );
-	if ( ! $r || ! is_array( $r['data'] ) || null === elnb_number( $r['data'], 'onlineCount' ) ) {
-		return null;
-	}
-	$d = $r['data'];
-
-	$networks = array();
-	if ( isset( $d['networkCounts'] ) && is_array( $d['networkCounts'] ) ) {
-		foreach ( array( 'ipv4', 'ipv6', 'tor', 'i2p', 'cjdns' ) as $net ) {
-			$count = elnb_number( $d['networkCounts'], $net );
-			if ( null !== $count && $count > 0 ) {
-				$networks[ $net ] = (int) $count;
-			}
-		}
-	}
-
-	$countries = array();
-	if ( isset( $d['countries'] ) && is_array( $d['countries'] ) ) {
-		foreach ( array_slice( $d['countries'], 0, 10 ) as $c ) {
-			$count = elnb_number( $c, 'count' );
-			if ( null === $count || ! isset( $c['name'] ) || ! is_string( $c['name'] ) ) {
-				continue;
-			}
-			$countries[] = array(
-				'name'  => sanitize_text_field( $c['name'] ),
-				'count' => (int) $count,
-			);
-		}
-	}
-
-	return array(
-		'time' => $r['time'],
-		'data' => array(
-			'online'    => (int) $d['onlineCount'],
-			'known'     => (int) elnb_number( $d, 'totalKnown' ),
-			'networks'  => $networks,
-			'countries' => $countries,
-		),
-	);
 }

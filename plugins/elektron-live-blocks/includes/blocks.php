@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string[]
  */
 function elnb_block_slugs() {
-	return array( 'overview', 'height', 'tip-hash', 'hashrate', 'retarget', 'mempool', 'fees', 'halving', 'latest-blocks', 'nodes', 'nodemap' );
+	return array( 'overview', 'height', 'tip-hash', 'hashrate', 'retarget', 'mempool', 'fees', 'halving', 'latest-blocks' );
 }
 
 /**
