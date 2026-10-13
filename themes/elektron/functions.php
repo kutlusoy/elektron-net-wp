@@ -139,7 +139,8 @@ add_action( 'widgets_init', 'elektron_widgets_init' );
  */
 function elektron_scripts() {
 	wp_enqueue_style( 'elektron-style', get_stylesheet_uri(), array(), ELEKTRON_VERSION );
-	wp_style_add_data( 'elektron-style', 'rtl', 'replace' );
+
+	wp_enqueue_script( 'elektron-scheme', get_template_directory_uri() . '/assets/js/scheme.js', array(), ELEKTRON_VERSION, false );
 
 	wp_enqueue_script(
 		'elektron-main',
@@ -178,25 +179,6 @@ function elektron_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'elektron_scripts' );
-
-/**
- * Prints the inline script that applies the stored color scheme before first paint.
- */
-function elektron_color_scheme_script() {
-	?>
-	<script>
-	( function () {
-		try {
-			var scheme = window.localStorage.getItem( 'elektron-scheme' );
-			if ( 'light' === scheme || 'dark' === scheme ) {
-				document.documentElement.setAttribute( 'data-scheme', scheme );
-			}
-		} catch ( e ) {}
-	}() );
-	</script>
-	<?php
-}
-add_action( 'wp_head', 'elektron_color_scheme_script', 1 );
 
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';

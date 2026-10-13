@@ -91,10 +91,10 @@ function elektron_menu_fallback( $args = array() ) {
  * Each card is array( title, text, links ) where links is a list of array( label, url ).
  *
  * @param array  $cards Cards.
- * @param string $class Extra class for the grid.
+ * @param string $extra_class Extra class for the grid.
  */
-function elektron_render_cards( $cards, $class = '' ) {
-	echo '<div class="feature-grid ' . esc_attr( $class ) . '">';
+function elektron_render_cards( $cards, $extra_class = '' ) {
+	echo '<div class="feature-grid ' . esc_attr( $extra_class ) . '">';
 	foreach ( $cards as $card ) {
 		echo '<div class="feature">';
 		echo '<h3 class="feature-title">' . esc_html( $card[0] ) . '</h3>';
@@ -250,7 +250,8 @@ function elektron_get_live_stats() {
 function elektron_format_hashrate( $value ) {
 	$units = array( 'H/s', 'kH/s', 'MH/s', 'GH/s', 'TH/s', 'PH/s', 'EH/s', 'ZH/s' );
 	$i     = 0;
-	while ( $value >= 1000 && $i < count( $units ) - 1 ) {
+	$last  = count( $units ) - 1;
+	while ( $value >= 1000 && $i < $last ) {
 		$value /= 1000;
 		++$i;
 	}
@@ -266,7 +267,8 @@ function elektron_format_hashrate( $value ) {
 function elektron_format_compact( $value ) {
 	$units = array( '', 'k', 'M', 'G', 'T', 'P', 'E' );
 	$i     = 0;
-	while ( $value >= 1000 && $i < count( $units ) - 1 ) {
+	$last  = count( $units ) - 1;
+	while ( $value >= 1000 && $i < $last ) {
 		$value /= 1000;
 		++$i;
 	}
