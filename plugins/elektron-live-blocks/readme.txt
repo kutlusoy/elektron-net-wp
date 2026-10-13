@@ -27,7 +27,7 @@ Blocks (category "Elektron Live Data"):
 * Network Nodes: nodes online, nodes by network type (IPv4, IPv6, Tor, I2P, CJDNS) and top countries from the node crawler
 * Node Map: embeds the interactive node map page
 
-Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `rows="6"`, `showheading="false"`, `updated="true"`.
+Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks, nodes, nodemap. Options: `heading="..."`, `rows="6"`, `showheading="false"`, `updated="true"`.
 
 A block pattern "Elektron network dashboard" combines three of the blocks.
 
@@ -39,7 +39,11 @@ The blocks use the colors of the Elektron theme when it is active and fall back 
 
 This plugin requests data from a block explorer API. The default is https://mempool.elektron-net.org/api/v1 and can be changed under Settings > Elektron Live Blocks (HTTPS only).
 
-Your web server requests these endpoints and caches the answers (default 60 seconds): /blocks/tip/height, /blocks/tip/hash, /difficulty-adjustment, /fees/recommended, /mempool, /mining/hashrate/3d and /blocks. No personal data and no visitor data is sent. Only numbers, hashes and miner names from the answers are used, and all output is escaped.
+Your web server requests these endpoints and caches the answers (default 60 seconds): /blocks/tip/height, /blocks/tip/hash, /difficulty-adjustment, /fees/recommended, /mempool, /mining/hashrate/3d and /blocks.
+
+The Network Nodes block requests the JSON snapshot of the Elektron Net node crawler (default https://nodemap.kutlusoy.workers.dev). Only the counts per network and per country are used, addresses of single nodes are ignored. The Node Map block embeds the page https://elektron-net.org/nodemap/ in an iframe, so the visitor's browser loads that page, which in turn loads its map library and map tiles from public CDNs. Both addresses can be changed under Settings > Elektron Live Blocks (HTTPS only).
+
+For the server requests, no personal data and no visitor data is sent. Only numbers, hashes and miner names from the answers are used, and all output is escaped.
 
 == Installation ==
 
