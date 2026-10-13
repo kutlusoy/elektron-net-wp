@@ -29,6 +29,8 @@ Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Type
 
 A block pattern "Elektron network dashboard" combines three of the blocks.
 
+The Elektron theme detects this plugin and shows the same data in its front page card and on its Network page, using this plugin's explorer address and cache.
+
 The blocks use the colors of the Elektron theme when it is active and fall back to neutral colors with any other theme.
 
 == Third-party services ==

@@ -183,12 +183,12 @@ while ( have_posts() ) :
 					<tbody>
 						<?php
 						$elektron_endpoints = array(
-							'/blocks/tip/height'    => __( 'Latest block height', 'elektron' ),
-							'/blocks/tip/hash'      => __( 'Latest block hash', 'elektron' ),
+							'/blocks/tip/height'     => __( 'Latest block height', 'elektron' ),
+							'/blocks/tip/hash'       => __( 'Latest block hash', 'elektron' ),
 							'/difficulty-adjustment' => __( 'Difficulty retarget progress', 'elektron' ),
-							'/mining/hashrate/3d'   => __( 'Hash rate and difficulty', 'elektron' ),
-							'/mempool'              => __( 'Mempool summary', 'elektron' ),
-							'/fees/recommended'     => __( 'Recommended fees', 'elektron' ),
+							'/mining/hashrate/3d'    => __( 'Hash rate and difficulty', 'elektron' ),
+							'/mempool'               => __( 'Mempool summary', 'elektron' ),
+							'/fees/recommended'      => __( 'Recommended fees', 'elektron' ),
 						);
 						foreach ( $elektron_endpoints as $elektron_path => $elektron_desc ) :
 							?>

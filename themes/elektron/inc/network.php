@@ -91,10 +91,10 @@ function elektron_menu_fallback( $args = array() ) {
  * Each card is array( title, text, links ) where links is a list of array( label, url ).
  *
  * @param array  $cards Cards.
- * @param string $class Extra class for the grid.
+ * @param string $extra_class Extra class for the grid.
  */
-function elektron_render_cards( $cards, $class = '' ) {
-	echo '<div class="feature-grid ' . esc_attr( $class ) . '">';
+function elektron_render_cards( $cards, $extra_class = '' ) {
+	echo '<div class="feature-grid ' . esc_attr( $extra_class ) . '">';
 	foreach ( $cards as $card ) {
 		echo '<div class="feature">';
 		echo '<h3 class="feature-title">' . esc_html( $card[0] ) . '</h3>';
@@ -158,11 +158,23 @@ function elektron_fetch_explorer( $base, $path, $limit = 8192 ) {
 }
 
 /**
- * Returns the configured explorer API base URL, or an empty string.
+ * Tells whether the Elektron Live Blocks plugin is active and provides the data.
+ *
+ * @return bool
+ */
+function elektron_plugin_active() {
+	return function_exists( 'elnb_get_height' ) && function_exists( 'elnb_api_base' );
+}
+
+/**
+ * Returns the explorer API base URL, or an empty string. The plugin setting wins when the plugin is active.
  *
  * @return string
  */
 function elektron_explorer_api() {
+	if ( elektron_plugin_active() ) {
+		return elnb_api_base();
+	}
 	if ( ! get_theme_mod( 'elektron_live_enabled', false ) ) {
 		return '';
 	}
@@ -177,6 +189,10 @@ function elektron_explorer_api() {
  * @return array
  */
 function elektron_get_live_stats() {
+	if ( elektron_plugin_active() ) {
+		return elektron_get_plugin_stats();
+	}
+
 	$base = elektron_explorer_api();
 	if ( '' === $base ) {
 		return array();
@@ -234,7 +250,8 @@ function elektron_get_live_stats() {
 function elektron_format_hashrate( $value ) {
 	$units = array( 'H/s', 'kH/s', 'MH/s', 'GH/s', 'TH/s', 'PH/s', 'EH/s', 'ZH/s' );
 	$i     = 0;
-	while ( $value >= 1000 && $i < count( $units ) - 1 ) {
+	$last  = count( $units ) - 1;
+	while ( $value >= 1000 && $i < $last ) {
 		$value /= 1000;
 		++$i;
 	}
@@ -250,9 +267,48 @@ function elektron_format_hashrate( $value ) {
 function elektron_format_compact( $value ) {
 	$units = array( '', 'k', 'M', 'G', 'T', 'P', 'E' );
 	$i     = 0;
-	while ( $value >= 1000 && $i < count( $units ) - 1 ) {
+	$last  = count( $units ) - 1;
+	while ( $value >= 1000 && $i < $last ) {
 		$value /= 1000;
 		++$i;
 	}
 	return number_format_i18n( $value, $i ? 2 : 0 ) . ( $units[ $i ] ? ' ' . $units[ $i ] : '' );
+}
+
+/**
+ * Builds the live figures from the Elektron Live Blocks plugin, so both share one source and one cache.
+ *
+ * @return array Same shape as elektron_get_live_stats(), or an empty array.
+ */
+function elektron_get_plugin_stats() {
+	$height = elnb_get_height();
+	if ( ! $height ) {
+		return array();
+	}
+
+	$hash       = elnb_get_hash();
+	$retarget   = elnb_get_retarget();
+	$fees       = elnb_get_fees();
+	$mempool    = elnb_get_mempool();
+	$hashrate   = elnb_get_hashrate();
+	$retarget_d = $retarget ? $retarget['data'] : array();
+
+	return array(
+		'height'       => (int) $height['data'],
+		'hash'         => $hash ? $hash['data'] : '',
+		'progress'     => isset( $retarget_d['progress'] ) ? $retarget_d['progress'] : null,
+		'change'       => isset( $retarget_d['change'] ) ? $retarget_d['change'] : null,
+		'remaining'    => isset( $retarget_d['remaining'] ) ? $retarget_d['remaining'] : null,
+		'next_height'  => isset( $retarget_d['next_height'] ) ? $retarget_d['next_height'] : null,
+		'eta'          => isset( $retarget_d['eta'] ) ? $retarget_d['eta'] : null,
+		'fee_fastest'  => $fees ? $fees['data']['fastest'] : null,
+		'fee_half'     => $fees ? $fees['data']['half'] : null,
+		'fee_hour'     => $fees ? $fees['data']['hour'] : null,
+		'fee_economy'  => $fees ? $fees['data']['economy'] : null,
+		'mempool_txs'  => $mempool ? $mempool['data']['count'] : null,
+		'mempool_size' => $mempool ? $mempool['data']['vsize'] : null,
+		'hashrate'     => $hashrate ? $hashrate['data']['hashrate'] : null,
+		'difficulty'   => $hashrate ? $hashrate['data']['difficulty'] : null,
+		'time'         => $height['time'],
+	);
 }

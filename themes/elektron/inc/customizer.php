@@ -92,10 +92,10 @@ function elektron_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'elektron_default_scheme',
 		array(
-			'label'    => __( 'Default color scheme', 'elektron' ),
-			'section'  => 'elektron_layout',
-			'type'     => 'select',
-			'choices'  => array(
+			'label'   => __( 'Default color scheme', 'elektron' ),
+			'section' => 'elektron_layout',
+			'type'    => 'select',
+			'choices' => array(
 				'dark'  => __( 'Dark', 'elektron' ),
 				'light' => __( 'Light', 'elektron' ),
 				'auto'  => __( 'Follow system setting', 'elektron' ),
@@ -232,38 +232,48 @@ function elektron_customize_register( $wp_customize ) {
 		)
 	);
 
-	$wp_customize->add_setting(
-		'elektron_live_enabled',
-		array(
-			'default'           => false,
-			'sanitize_callback' => 'elektron_sanitize_checkbox',
-		)
-	);
-	$wp_customize->add_control(
-		'elektron_live_enabled',
-		array(
-			'label'   => __( 'Enable live data', 'elektron' ),
-			'section' => 'elektron_live',
-			'type'    => 'checkbox',
-		)
-	);
+	if ( elektron_plugin_active() ) {
+		$wp_customize->get_section( 'elektron_live' )->description = wp_kses_post(
+			sprintf(
+				/* translators: %s: link to the plugin settings page */
+				__( 'Live data is provided by the Elektron Live Blocks plugin, which is active. Change the explorer address and cache time in its <a href="%s">settings</a>.', 'elektron' ),
+				esc_url( admin_url( 'options-general.php?page=elektron-live-blocks' ) )
+			)
+		);
+	} else {
+		$wp_customize->add_setting(
+			'elektron_live_enabled',
+			array(
+				'default'           => false,
+				'sanitize_callback' => 'elektron_sanitize_checkbox',
+			)
+		);
+		$wp_customize->add_control(
+			'elektron_live_enabled',
+			array(
+				'label'   => __( 'Enable live data', 'elektron' ),
+				'section' => 'elektron_live',
+				'type'    => 'checkbox',
+			)
+		);
 
-	$wp_customize->add_setting(
-		'elektron_live_api',
-		array(
-			'default'           => '',
-			'sanitize_callback' => 'elektron_sanitize_https_url',
-		)
-	);
-	$wp_customize->add_control(
-		'elektron_live_api',
-		array(
-			'label'       => __( 'Explorer API base URL', 'elektron' ),
-			'description' => __( 'HTTPS only, for example https://mempool.elektron-net.org/api/v1', 'elektron' ),
-			'section'     => 'elektron_live',
-			'type'        => 'url',
-		)
-	);
+		$wp_customize->add_setting(
+			'elektron_live_api',
+			array(
+				'default'           => '',
+				'sanitize_callback' => 'elektron_sanitize_https_url',
+			)
+		);
+		$wp_customize->add_control(
+			'elektron_live_api',
+			array(
+				'label'       => __( 'Explorer API base URL', 'elektron' ),
+				'description' => __( 'HTTPS only, for example https://mempool.elektron-net.org/api/v1', 'elektron' ),
+				'section'     => 'elektron_live',
+				'type'        => 'url',
+			)
+		);
+	}
 
 	$wp_customize->add_section(
 		'elektron_features',
@@ -280,7 +290,7 @@ function elektron_customize_register( $wp_customize ) {
 		/* translators: %d: feature number */
 		$feature_fields[ 'feature_' . $i . '_title' ] = array( sprintf( __( 'Feature %d title', 'elektron' ), $i ), 'text' );
 		/* translators: %d: feature number */
-		$feature_fields[ 'feature_' . $i . '_text' ]  = array( sprintf( __( 'Feature %d text', 'elektron' ), $i ), 'textarea' );
+		$feature_fields[ 'feature_' . $i . '_text' ] = array( sprintf( __( 'Feature %d text', 'elektron' ), $i ), 'textarea' );
 	}
 
 	foreach ( $feature_fields as $key => $field ) {

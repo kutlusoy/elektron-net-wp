@@ -23,7 +23,8 @@ const ELNB_GENESIS_REWARD   = 5;
 function elnb_format_unit( $value, $unit ) {
 	$prefixes = array( '', 'k', 'M', 'G', 'T', 'P', 'E', 'Z' );
 	$i        = 0;
-	while ( $value >= 1000 && $i < count( $prefixes ) - 1 ) {
+	$last     = count( $prefixes ) - 1;
+	while ( $value >= 1000 && $i < $last ) {
 		$value /= 1000;
 		++$i;
 	}
@@ -235,7 +236,7 @@ function elnb_render( $slug, $attrs = array(), $is_block = true ) {
 					if ( $site && $block['id'] ) {
 						$height = '<a href="' . esc_url( $site . '/block/' . $block['id'] ) . '" rel="noopener">' . $height . '</a>';
 					}
-					$age    = $block['timestamp'] ? sprintf(
+					$age = $block['timestamp'] ? sprintf(
 						/* translators: %s: time span such as "1 minute" */
 						__( '%s ago', 'elektron-live-blocks' ),
 						human_time_diff( $block['timestamp'] )

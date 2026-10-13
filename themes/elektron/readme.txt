@@ -56,9 +56,15 @@ No. It shows the texts you enter in the Customizer.
 
 Go to Appearance > Menus and assign menus to the Primary, Footer and Social Links locations.
 
+== Recommended plugin ==
+
+The theme recommends the companion plugin Elektron Live Blocks (folder plugins/elektron-live-blocks in the same repository). It adds blocks for live network data that you can place on any page. A dismissible notice in the admin area offers to activate or upload it.
+
+When the plugin is active, the theme uses its explorer address and its cache, so there is only one setting and one data source. Without the plugin, the theme keeps its own simple live data option described below.
+
 == Third-party services ==
 
-Live network data is off by default. When you enable it and enter an HTTPS explorer API base URL in Appearance > Customize > Live Network Data, your web server (never the visitor's browser) requests the endpoints /blocks/tip/height, /difficulty-adjustment and /fees/recommended from that address. Only whole numbers are read from the answers, and the result is cached for one minute. Use an explorer whose terms you accept.
+Live network data is off by default. When the Elektron Live Blocks plugin is active, its settings apply instead. When you enable it and enter an HTTPS explorer API base URL in Appearance > Customize > Live Network Data, your web server (never the visitor's browser) requests the endpoints /blocks/tip/height, /difficulty-adjustment and /fees/recommended from that address. Only whole numbers are read from the answers, and the result is cached for one minute. Use an explorer whose terms you accept.
 
 == Copyright ==
 
