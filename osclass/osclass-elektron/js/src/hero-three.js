@@ -59,7 +59,7 @@ function init() {
   // Bloom makes every bright line, point and padlock glow in its own color (dark scheme only)
   var composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  composer.addPass(new UnrealBloomPass(new Vector2(256, 256), 0.32, 0.3, 0.45));
+  composer.addPass(new UnrealBloomPass(new Vector2(256, 256), 0.5, 0.35, 0.32));
   composer.addPass(new OutputPass());
   var bloomOn = false;
 
@@ -304,15 +304,15 @@ function init() {
       }
       material.opacity = opacity;
     }
-    tint(pointMaterial, accent, 1.15, light ? 0.75 : 1);
-    tint(lineMaterial, accent, 1.0, light ? 0.35 : 0.6);
-    tint(partyMaterial, accent, 1.5, 1);
-    tint(pathMaterial, accent, 1.1, light ? 0.5 : 0.85);
-    tint(pulseMaterial, second, 1.8, 1);
-    tint(accent2Line, second, 1.1, light ? 0.7 : 1);
-    tint(accent2Soft, second, 1.0, light ? 0.45 : 0.8);
-    tint(redLine, new Color(light ? RED_LIGHT : RED), 1.7, 1);
-    tint(greenLine, new Color(light ? GREEN_LIGHT : GREEN), 1.35, 1);
+    tint(pointMaterial, accent, 1.4, light ? 0.75 : 1);
+    tint(lineMaterial, accent, 1.18, light ? 0.35 : 0.6);
+    tint(partyMaterial, accent, 1.8, 1);
+    tint(pathMaterial, accent, 1.3, light ? 0.5 : 0.85);
+    tint(pulseMaterial, second, 2.1, 1);
+    tint(accent2Line, second, 1.3, light ? 0.7 : 1);
+    tint(accent2Soft, second, 1.15, light ? 0.45 : 0.8);
+    tint(redLine, new Color(light ? RED_LIGHT : RED), 2.0, 1);
+    tint(greenLine, new Color(light ? GREEN_LIGHT : GREEN), 1.6, 1);
     lockLight = light;
     var blend = light ? NormalBlending : AdditiveBlending;
     for (var gi = 0; gi < lockGlowMaterials.length; gi++) {
@@ -424,7 +424,7 @@ function init() {
       lb.rotation.x = Math.sin(time * 0.0004 + ph * 1.3) * 0.25;
       lb.position.y = lb.userData.baseY + Math.sin(time * 0.0007 + ph) * 0.25;
       var pulse = 0.5 + 0.5 * Math.sin(time * (lb.userData.open ? 0.0016 : 0.0027) + ph);
-      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.03) + pulse * (lockLight ? 0.3 : 0.08);
+      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.045) + pulse * (lockLight ? 0.3 : 0.11);
     }
     vaultOuter.rotation.y = time * 0.0005;
     vaultOuter.rotation.x = time * 0.0003;
