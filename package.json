@@ -7,7 +7,7 @@
   "author": "Ali Kutlusoy <kutlusoy1975@gmail.com>",
   "scripts": {
     "build": "esbuild themes/elektron/assets/src/hero-network.js --bundle --minify --format=iife --target=es2018 --legal-comments=inline --outfile=themes/elektron/assets/js/hero-network.min.js",
-    "build:osclass": "esbuild osclass/osclass-elektron/js/src/hero-three.js --bundle --minify --format=iife --target=es2018 --legal-comments=inline --outfile=osclass/osclass-elektron/js/hero-three.min.js",
+    "build:osclass": "esbuild osclass/osclass_elektron/js/src/hero-three.js --bundle --minify --format=iife --target=es2018 --legal-comments=inline --outfile=osclass/osclass_elektron/js/hero-three.min.js",
     "build:all": "npm run build && npm run build:osclass"
   },
   "devDependencies": {
