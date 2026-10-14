@@ -1,0 +1,385 @@
+/* Elektron Net Escrow plugin: adapts its pages to the theme tokens.
+   The plugin prints inline styles with fixed light colors, so every rule here
+   is prefixed with body to win over them. */
+
+body .elektron-escrow-order,
+body .elektron-escrow-checkout-preview,
+body .elektron-escrow-orders,
+body .elektron-escrow-notice {
+  color: var(--e-text);
+}
+
+body .elektron-escrow-order > h1,
+body .elektron-escrow-orders > h1,
+body .elektron-escrow-checkout-preview > h1 {
+  margin: 8px 0 18px;
+}
+
+body .elektron-escrow-order h2,
+body .elektron-escrow-order h3,
+body .elektron-escrow-order h4 {
+  margin: 1.6em 0 0.6em;
+  font-size: 1.15rem;
+}
+
+body .elektron-escrow-order p,
+body .elektron-escrow-orders p {
+  margin: 0 0 0.9em;
+  line-height: 1.6;
+}
+
+body .elektron-escrow-order ol {
+  padding-inline-start: 1.4em;
+}
+
+body .elektron-escrow-order li {
+  margin: 0 0 0.5em;
+}
+
+body .elektron-escrow-order a {
+  color: var(--e-link);
+}
+
+body .elektron-escrow-order a.btn-primary {
+  color: var(--e-on-accent);
+}
+
+body .elektron-escrow-order a.btn-secondary,
+body .elektron-escrow-order a.btn-default {
+  color: var(--e-text);
+}
+
+/* Panels, notes and details */
+body .elektron-escrow-panel {
+  padding: 18px 22px;
+  background: var(--e-surface);
+  border: 1px solid var(--e-border);
+  border-radius: var(--e-radius);
+}
+
+body .elektron-escrow-panel h3,
+body .elektron-escrow-panel h4 {
+  margin-top: 0.4em;
+}
+
+body .elektron-escrow-next {
+  margin: 1.2em 0;
+  padding: 14px 18px;
+  background: color-mix(in srgb, var(--e-ui) 12%, var(--e-surface));
+  border: 1px solid color-mix(in srgb, var(--e-ui) 45%, var(--e-border));
+  border-inline-start: 4px solid var(--e-ui);
+  border-radius: var(--e-radius-sm);
+  color: var(--e-text);
+}
+
+body .elektron-escrow-order details {
+  padding: 4px 16px;
+  background: var(--e-surface);
+  border: 1px solid var(--e-border);
+  border-radius: var(--e-radius-sm);
+}
+
+body .elektron-escrow-order details > summary {
+  padding: 10px 0;
+  font-weight: 600;
+  color: var(--e-link);
+}
+
+body .elektron-escrow-order details details {
+  margin-inline-start: 0;
+  background: var(--e-bg);
+  border-top: 1px solid var(--e-border);
+}
+
+body .elektron-escrow-why {
+  color: var(--e-muted);
+}
+
+body .elektron-escrow-success,
+body .elektron-escrow-error {
+  padding: 12px 16px;
+  border-radius: var(--e-radius-sm);
+  border: 1px solid;
+}
+
+body .elektron-escrow-success {
+  color: var(--e-success);
+  background: color-mix(in srgb, var(--e-success) 12%, transparent);
+  border-color: color-mix(in srgb, var(--e-success) 45%, transparent);
+}
+
+body .elektron-escrow-error {
+  color: var(--e-danger);
+  background: color-mix(in srgb, var(--e-danger) 12%, transparent);
+  border-color: color-mix(in srgb, var(--e-danger) 45%, transparent);
+}
+
+body .elektron-escrow-emergency {
+  background: color-mix(in srgb, var(--e-danger) 8%, var(--e-surface));
+  border: 1px solid color-mix(in srgb, var(--e-danger) 60%, transparent);
+  border-radius: var(--e-radius);
+}
+
+body .elektron-escrow-emergency > summary {
+  color: var(--e-danger);
+}
+
+body .elektron-escrow-dispute {
+  border-color: color-mix(in srgb, var(--e-warning) 60%, transparent);
+}
+
+/* Tables and code blocks */
+body .elektron-escrow-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--e-surface);
+  border: 1px solid var(--e-border);
+  border-radius: var(--e-radius-sm);
+}
+
+body .elektron-escrow-table th,
+body .elektron-escrow-table td {
+  padding: 11px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--e-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+body .elektron-escrow-table tr:last-child th,
+body .elektron-escrow-table tr:last-child td {
+  border-bottom: 0;
+}
+
+body .elektron-escrow-table th {
+  background: var(--e-surface-2);
+  color: var(--e-muted);
+  font-family: var(--e-label);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body .elektron-escrow-table tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--e-surface-2) 40%, transparent);
+}
+
+body .elektron-escrow-table td:first-child {
+  color: var(--e-muted);
+  white-space: nowrap;
+}
+
+body .elektron-escrow-code,
+body .elektron-escrow-order code {
+  background: var(--e-bg);
+  border: 1px solid var(--e-border);
+  border-radius: var(--e-radius-sm);
+  color: var(--e-text);
+  font-family: var(--e-mono);
+}
+
+body .elektron-escrow-order code:not(.elektron-escrow-code) {
+  padding: 2px 6px;
+  font-size: 0.9em;
+}
+
+/* Step pills and the chain of steps */
+body .elektron-escrow-steps li {
+  background: var(--e-surface);
+  border-color: var(--e-border);
+  color: var(--e-muted);
+}
+
+body .elektron-escrow-steps li.done {
+  color: var(--e-success);
+  border-color: color-mix(in srgb, var(--e-success) 55%, transparent);
+}
+
+body .elektron-escrow-steps li.current {
+  background: color-mix(in srgb, var(--e-ui) 18%, var(--e-surface));
+  border-color: var(--e-ui);
+  color: var(--e-text);
+}
+
+body .elektron-escrow-chain-step {
+  background: var(--e-surface);
+  border-color: var(--e-border);
+  border-inline-start-color: var(--e-border);
+}
+
+body .elektron-escrow-chain-step::after {
+  background: var(--e-border);
+}
+
+body .elektron-escrow-chain-step.current {
+  background: color-mix(in srgb, var(--e-ui) 10%, var(--e-surface));
+  border-inline-start-color: var(--pal-accent-2);
+}
+
+body .elektron-escrow-chain-step.done {
+  border-inline-start-color: var(--e-success);
+}
+
+body .elektron-escrow-todo li.done {
+  color: var(--e-success);
+}
+
+body .elektron-escrow-events li {
+  border-bottom-color: var(--e-border);
+}
+
+body .elektron-escrow-done {
+  background: var(--e-success);
+  color: var(--e-bg);
+  border-radius: 999px;
+  padding: 1px 9px;
+}
+
+body .elektron-escrow-required {
+  background: var(--e-danger);
+  color: #fff;
+  border-radius: 999px;
+  padding: 1px 9px;
+}
+
+/* Tooltip help bubble */
+body .elektron-escrow-help {
+  background: var(--e-ui);
+  color: var(--e-on-accent);
+}
+
+body .elektron-escrow-help:hover::after,
+body .elektron-escrow-help:focus::after {
+  background: var(--e-surface-2);
+  color: var(--e-text);
+  border: 1px solid var(--e-border);
+  box-shadow: var(--e-shadow);
+  border-radius: var(--e-radius-sm);
+}
+
+/* Badges and the item widget */
+body .elektron-escrow-badge {
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-family: var(--e-label);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body .elektron-escrow-badge-reserved {
+  background: var(--e-warning);
+  color: #1a1100;
+}
+
+body .elektron-escrow-badge-sold {
+  background: var(--e-surface-2);
+  color: var(--e-muted);
+  border: 1px solid var(--e-border);
+}
+
+.elektron-escrow-widget {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--pal-accent-2) 45%, var(--e-border));
+  border-radius: var(--e-radius);
+  background:
+    radial-gradient(360px 120px at 0% 0%, color-mix(in srgb, var(--pal-accent-2) 14%, transparent), transparent 70%),
+    var(--e-bg);
+}
+
+.elektron-escrow-widget p {
+  margin: 0;
+}
+
+.elektron-escrow-widget .btn-primary {
+  background: linear-gradient(120deg, var(--e-ui), var(--pal-accent-2));
+  border-color: transparent;
+}
+
+.elektron-escrow-widget .btn-default {
+  background: transparent;
+  color: var(--e-text);
+  border: 1px solid color-mix(in srgb, var(--e-text) 28%, var(--e-border));
+}
+
+/* Plugin account links in the user menu */
+.user_menu .opt_elektron_escrow_orders a::before { content: "\f291"; }
+.user_menu .opt_elektron_escrow_wallet a::before { content: "\f555"; }
+
+/* Plugin buttons that use generic bootstrap-style classes */
+body .elektron-escrow-order .btn-default,
+body .elektron-escrow-order input.btn-default {
+  background: transparent;
+  color: var(--e-text);
+  border: 1px solid color-mix(in srgb, var(--e-text) 28%, var(--e-border));
+}
+
+body .elektron-escrow-order input[type="submit"].btn-primary,
+body .elektron-escrow-order .btn-submit {
+  background: var(--e-ui);
+  color: var(--e-on-accent);
+  border-color: var(--e-ui);
+}
+
+body .elektron-escrow-order .text-muted {
+  color: var(--e-muted);
+}
+
+body .elektron-escrow-order .help-block {
+  color: var(--e-muted);
+}
+
+body .elektron-escrow-order img {
+  padding: 10px;
+  background: #fff;
+  border-radius: var(--e-radius-sm);
+  box-shadow: 0 0 0 1px var(--e-border);
+}
+
+body .elektron-escrow-order label {
+  font-weight: 600;
+}
+
+body .elektron-escrow-order form label {
+  display: inline-block;
+  margin: 16px 6px 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body .elektron-escrow-checkout-preview form label {
+  display: block;
+  margin: 16px 6px 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+body .elektron-escrow-checkout-preview form input[type="text"],
+body .elektron-escrow-checkout-preview form input[type="email"],
+body .elektron-escrow-checkout-preview form textarea {
+  max-width: 560px;
+}
+
+body .elektron-escrow-checkout-preview form .btn {
+  margin: 22px 8px 0 0;
+}
+
+body .elektron-escrow-checkout-preview {
+  max-width: 760px;
+}
+
+body .elektron-escrow-checkout-preview table {
+  margin: 1em 0 1.4em;
+}
+
+body .elektron-escrow-order textarea {
+  background: var(--e-bg);
+  color: var(--e-text);
+  border: 1px solid var(--e-border);
+  border-radius: var(--e-radius-sm);
+}
