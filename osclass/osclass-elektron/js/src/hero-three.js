@@ -14,8 +14,13 @@ import {
   Points,
   PointsMaterial,
   Scene,
+  Vector2,
   WebGLRenderer,
 } from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 function init() {
   'use strict';
@@ -46,6 +51,19 @@ function init() {
   var scene = new Scene();
   var camera = new PerspectiveCamera(55, 1, 0.1, 100);
   camera.position.z = 11;
+
+  // Bloom makes every bright line, point and padlock glow in its own color (dark scheme only)
+  var composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  composer.addPass(new UnrealBloomPass(new Vector2(256, 256), 0.7, 0.4, 0.22));
+  composer.addPass(new OutputPass());
+  var bloomOn = false;
+
+  function setBloom(on) {
+    bloomOn = on;
+    renderer.setClearColor(0x000000, on ? 1 : 0);
+    canvas.setAttribute('data-bloom', on ? '1' : '0');
+  }
   var group = new Group();
   scene.add(group);
 
@@ -273,17 +291,24 @@ function init() {
     if (light) {
       accent = new Color(style.getPropertyValue('--pal-l-link').trim() || '#0a67b4');
     }
-    pointMaterial.color.copy(accent);
-    lineMaterial.color.copy(accent);
-    partyMaterial.color.copy(accent);
-    pathMaterial.color.copy(accent);
-    pulseMaterial.color.copy(second);
-    accent2Line.color.copy(second);
-    accent2Soft.color.copy(second);
-    var redColor = new Color(light ? RED_LIGHT : RED);
-    var greenColor = new Color(light ? GREEN_LIGHT : GREEN);
-    redLine.color.copy(redColor);
-    greenLine.color.copy(greenColor);
+    var bloom = !light;
+    setBloom(bloom);
+    function tint(material, color, boost, opacity) {
+      material.color.copy(color);
+      if (bloom) {
+        material.color.multiplyScalar(boost);
+      }
+      material.opacity = opacity;
+    }
+    tint(pointMaterial, accent, 1.6, light ? 0.75 : 1);
+    tint(lineMaterial, accent, 1.35, light ? 0.35 : 0.6);
+    tint(partyMaterial, accent, 2.0, 1);
+    tint(pathMaterial, accent, 1.5, light ? 0.5 : 0.85);
+    tint(pulseMaterial, second, 2.4, 1);
+    tint(accent2Line, second, 1.5, light ? 0.7 : 1);
+    tint(accent2Soft, second, 1.3, light ? 0.45 : 0.8);
+    tint(redLine, new Color(light ? RED_LIGHT : RED), 1.7, 1);
+    tint(greenLine, new Color(light ? GREEN_LIGHT : GREEN), 1.7, 1);
     lockLight = light;
     var blend = light ? NormalBlending : AdditiveBlending;
     for (var gi = 0; gi < lockGlowMaterials.length; gi++) {
@@ -291,13 +316,16 @@ function init() {
       lockGlowMaterials[gi].needsUpdate = true;
     }
     pointMaterial.blending = lineMaterial.blending = partyMaterial.blending = pulseMaterial.blending = blend;
-    pointMaterial.opacity = light ? 0.75 : 0.9;
-    lineMaterial.opacity = light ? 0.35 : 0.28;
     pointMaterial.needsUpdate = lineMaterial.needsUpdate = partyMaterial.needsUpdate = pulseMaterial.needsUpdate = true;
   }
   readColors();
   placeLocks(LOCK_SPOTS.wide, 1.5);
-  new MutationObserver(readColors).observe(root, { attributes: true, attributeFilter: ['data-scheme', 'data-palette'] });
+  new MutationObserver(function() {
+    readColors();
+    if (reduceMotion) {
+      render(0);
+    }
+  }).observe(root, { attributes: true, attributeFilter: ['data-scheme', 'data-palette'] });
 
   function resize() {
     var width = canvas.clientWidth;
@@ -305,8 +333,11 @@ function init() {
     if (!width || !height) {
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    var ratio = Math.min(window.devicePixelRatio || 1, small ? 1 : 1.5);
+    renderer.setPixelRatio(ratio);
     renderer.setSize(width, height, false);
+    composer.setPixelRatio(ratio);
+    composer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     layout(camera.aspect);
@@ -388,7 +419,7 @@ function init() {
       lb.rotation.x = Math.sin(time * 0.0004 + ph * 1.3) * 0.25;
       lb.position.y = lb.userData.baseY + Math.sin(time * 0.0007 + ph) * 0.25;
       var pulse = 0.5 + 0.5 * Math.sin(time * (lb.userData.open ? 0.0016 : 0.0027) + ph);
-      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.45) + pulse * (lockLight ? 0.3 : 0.55);
+      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.06) + pulse * (lockLight ? 0.3 : 0.14);
     }
     vaultOuter.rotation.y = time * 0.0005;
     vaultOuter.rotation.x = time * 0.0003;
@@ -398,7 +429,11 @@ function init() {
 
   function render(time) {
     step(time);
-    renderer.render(scene, camera);
+    if (bloomOn) {
+      composer.render();
+    } else {
+      renderer.render(scene, camera);
+    }
   }
 
   if (reduceMotion) {

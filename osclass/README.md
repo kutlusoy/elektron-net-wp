@@ -52,7 +52,7 @@ Site owners pick the defaults under Appearance > Theme settings. Visitors can sw
 
 ### Hero animation
 
-The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. Floating blocks carry padlocks: closed ones glow red (funds locked in escrow), open ones glow green (released). The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and renders one still frame for visitors who prefer reduced motion. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
+The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. Floating blocks carry padlocks: closed ones glow red (funds locked in escrow), open ones glow green (released). On the dark scheme the scene is rendered with the three.js bloom post-processing (`UnrealBloomPass`), so every line, node, block and padlock glows in its own color. The light scheme renders the same scene without bloom, because a glow needs a dark background. The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and renders one still frame for visitors who prefer reduced motion. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
 
 ![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclass-elektron/hero-3d-violet-light.jpg)
 
