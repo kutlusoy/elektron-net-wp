@@ -70,7 +70,7 @@
 <!-- /favicon -->
 
 <script>
-(function(){var r=document.documentElement,p=['blue','neon','synthwave','matrix','rust','iron','violet'],f=['off','subtle','full'];try{var s=localStorage.getItem('elektron-scheme');if(s==='light'||s==='dark'){r.setAttribute('data-scheme',s);}var a=localStorage.getItem('elektron-palette');if(p.indexOf(a)>-1){r.setAttribute('data-palette',a);}var x=localStorage.getItem('elektron-fx');if(f.indexOf(x)>-1){r.setAttribute('data-fx',x);}}catch(e){}}());
+(function(){var r=document.documentElement,p=['blue','neon','synthwave','matrix','rust','iron','violet','red','frost','terminal'],f=['off','subtle','full'];try{var s=localStorage.getItem('elektron-scheme');if(s==='light'||s==='dark'){r.setAttribute('data-scheme',s);}var a=localStorage.getItem('elektron-palette');if(p.indexOf(a)>-1){r.setAttribute('data-palette',a);}var x=localStorage.getItem('elektron-fx');if(f.indexOf(x)>-1){r.setAttribute('data-fx',x);}}catch(e){}}());
 </script>
 <script type="text/javascript">
   var elektron = window.elektron || {};

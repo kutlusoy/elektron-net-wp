@@ -30,7 +30,7 @@ Requirements: Osclass 8.x, PHP 7.4 or newer.
 
 ## 3. Color themes, variations and effects
 
-The theme ships with the same seven color themes as the WordPress theme, each in a dark and a light variant.
+The theme ships with the seven color themes of the WordPress theme and three more, each in a dark and a light variant.
 
 | Color theme | Idea |
 |---|---|
@@ -41,6 +41,9 @@ The theme ships with the same seven color themes as the WordPress theme, each in
 | Rust | Rusty orange and brass |
 | Iron | Steel and graphite with hazard amber |
 | Violet Night | Soft violet and pink |
+| Hacker Red | Blood red and pink on near black, a hacker atmosphere |
+| Frost | Icy blue and white on deep blue-black |
+| Terminal | Bright terminal green and amber on neutral black, monospace headings, with a text rain in the 3D hero |
 
 | Variation | Options |
 |---|---|
@@ -64,6 +67,16 @@ The default hero is the three.js scene of the WordPress theme, extended for a ma
 ![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclasselektron/hero-3d-violet-light.jpg)
 
 ![3D hero on mobile](../screenshots/osclasselektron/hero-3d-mobile.jpg)
+
+### Terminal text rain
+
+With the Terminal color theme the 3D hero shows streams of terminal text that flow very fast from the bottom to the top in perspective. Most characters are pale. A few glow and spell hidden words such as ELEKTRON, ESCROW, TRUSTLESS or PSBT along a column, so the rain looks like a cipher. Single pale characters keep changing. The rain uses an instanced glyph atlas, it follows the glow setting and the pointer, and the other color themes keep the node network.
+
+![Terminal color theme with text rain](../screenshots/osclasselektron/palette-terminal.jpg)
+
+![Hacker Red](../screenshots/osclasselektron/palette-hacker-red.jpg)
+
+![Frost](../screenshots/osclasselektron/palette-frost.jpg)
 
 ### Previews
 
