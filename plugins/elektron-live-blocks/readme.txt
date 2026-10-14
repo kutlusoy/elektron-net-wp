@@ -12,6 +12,8 @@ Blocks and a shortcode that show live Elektron Net data from a block explorer AP
 
 == Description ==
 
+Source code and issue tracker: https://github.com/kutlusoy/elektron-net-wp (folder plugins/elektron-live-blocks).
+
 Insert live network data anywhere with the block editor. Every block is rendered on the server, so the page works without JavaScript and visitors never contact the explorer.
 
 Blocks (category "Elektron Live Data"):

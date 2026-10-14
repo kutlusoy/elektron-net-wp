@@ -7,7 +7,7 @@
 			"step": "installTheme",
 			"themeData": {
 				"resource": "git:directory",
-				"url": "https://github.com/kutlusoy/elektron-net-wptheme",
+				"url": "https://github.com/kutlusoy/elektron-net-wp",
 				"ref": "wptheme",
 				"path": "themes/elektron"
 			},
@@ -17,7 +17,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "git:directory",
-				"url": "https://github.com/kutlusoy/elektron-net-wptheme",
+				"url": "https://github.com/kutlusoy/elektron-net-wp",
 				"ref": "wptheme",
 				"path": "plugins/elektron-live-blocks"
 			},

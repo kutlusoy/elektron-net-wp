@@ -13,6 +13,8 @@ A modern, fast and accessible theme for Elektron Net and open-source projects. D
 
 Elektron is a clean, responsive WordPress theme built in the colors of the Elektron Net logo. It ships with all classic template files and works with the block editor.
 
+Source code and issue tracker: https://github.com/kutlusoy/elektron-net-wp (folder themes/elektron).
+
 * Customizable front page hero with a network overview card
 * Animated 3D network background built with three.js (optional, respects reduced motion)
 * Optional live network data (block height, retarget progress, fastest fee) from a block explorer API you configure
@@ -58,7 +60,7 @@ Go to Appearance > Menus and assign menus to the Primary, Footer and Social Link
 
 == Recommended plugin ==
 
-The theme recommends the companion plugin Elektron Live Blocks (folder plugins/elektron-live-blocks in the same repository). It adds blocks for live network data that you can place on any page. A dismissible notice in the admin area offers to activate or upload it.
+The theme recommends the companion plugin Elektron Live Blocks (folder plugins/elektron-live-blocks in the repository https://github.com/kutlusoy/elektron-net-wp). It adds blocks for live network data that you can place on any page. A dismissible notice in the admin area offers to activate or upload it.
 
 When the plugin is active, the theme uses its explorer address and its cache, so there is only one setting and one data source. Without the plugin, the theme keeps its own simple live data option described below.
 

@@ -1,9 +1,10 @@
-# Elektron Net: `elektron-net-wptheme` Repository Overview
+# Elektron Net: `elektron-net-wp` Repository Overview
 
 - **Version:** 0.0.1 (draft)
 - **Date:** October 13, 2026
 - **Audience:** Site owners and developers who run or extend the Elektron Net WordPress presence
 - **Reference implementation:** [`elektron-net`](https://github.com/kutlusoy/elektron-net) (`src/kernel/chainparams.cpp`, `doc-elektron/`), treat as ground truth for every protocol value shown on the site
+- **Source:** [`elektron-net-wp`](https://github.com/kutlusoy/elektron-net-wp), WordPress theme and plugin for the Elektron Net web presence
 - **Consumer:** [`elektron-net-mempool`](https://github.com/kutlusoy/elektron-net-mempool), the block explorer whose API supplies the live data
 - **See also:** [`WHITEPAPER.md`](https://github.com/kutlusoy/elektron-net/blob/main/WHITEPAPER.md), [`BITCOIN_CORE_DIFF.md`](https://github.com/kutlusoy/elektron-net/blob/main/doc-elektron/BITCOIN_CORE_DIFF.md)
 
@@ -32,7 +33,7 @@ Requirements: WordPress 6.1 or newer for the plugin (6.0 for the theme), PHP 7.4
 
 ## 3. Try it in WordPress Playground
 
-Open `https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/kutlusoy/elektron-net-wptheme/wptheme/playground/blueprint.json`. The blueprint points to this repository and the `wptheme` branch, so the URLs MUST be updated after the repository is renamed or the branch changes.
+Open `https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/kutlusoy/elektron-net-wp/wptheme/playground/blueprint.json`. The blueprint points to this repository and the `wptheme` branch, so the URLs MUST be updated when the repository is renamed or the branch changes.
 
 ## 4. Live data
 
