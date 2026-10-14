@@ -3581,5 +3581,5 @@ body.subdomain-navigation.sd-with-icon #subdomains-list a img {
 /* Bloom render: the canvas is opaque black and is added to the hero with screen blending */
 .hero-canvas[data-bloom="1"] {
   mix-blend-mode: screen;
-  opacity: 0.92;
+  opacity: 0.85;
 }
