@@ -3,6 +3,7 @@ import {
   BoxGeometry,
   BufferAttribute,
   BufferGeometry,
+  CanvasTexture,
   Color,
   EdgesGeometry,
   Group,
@@ -122,13 +123,141 @@ function init() {
   escrow.add(new Points(pulseGeometry, pulseMaterial));
   group.add(escrow);
 
+
+  // Locked and released blocks: padlocks in red (locked) and green (released) with a pulsing glow
+  var RED = '#ff2d4a';
+  var GREEN = '#2dff7a';
+  var RED_LIGHT = '#d11a36';
+  var GREEN_LIGHT = '#0f9d4a';
+
+  function glowTexture() {
+    var size = 128;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var g = c.getContext('2d');
+    var gradient = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    gradient.addColorStop(0, 'rgba(255,255,255,1)');
+    gradient.addColorStop(0.35, 'rgba(255,255,255,0.35)');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gradient;
+    g.fillRect(0, 0, size, size);
+    return new CanvasTexture(c);
+  }
+  var glowMap = glowTexture();
+
+  var redLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
+  var greenLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
+  var lockBodyEdges = new EdgesGeometry(new BoxGeometry(0.6, 0.44, 0.16));
+
+  function arcGeometry(radius, from, to, steps) {
+    var pts = [];
+    for (var a = 0; a < steps; a++) {
+      var t0 = from + (to - from) * a / steps;
+      var t1 = from + (to - from) * (a + 1) / steps;
+      pts.push(Math.cos(t0) * radius, Math.sin(t0) * radius, 0, Math.cos(t1) * radius, Math.sin(t1) * radius, 0);
+    }
+    var geo = new BufferGeometry();
+    geo.setAttribute('position', new BufferAttribute(new Float32Array(pts), 3));
+    return geo;
+  }
+  var shackleGeometry = arcGeometry(0.17, 0, Math.PI, 14);
+
+  function makeLock(lineMaterial, open) {
+    var lock = new Group();
+    var body = new LineSegments(lockBodyEdges, lineMaterial);
+    body.position.y = -0.1;
+    lock.add(body);
+
+    var shackle = new Group();
+    shackle.add(new LineSegments(shackleGeometry, lineMaterial));
+    var legs = new BufferGeometry();
+    legs.setAttribute('position', new BufferAttribute(new Float32Array([-0.17, 0, 0, -0.17, open ? 0.05 : 0.0, 0, 0.17, 0, 0, 0.17, -0.12, 0]), 3));
+    shackle.add(new LineSegments(legs, lineMaterial));
+    shackle.position.set(0, 0.12, 0);
+    if (open) {
+      shackle.position.set(-0.17, 0.2, 0);
+      shackle.rotation.z = 0.7;
+      shackle.position.x = 0.0;
+    }
+    lock.add(shackle);
+
+    var keyhole = new BufferGeometry();
+    keyhole.setAttribute('position', new BufferAttribute(new Float32Array([0, -0.06, 0.09, 0, -0.18, 0.09]), 3));
+    lock.add(new LineSegments(keyhole, lineMaterial));
+    return lock;
+  }
+
+  var lockLight = false;
+  var lockedBlocks = [];
+  var lockGlowMaterials = [];
+
+  function makeLockedBlock(open) {
+    var item = new Group();
+    var lineMaterial = open ? greenLine : redLine;
+    var cube = new LineSegments(blockEdges, lineMaterial);
+    item.add(cube);
+
+    var lock = makeLock(lineMaterial, open);
+    lock.position.z = 0.62;
+    item.add(lock);
+
+    var glowGeometry = new BufferGeometry();
+    glowGeometry.setAttribute('position', new BufferAttribute(new Float32Array([0, 0, 0.3]), 3));
+    var glow = new PointsMaterial({ size: 3.4, map: glowMap, transparent: true, opacity: 0.5, depthWrite: false, blending: AdditiveBlending });
+    glow.userData = { open: open };
+    lockGlowMaterials.push(glow);
+    item.add(new Points(glowGeometry, glow));
+
+    item.userData = { phase: Math.random() * Math.PI * 2, open: open, glow: glow };
+    lockedBlocks.push(item);
+    group.add(item);
+    return item;
+  }
+
+  // Spots: x, y, z and whether the lock is open. The first four also serve the narrow layout.
+  var LOCK_SPOTS = {
+    wide: [
+      [-11.2, -2.6, -2.5, false],
+      [-7.6, -4.6, -3, true],
+      [9.8, 3.4, -3, true],
+      [-11.4, 0.6, -4, false],
+      [7.2, 5.2, -3.5, false],
+      [11.6, 0.2, -4, true]
+    ],
+    narrow: [
+      [-3.0, 6.0, -3],
+      [3.0, 5.2, -3],
+      [-3.0, -6.1, -3],
+      [3.0, -5.3, -3]
+    ]
+  };
+  for (var q = 0; q < LOCK_SPOTS.wide.length; q++) {
+    makeLockedBlock(LOCK_SPOTS.wide[q][3]);
+  }
+
+  function placeLocks(spots, scale) {
+    for (var i = 0; i < lockedBlocks.length; i++) {
+      var spot = spots[i];
+      var item = lockedBlocks[i];
+      item.visible = !!spot;
+      if (!spot) {
+        continue;
+      }
+      item.position.set(spot[0], spot[1], spot[2]);
+      item.scale.setScalar(scale);
+      item.userData.baseY = spot[1];
+    }
+  }
+
   function layout(aspect) {
     if (aspect >= 1.25) {
       escrow.position.set(-8.4, 3.3, -3);
       escrow.scale.setScalar(1.3);
       chain.position.set(10.4, -3.0, -3);
       chain.scale.setScalar(0.66);
+      placeLocks(LOCK_SPOTS.wide, 1.5);
     } else {
+      placeLocks(LOCK_SPOTS.narrow, 0.8);
       escrow.position.set(0, 6.1, -3);
       escrow.scale.setScalar(0.55);
       chain.position.set(0, -6.2, -3);
@@ -151,13 +280,23 @@ function init() {
     pulseMaterial.color.copy(second);
     accent2Line.color.copy(second);
     accent2Soft.color.copy(second);
+    var redColor = new Color(light ? RED_LIGHT : RED);
+    var greenColor = new Color(light ? GREEN_LIGHT : GREEN);
+    redLine.color.copy(redColor);
+    greenLine.color.copy(greenColor);
+    lockLight = light;
     var blend = light ? NormalBlending : AdditiveBlending;
+    for (var gi = 0; gi < lockGlowMaterials.length; gi++) {
+      lockGlowMaterials[gi].blending = blend;
+      lockGlowMaterials[gi].needsUpdate = true;
+    }
     pointMaterial.blending = lineMaterial.blending = partyMaterial.blending = pulseMaterial.blending = blend;
     pointMaterial.opacity = light ? 0.75 : 0.9;
     lineMaterial.opacity = light ? 0.35 : 0.28;
     pointMaterial.needsUpdate = lineMaterial.needsUpdate = partyMaterial.needsUpdate = pulseMaterial.needsUpdate = true;
   }
   readColors();
+  placeLocks(LOCK_SPOTS.wide, 1.5);
   new MutationObserver(readColors).observe(root, { attributes: true, attributeFilter: ['data-scheme', 'data-palette'] });
 
   function resize() {
@@ -241,6 +380,15 @@ function init() {
     for (var m = 0; m < blocks.length; m++) {
       blocks[m].rotation.y = time * 0.0004 + m * 0.5;
       blocks[m].rotation.x = time * 0.0002 + m * 0.3;
+    }
+    for (var li = 0; li < lockedBlocks.length; li++) {
+      var lb = lockedBlocks[li];
+      var ph = lb.userData.phase;
+      lb.rotation.y = Math.sin(time * 0.0005 + ph) * 0.7;
+      lb.rotation.x = Math.sin(time * 0.0004 + ph * 1.3) * 0.25;
+      lb.position.y = lb.userData.baseY + Math.sin(time * 0.0007 + ph) * 0.25;
+      var pulse = 0.5 + 0.5 * Math.sin(time * (lb.userData.open ? 0.0016 : 0.0027) + ph);
+      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.45) + pulse * (lockLight ? 0.3 : 0.55);
     }
     vaultOuter.rotation.y = time * 0.0005;
     vaultOuter.rotation.x = time * 0.0003;
