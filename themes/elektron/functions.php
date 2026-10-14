@@ -30,7 +30,6 @@ function elektron_setup() {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'gallery', 'audio' ) );
 	add_theme_support(
 		'html5',
 		array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' )

@@ -1,8 +1,9 @@
 === Elektron Live Blocks ===
 Contributors: kutlusoy
 Requires at least: 6.1
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
+Tags: elektron, blockchain, blocks, mempool, live data
 Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -10,6 +11,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Blocks and a shortcode that show live Elektron Net data from a block explorer API.
 
 == Description ==
+
+Source code and issue tracker: https://github.com/kutlusoy/elektron-net-wp (folder plugins/elektron-live-blocks).
 
 Insert live network data anywhere with the block editor. Every block is rendered on the server, so the page works without JavaScript and visitors never contact the explorer.
 
@@ -25,7 +28,7 @@ Blocks (category "Elektron Live Data"):
 * Halving Countdown: next halving block, blocks remaining, estimated date, block reward
 * Latest Blocks: table with up to 15 rows
 
-Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `rows="6"`, `showheading="false"`, `updated="true"`.
+Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `level="2"`, `rows="6"`, `showheading="false"`, `updated="true"`.
 
 A block pattern "Elektron network dashboard" combines three of the blocks.
 

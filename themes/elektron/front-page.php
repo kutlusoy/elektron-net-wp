@@ -10,13 +10,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-get_template_part( 'template-parts/front-hero' );
 ?>
+
+<main id="main" class="site-main">
+<?php get_template_part( 'template-parts/front-hero' ); ?>
 
 <?php if ( have_posts() && 'page' === get_option( 'show_on_front' ) ) : ?>
 	<div class="container content-area front-content">
-		<main id="main" class="site-main">
+		<div class="front-entry">
 			<?php
 			while ( have_posts() ) :
 				the_post();
@@ -27,7 +28,7 @@ get_template_part( 'template-parts/front-hero' );
 					</div>
 				</div>
 			<?php endwhile; ?>
-		</main>
+		</div>
 	</div>
 <?php endif; ?>
 
@@ -86,5 +87,8 @@ if ( get_theme_mod( 'elektron_show_latest_posts', true ) ) :
 		<?php
 	endif;
 endif;
+?>
+</main>
 
+<?php
 get_footer();

@@ -55,9 +55,9 @@ $elektron_params = array(
 
 while ( have_posts() ) :
 	the_post();
-	get_template_part( 'template-parts/page-hero' );
 	?>
 	<main id="main" class="site-main">
+		<?php get_template_part( 'template-parts/page-hero' ); ?>
 
 		<section class="container section" aria-labelledby="live-title">
 			<h2 id="live-title" class="section-title">

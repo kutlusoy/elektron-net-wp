@@ -3,15 +3,15 @@ Theme Name: Elektron
 Theme URI: https://elektron-net.org
 Author: Ali Kutlusoy
 Author URI: https://elektron-net.org
-Description: A modern, fast and accessible theme for Elektron Net and open-source projects. Dark by default with a light mode, a customizable front page hero with overview card, responsive card grid, widget areas, menus and full support for the block editor.
+Description: A modern, fast and accessible theme for Elektron Net and open-source projects. Dark by default with a light mode, a customizable front page hero with overview card, responsive card grid, widget areas, menus and full support for the block editor. Source code: https://github.com/kutlusoy/elektron-net-wp (themes/elektron).
 Version: 0.0.1
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: elektron
-Tags: blog, news, one-column, two-columns, right-sidebar, grid-layout, dark, blue, custom-logo, custom-menu, custom-background, featured-images, footer-widgets, threaded-comments, translation-ready, theme-options, sticky-post, post-formats, block-styles, wide-blocks, editor-style
+Tags: blog, news, one-column, two-columns, right-sidebar, grid-layout, custom-logo, custom-menu, custom-background, featured-images, footer-widgets, threaded-comments, translation-ready, theme-options, sticky-post, block-styles, wide-blocks, editor-style
 
 Elektron, (C) 2026 Ali Kutlusoy <kutlusoy1975@gmail.com>
 Elektron is distributed under the terms of the GNU GPL v2 or later.
@@ -419,7 +419,7 @@ body:not(.no-sidebar) .content-area.has-sidebar .site-main {
 	margin-inline: auto;
 }
 
-.front-content .site-main {
+.front-content .front-entry {
 	max-width: var(--e-narrow);
 	margin-inline: auto;
 }

@@ -63,7 +63,8 @@ function elnb_wrap( $slug, $attrs, $label, $inner, $time, $is_block ) {
 	$heading = isset( $attrs['heading'] ) && '' !== trim( (string) $attrs['heading'] ) ? (string) $attrs['heading'] : $label;
 	$out     = '<div ' . $wrapper . '>';
 	if ( ! isset( $attrs['showHeading'] ) || $attrs['showHeading'] ) {
-		$out .= '<h3 class="elnb-heading">' . esc_html( $heading ) . '</h3>';
+		$level = min( 6, max( 2, isset( $attrs['headingLevel'] ) ? (int) $attrs['headingLevel'] : 2 ) );
+		$out  .= '<h' . $level . ' class="elnb-heading">' . esc_html( $heading ) . '</h' . $level . '>';
 	}
 
 	if ( '' === $inner ) {
@@ -294,6 +295,7 @@ function elnb_shortcode( $atts ) {
 			'type'        => 'overview',
 			'heading'     => '',
 			'rows'        => 6,
+			'level'       => 2,
 			'showheading' => 'true',
 			'updated'     => 'false',
 		),
@@ -304,10 +306,11 @@ function elnb_shortcode( $atts ) {
 	return elnb_render(
 		sanitize_key( $atts['type'] ),
 		array(
-			'heading'     => sanitize_text_field( $atts['heading'] ),
-			'rows'        => absint( $atts['rows'] ),
-			'showHeading' => filter_var( $atts['showheading'], FILTER_VALIDATE_BOOLEAN ),
-			'showUpdated' => filter_var( $atts['updated'], FILTER_VALIDATE_BOOLEAN ),
+			'heading'      => sanitize_text_field( $atts['heading'] ),
+			'rows'         => absint( $atts['rows'] ),
+			'headingLevel' => absint( $atts['level'] ),
+			'showHeading'  => filter_var( $atts['showheading'], FILTER_VALIDATE_BOOLEAN ),
+			'showUpdated'  => filter_var( $atts['updated'], FILTER_VALIDATE_BOOLEAN ),
 		),
 		false
 	);

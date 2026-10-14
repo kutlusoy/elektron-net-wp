@@ -9,6 +9,7 @@
 	var TextControl = wp.components.TextControl;
 	var ToggleControl = wp.components.ToggleControl;
 	var RangeControl = wp.components.RangeControl;
+	var SelectControl = wp.components.SelectControl;
 	var ServerSideRender = wp.serverSideRender;
 
 	var slugs = [ 'overview', 'height', 'tip-hash', 'hashrate', 'retarget', 'mempool', 'fees', 'halving', 'latest-blocks' ];
@@ -24,6 +25,13 @@
 					help: __( 'Leave empty for the default heading.', 'elektron-live-blocks' ),
 					value: attributes.heading,
 					onChange: function ( value ) { set( { heading: value } ); }
+				} ),
+				el( SelectControl, {
+					key: 'headingLevel',
+					label: __( 'Heading level', 'elektron-live-blocks' ),
+					value: String( attributes.headingLevel || 2 ),
+					options: [ '2', '3', '4', '5', '6' ].map( function ( level ) { return { label: 'H' + level, value: level }; } ),
+					onChange: function ( value ) { set( { headingLevel: parseInt( value, 10 ) } ); }
 				} ),
 				el( ToggleControl, {
 					key: 'showHeading',

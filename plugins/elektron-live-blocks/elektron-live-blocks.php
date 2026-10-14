@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Elektron Live Blocks
  * Plugin URI:        https://elektron-net.org
- * Description:       Blocks and a shortcode that show live Elektron Net data from a block explorer API: block height, hash rate, difficulty adjustment, mempool, fees, halving countdown and latest blocks.
+ * Description:       Blocks and a shortcode that show live Elektron Net data from a block explorer API: block height, hash rate, difficulty adjustment, mempool, fees, halving countdown and latest blocks. Source code: https://github.com/kutlusoy/elektron-net-wp (plugins/elektron-live-blocks).
  * Version:           0.0.1
  * Requires at least: 6.1
  * Requires PHP:      7.4

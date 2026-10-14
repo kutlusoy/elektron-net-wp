@@ -92,12 +92,14 @@ function elektron_menu_fallback( $args = array() ) {
  *
  * @param array  $cards Cards.
  * @param string $extra_class Extra class for the grid.
+ * @param int    $level       Heading level of the card titles.
  */
-function elektron_render_cards( $cards, $extra_class = '' ) {
+function elektron_render_cards( $cards, $extra_class = '', $level = 3 ) {
+	$level = min( 6, max( 2, (int) $level ) );
 	echo '<div class="feature-grid ' . esc_attr( $extra_class ) . '">';
 	foreach ( $cards as $card ) {
 		echo '<div class="feature">';
-		echo '<h3 class="feature-title">' . esc_html( $card[0] ) . '</h3>';
+		echo '<h' . (int) $level . ' class="feature-title">' . esc_html( $card[0] ) . '</h' . (int) $level . '>';
 		echo '<p>' . esc_html( $card[1] ) . '</p>';
 		if ( ! empty( $card[2] ) ) {
 			echo '<ul class="link-list">';
