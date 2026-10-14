@@ -45,6 +45,8 @@ The theme ships with the same seven color themes as the WordPress theme, each in
 | Color scheme | Dark, Light, Follow system |
 | Effects | Off, Subtle (glow, HUD brackets, accent lines, faint grid), Full cyberpunk (scanlines, glitch headline, cut corners, Orbitron and Share Tech Mono) |
 | Home hero | 3D blockchain and escrow (WebGL, default), Animated network (lightweight 2D), Perspective grid, Minimal |
+| Glow of the 3D hero | Off, Subtle, Medium (default), Strong |
+| Hero animation | Always animate (default), Respect the reduced motion setting |
 | Corner style | Rounded, Sharp |
 | Header | Glass and sticky, Solid and static |
 
@@ -52,7 +54,9 @@ Site owners pick the defaults under Appearance > Theme settings. Visitors can sw
 
 ### Hero animation
 
-The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. Floating blocks carry padlocks: closed ones glow red (funds locked in escrow), open ones glow green (released). On the dark scheme the scene is rendered with the three.js bloom post-processing (`UnrealBloomPass`), so every line, node, block and padlock glows in its own color. The light scheme renders the same scene without bloom, because a glow needs a dark background. The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and runs on phones and tablets as well. Devices with a reduced motion setting get the scene at half speed. Under Theme settings > Hero animation the site owner can switch to respecting that setting, the scene then shows one still frame. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
+The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. Floating blocks carry padlocks: closed ones glow red (funds locked in escrow), open ones glow green (released). On the dark scheme the scene is rendered with the three.js bloom post-processing (`UnrealBloomPass`), so every line, node, block and padlock glows in its own color. The strength is set under Theme settings > Glow of the 3D hero animation (Off, Subtle, Medium, Strong). The light scheme renders the same scene without bloom, because a glow needs a dark background. The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and runs on phones and tablets as well. Devices with a reduced motion setting get the scene at half speed. Under Theme settings > Hero animation the site owner can switch to respecting that setting, the scene then shows one still frame. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
+
+![Glow levels: Off, Subtle, Medium, Strong](../screenshots/osclass-elektron/glow-levels.jpg)
 
 ![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclass-elektron/hero-3d-violet-light.jpg)
 

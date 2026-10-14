@@ -50,6 +50,12 @@ function elektron_style_options() {
       'grid'    => __('Perspective grid', 'osclass-elektron'),
       'minimal' => __('Minimal', 'osclass-elektron'),
     ),
+    'glow' => array(
+      'off'    => __('Off', 'osclass-elektron'),
+      'subtle' => __('Subtle', 'osclass-elektron'),
+      'medium' => __('Medium', 'osclass-elektron'),
+      'strong' => __('Strong', 'osclass-elektron'),
+    ),
     'motion' => array(
       'always'  => __('Always animate, also on phones with reduced motion settings', 'osclass-elektron'),
       'respect' => __('Respect the reduced motion setting of the device', 'osclass-elektron'),
@@ -71,6 +77,7 @@ function elektron_style_defaults() {
     'scheme'  => 'dark',
     'fx'      => 'subtle',
     'hero'    => 'three',
+    'glow'    => 'medium',
     'motion'  => 'always',
     'radius'  => 'round',
     'header'  => 'glass',
@@ -113,6 +120,7 @@ function elektron_html_attributes() {
     'data-default-scheme' => elektron_style('scheme'),
     'data-fx'             => elektron_style('fx'),
     'data-hero'           => elektron_style('hero'),
+    'data-glow'           => elektron_style('glow'),
     'data-motion'         => elektron_style('motion'),
     'data-radius'         => elektron_style('radius'),
     'data-header'         => elektron_style('header'),

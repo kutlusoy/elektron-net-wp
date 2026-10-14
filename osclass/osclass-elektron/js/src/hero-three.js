@@ -57,9 +57,17 @@ function init() {
   camera.position.z = 11;
 
   // Bloom makes every bright line, point and padlock glow in its own color (dark scheme only)
+  var GLOW = {
+    off:    { strength: 0,   boost: 1,    halo: 0 },
+    subtle: { strength: 0.3, boost: 0.8,  halo: 0.5 },
+    medium: { strength: 0.5, boost: 1,    halo: 1 },
+    strong: { strength: 0.85, boost: 1.3, halo: 2 }
+  };
+  var glow = GLOW[root.getAttribute('data-glow')] || GLOW.medium;
+
   var composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  composer.addPass(new UnrealBloomPass(new Vector2(256, 256), 0.5, 0.35, 0.32));
+  composer.addPass(new UnrealBloomPass(new Vector2(256, 256), glow.strength, 0.35, 0.32));
   composer.addPass(new OutputPass());
   var bloomOn = false;
 
@@ -295,12 +303,12 @@ function init() {
     if (light) {
       accent = new Color(style.getPropertyValue('--pal-l-link').trim() || '#0a67b4');
     }
-    var bloom = !light;
+    var bloom = !light && glow.strength > 0;
     setBloom(bloom);
     function tint(material, color, boost, opacity) {
       material.color.copy(color);
       if (bloom) {
-        material.color.multiplyScalar(boost);
+        material.color.multiplyScalar(Math.max(1, boost * glow.boost));
       }
       material.opacity = opacity;
     }
@@ -424,7 +432,7 @@ function init() {
       lb.rotation.x = Math.sin(time * 0.0004 + ph * 1.3) * 0.25;
       lb.position.y = lb.userData.baseY + Math.sin(time * 0.0007 + ph) * 0.25;
       var pulse = 0.5 + 0.5 * Math.sin(time * (lb.userData.open ? 0.0016 : 0.0027) + ph);
-      lb.userData.glow.opacity = (lockLight ? 0.28 : 0.045) + pulse * (lockLight ? 0.3 : 0.11);
+      lb.userData.glow.opacity = lockLight ? 0.28 + pulse * 0.3 : (0.045 + pulse * 0.11) * glow.halo;
     }
     vaultOuter.rotation.y = time * 0.0005;
     vaultOuter.rotation.x = time * 0.0003;
