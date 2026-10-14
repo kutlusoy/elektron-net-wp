@@ -29,6 +29,10 @@
 		"rows": {
 			"type": "integer",
 			"default": 6
+		},
+		"headingLevel": {
+			"type": "integer",
+			"default": 2
 		}
 	},
 	"supports": {

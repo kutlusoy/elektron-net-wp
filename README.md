@@ -52,7 +52,21 @@ npm run build
 
 `npm run build` bundles `themes/elektron/assets/src/hero-network.js` and three.js into `themes/elektron/assets/js/hero-network.min.js`. The bundle MUST be rebuilt and committed after every change to the source file.
 
-## 6. Guidelines
+## 6. Quality checks
+
+Last run on WordPress 7.1.3 (SQLite), PHP 8.3:
+
+| Check | Tool | Result |
+|---|---|---|
+| Theme guidelines | Theme Check plugin (10,991 tests) | Passed, recommendations only |
+| Plugin guidelines | Plugin Check, all categories (general, plugin repo, security, performance, accessibility) | No errors, no warnings |
+| Coding standards and security | PHP_CodeSniffer with `WordPress-Extra` and `WordPress-Docs` | Clean |
+| Accessibility | axe-core (WCAG 2.2 AA and best practices), 9 page types, dark and light | No violations |
+| Editor | Block editor smoke test with all blocks | No script errors |
+
+PHP 7.4 compatibility was checked statically with `PHPCompatibilityWP` (`--runtime-set testVersion 7.4-`). The only findings are the PHP 8.4 notice about the default characters of `trim()` and one hexadecimal-looking display string (`0xe1ec7a6e`), neither affects behavior.
+
+## 7. Guidelines
 
 - Escape all output, sanitize all input, and guard every PHP file with an `ABSPATH` check.
 - Every user-facing string MUST use the text domain `elektron` (theme) or `elektron-live-blocks` (plugin).
@@ -60,17 +74,17 @@ npm run build
 - Content features such as blocks and shortcodes belong in the plugin, never in the theme.
 - Protocol values on the site MUST match `src/kernel/chainparams.cpp` in the reference implementation.
 
-## 7. License
+## 8. License
 
 Both packages are licensed under the GNU GPL v2 or later (see the `LICENSE` file in each folder). The theme bundles [three.js](https://threejs.org) under the MIT license (`themes/elektron/assets/js/three.LICENSE.txt`).
 
-## 8. Links
+## 9. Links
 
 - Website: https://elektron-net.org
 - X (Twitter): @elektronnet and @kutlusoy
 - Telegram: @elektronnet
 
-## 9. Checklist
+## 10. Checklist
 
 - [ ] Hero bundle rebuilt after source changes
 - [ ] Version number identical in `style.css`, `readme.txt` and `functions.php` of the theme

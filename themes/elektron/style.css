@@ -419,7 +419,7 @@ body:not(.no-sidebar) .content-area.has-sidebar .site-main {
 	margin-inline: auto;
 }
 
-.front-content .site-main {
+.front-content .front-entry {
 	max-width: var(--e-narrow);
 	margin-inline: auto;
 }

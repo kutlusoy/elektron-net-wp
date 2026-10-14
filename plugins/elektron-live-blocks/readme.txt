@@ -3,6 +3,7 @@ Contributors: kutlusoy
 Requires at least: 6.1
 Tested up to: 7.1
 Requires PHP: 7.4
+Tags: elektron, blockchain, blocks, mempool, live data
 Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +26,7 @@ Blocks (category "Elektron Live Data"):
 * Halving Countdown: next halving block, blocks remaining, estimated date, block reward
 * Latest Blocks: table with up to 15 rows
 
-Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `rows="6"`, `showheading="false"`, `updated="true"`.
+Shortcode for classic editors and widgets: `[elektron_live type="height"]`. Types: overview, height, tip-hash, hashrate, retarget, mempool, fees, halving, latest-blocks. Options: `heading="..."`, `level="2"`, `rows="6"`, `showheading="false"`, `updated="true"`.
 
 A block pattern "Elektron network dashboard" combines three of the blocks.
 

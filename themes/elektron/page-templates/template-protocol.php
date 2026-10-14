@@ -66,11 +66,11 @@ $elektron_cards = array(
 
 while ( have_posts() ) :
 	the_post();
-	get_template_part( 'template-parts/page-hero' );
 	?>
 	<main id="main" class="site-main">
+		<?php get_template_part( 'template-parts/page-hero' ); ?>
 		<section class="container section">
-			<?php elektron_render_cards( $elektron_cards ); ?>
+			<?php elektron_render_cards( $elektron_cards, '', 2 ); ?>
 		</section>
 		<?php get_template_part( 'template-parts/page-content' ); ?>
 	</main>

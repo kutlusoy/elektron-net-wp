@@ -25,6 +25,10 @@
 		"showUpdated": {
 			"type": "boolean",
 			"default": false
+		},
+		"headingLevel": {
+			"type": "integer",
+			"default": 2
 		}
 	},
 	"supports": {

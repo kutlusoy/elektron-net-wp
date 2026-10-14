@@ -40,6 +40,9 @@ if ( ! function_exists( 'elektron_posted_by' ) ) :
 	 * Prints the post author.
 	 */
 	function elektron_posted_by() {
+		if ( '' === get_the_author() ) {
+			return;
+		}
 		printf(
 			/* translators: %s: post author */
 			'<span class="byline">' . esc_html_x( 'by %s', 'post author', 'elektron' ) . '</span>',
@@ -154,7 +157,7 @@ if ( ! function_exists( 'elektron_site_branding' ) ) :
 			echo '</span>';
 		} else {
 			printf(
-				'<a class="site-logo site-logo-default" href="%1$s" rel="home"><img src="%2$s" width="44" height="44" alt=""></a>',
+				'<a class="site-logo site-logo-default" href="%1$s" rel="home" aria-hidden="true" tabindex="-1"><img src="%2$s" width="44" height="44" alt=""></a>',
 				esc_url( home_url( '/' ) ),
 				esc_url( get_template_directory_uri() . '/assets/images/logo.png' )
 			);
