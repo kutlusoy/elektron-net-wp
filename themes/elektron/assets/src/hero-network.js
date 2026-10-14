@@ -93,19 +93,23 @@ import {
 
 	function readColors() {
 		var style = window.getComputedStyle( root );
-		var accent = new Color( style.getPropertyValue( '--e-blue' ).trim() || '#2da4fa' );
-		var light = root.getAttribute( 'data-scheme' ) === 'light';
+		var accent = new Color( style.getPropertyValue( '--pal-accent' ).trim() || '#2da4fa' );
+		var second = new Color( style.getPropertyValue( '--pal-accent-2' ).trim() || '#22d3ee' );
+		var light = root.getAttribute( 'data-scheme' ) === 'light' || ( ! root.getAttribute( 'data-scheme' ) && root.getAttribute( 'data-default-scheme' ) === 'light' );
+		if ( light ) {
+			accent = new Color( style.getPropertyValue( '--pal-l-link' ).trim() || '#0a67b4' );
+		}
 		pointMaterial.color.copy( accent );
 		lineMaterial.color.copy( accent );
-		blockMaterial.color.copy( accent );
-		linkMaterial.color.copy( accent );
+		blockMaterial.color.copy( second );
+		linkMaterial.color.copy( second );
 		pointMaterial.blending = lineMaterial.blending = light ? NormalBlending : AdditiveBlending;
 		pointMaterial.opacity = light ? 0.75 : 0.9;
 		lineMaterial.opacity = light ? 0.35 : 0.28;
 		pointMaterial.needsUpdate = lineMaterial.needsUpdate = true;
 	}
 	readColors();
-	new MutationObserver( readColors ).observe( root, { attributes: true, attributeFilter: [ 'data-scheme' ] } );
+	new MutationObserver( readColors ).observe( root, { attributes: true, attributeFilter: [ 'data-scheme', 'data-palette' ] } );
 
 	function resize() {
 		var width = canvas.clientWidth;

@@ -20,7 +20,10 @@ Source code and issue tracker: https://github.com/kutlusoy/elektron-net-wp (fold
 * Optional live network data (block height, retarget progress, fastest fee) from a block explorer API you configure
 * Page templates: Protocol & Technology, Network and Build & Verify, with links straight into the source code
 * Network page with real data only: nothing is shown until the explorer API delivers it
-* Dark and light color scheme with a visitor switch
+* Seven color themes (Elektron Blue, Neon Grid, Synthwave, Matrix, Rust, Iron, Violet Night), each with a dark and a light variant
+* Cyberpunk effects in three levels (off, subtle, full): neon glow, HUD corners, scanlines, grid floor, glitch headline
+* HUD status bar with live block height, hash rate and fee when live data is available
+* Visitor switch for color theme, effects and light or dark mode
 * Responsive card grid for posts, archives and search results
 * Primary, footer and social menus
 * Sidebar and three footer widget areas
@@ -36,7 +39,7 @@ Source code and issue tracker: https://github.com/kutlusoy/elektron-net-wp (fold
 1. In your admin panel, go to Appearance > Themes and click Add New.
 2. Click Upload Theme and choose the theme zip file.
 3. Click Install Now and then Activate.
-4. Open Appearance > Customize to edit the front page hero, overview card and theme options.
+4. Open Appearance > Customize to edit the front page hero, overview card and theme options. Choose the color theme and the effect level under Theme Options.
 
 5. Create three pages and choose the page templates "Protocol & Technology", "Network" and "Build & Verify". Without a menu, the theme lists them automatically in the header.
 
@@ -77,7 +80,9 @@ The Elektron Net logo (assets/images/logo.png) is a project mark of Elektron Net
 
 Bundled library: three.js, (C) 2010-2024 three.js authors, MIT License, https://threejs.org (assets/js/hero-network.min.js, license in assets/js/three.LICENSE.txt). Human-readable source of the bundle: assets/src/hero-network.js, build with `npm install && npm run build` in the repository root.
 
-All other assets are original work of this theme: no third-party fonts or images are bundled.
+Bundled fonts, SIL Open Font License 1.1 (licenses in assets/fonts): Orbitron, (C) 2018 The Orbitron Project Authors, https://github.com/theleagueof/orbitron, and Share Tech Mono, (C) 2012 Carrois Type Design, https://fonts.google.com/specimen/Share+Tech+Mono.
+
+All other assets are original work of this theme: no further fonts or images are bundled.
 
 == Changelog ==
 

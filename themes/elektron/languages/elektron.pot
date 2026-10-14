@@ -47,59 +47,59 @@ msgstr ""
 msgid "Social links"
 msgstr ""
 
-#: front-page.php:75
+#: front-page.php:76
 msgid "Latest news"
 msgstr ""
 
-#: functions.php:58
+#: functions.php:57 inc/template-functions.php:134
 msgid "Elektron Blue"
 msgstr ""
 
-#: functions.php:63
+#: functions.php:62
 msgid "Deep Blue"
 msgstr ""
 
-#: functions.php:68
+#: functions.php:67
 msgid "Night"
 msgstr ""
 
-#: functions.php:73
+#: functions.php:72
 msgid "Surface"
 msgstr ""
 
-#: functions.php:78
+#: functions.php:77
 msgid "Mist"
 msgstr ""
 
-#: functions.php:83
+#: functions.php:82
 msgid "White"
 msgstr ""
 
-#: functions.php:96
+#: functions.php:95
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:97
+#: functions.php:96
 msgid "Footer Menu"
 msgstr ""
 
-#: functions.php:98
+#: functions.php:97
 msgid "Social Links Menu"
 msgstr ""
 
-#: functions.php:110 sidebar.php:17
+#: functions.php:109 sidebar.php:17
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:112
+#: functions.php:111
 msgid "Widgets shown beside posts and archives."
 msgstr ""
 
-#: functions.php:124
+#: functions.php:123
 msgid "Footer %d"
 msgstr ""
 
-#: functions.php:126
+#: functions.php:125
 msgid "Widgets shown in the footer."
 msgstr ""
 
@@ -115,15 +115,35 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:32
+#: header.php:28
+msgid "Effects: %s"
+msgstr ""
+
+#: header.php:31
+msgid "Network status"
+msgstr ""
+
+#: header.php:33
+msgid "Live"
+msgstr ""
+
+#: header.php:49
+msgid "Color theme and effects"
+msgstr ""
+
+#: header.php:53 inc/customizer.php:116
+msgid "Color theme"
+msgstr ""
+
+#: header.php:71
 msgid "Switch between light and dark mode"
 msgstr ""
 
-#: header.php:39
+#: header.php:78
 msgid "Menu"
 msgstr ""
 
-#: header.php:44
+#: header.php:83
 msgid "Primary menu"
 msgstr ""
 
@@ -147,131 +167,151 @@ msgstr ""
 msgid "Follow system setting"
 msgstr ""
 
-#: inc/customizer.php:116
-msgid "Show light/dark switch in the header"
+#: inc/customizer.php:133
+msgid "Cyberpunk effects"
 msgstr ""
 
-#: inc/customizer.php:132
-msgid "Show latest posts on the front page"
+#: inc/customizer.php:134
+msgid "Neon glow and HUD corners (Subtle), plus scanlines, grid floor, glitch headline, angular cards and the Orbitron font (Full). Visitors who prefer reduced motion see no animation."
 msgstr ""
 
-#: inc/customizer.php:148
-msgid "Footer text"
-msgstr ""
-
-#: inc/customizer.php:149
-msgid "Leave empty to show the copyright line."
-msgstr ""
-
-#: inc/customizer.php:158
-msgid "Front Page Hero"
-msgstr ""
-
-#: inc/customizer.php:159
-msgid "Texts shown on the front page."
-msgstr ""
-
-#: inc/customizer.php:165
-msgid "Eyebrow"
-msgstr ""
-
-#: inc/customizer.php:166
-msgid "Headline"
+#: inc/customizer.php:151
+msgid "Let visitors choose the color theme and effects"
 msgstr ""
 
 #: inc/customizer.php:167
-msgid "Description"
+msgid "Show the HUD status bar"
 msgstr ""
 
 #: inc/customizer.php:168
+msgid "A strip above the header with block height, hash rate, fee and adjustment progress. It only appears when live data is available."
+msgstr ""
+
+#: inc/customizer.php:184
+msgid "Show light/dark switch in the header"
+msgstr ""
+
+#: inc/customizer.php:200
+msgid "Show latest posts on the front page"
+msgstr ""
+
+#: inc/customizer.php:216
+msgid "Footer text"
+msgstr ""
+
+#: inc/customizer.php:217
+msgid "Leave empty to show the copyright line."
+msgstr ""
+
+#: inc/customizer.php:226
+msgid "Front Page Hero"
+msgstr ""
+
+#: inc/customizer.php:227
+msgid "Texts shown on the front page."
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "Eyebrow"
+msgstr ""
+
+#: inc/customizer.php:234
+msgid "Headline"
+msgstr ""
+
+#: inc/customizer.php:235
+msgid "Description"
+msgstr ""
+
+#: inc/customizer.php:236
 msgid "Primary button label"
 msgstr ""
 
-#: inc/customizer.php:169
+#: inc/customizer.php:237
 msgid "Primary button link"
 msgstr ""
 
-#: inc/customizer.php:170
+#: inc/customizer.php:238
 msgid "Secondary button label"
 msgstr ""
 
-#: inc/customizer.php:171
+#: inc/customizer.php:239
 msgid "Secondary button link"
 msgstr ""
 
-#: inc/customizer.php:202
+#: inc/customizer.php:270
 msgid "Animated 3D network background"
 msgstr ""
 
-#: inc/customizer.php:203
+#: inc/customizer.php:271
 msgid "Shows a three.js node and block chain effect behind the front page hero. It stays still for visitors who prefer reduced motion."
 msgstr ""
 
-#: inc/customizer.php:219
+#: inc/customizer.php:287
 msgid "Source repository URL"
 msgstr ""
 
-#: inc/customizer.php:220
+#: inc/customizer.php:288
 msgid "Used for the source code links on the Protocol, Build and front pages. HTTPS only."
 msgstr ""
 
-#: inc/customizer.php:229
+#: inc/customizer.php:297
 msgid "Live Network Data"
 msgstr ""
 
-#: inc/customizer.php:230
+#: inc/customizer.php:298
 msgid "Shows block height, difficulty retarget progress and the fastest fee in the overview card. The data is requested by your server from a public block explorer API, never by the visitor, and cached for one minute."
 msgstr ""
 
-#: inc/customizer.php:239
+#: inc/customizer.php:307
 msgid "Live data is provided by the Elektron Live Blocks plugin, which is active. Change the explorer address and cache time in its <a href="%s">settings</a>."
 msgstr ""
 
-#: inc/customizer.php:254
+#: inc/customizer.php:322
 msgid "Enable live data"
 msgstr ""
 
-#: inc/customizer.php:270
+#: inc/customizer.php:338
 msgid "Explorer API base URL"
 msgstr ""
 
-#: inc/customizer.php:271
+#: inc/customizer.php:339
 msgid "HTTPS only, for example https://mempool.elektron-net.org/api/v1"
 msgstr ""
 
-#: inc/customizer.php:281
+#: inc/customizer.php:349
 msgid "Front Page Features"
 msgstr ""
 
-#: inc/customizer.php:287
+#: inc/customizer.php:355
 msgid "Section title"
 msgstr ""
 
-#: inc/customizer.php:291
+#: inc/customizer.php:359
 msgid "Feature %d title"
 msgstr ""
 
-#: inc/customizer.php:293
+#: inc/customizer.php:361
 msgid "Feature %d text"
 msgstr ""
 
-#: inc/customizer.php:317
+#: inc/customizer.php:385
 msgid "Front Page Overview Card"
 msgstr ""
 
-#: inc/customizer.php:323
+#: inc/customizer.php:391
 msgid "Card title"
 msgstr ""
 
-#: inc/customizer.php:324
+#: inc/customizer.php:392
 msgid "Footnote"
 msgstr ""
 
-#: inc/customizer.php:328
+#: inc/customizer.php:396
 msgid "Value %d"
 msgstr ""
 
-#: inc/customizer.php:330
+#: inc/customizer.php:398
 msgid "Label %d"
 msgstr ""
 
@@ -383,19 +423,79 @@ msgstr ""
 msgid "Every block carries an on-chain attestation of the UTXO set, so new nodes can bootstrap from a peer snapshot and verify it cryptographically."
 msgstr ""
 
-#: inc/template-tags.php:75
+#: inc/template-functions.php:135
+msgid "Neon Grid"
+msgstr ""
+
+#: inc/template-functions.php:136
+msgid "Synthwave"
+msgstr ""
+
+#: inc/template-functions.php:137
+msgid "Matrix"
+msgstr ""
+
+#: inc/template-functions.php:138
+msgid "Rust"
+msgstr ""
+
+#: inc/template-functions.php:139
+msgid "Iron"
+msgstr ""
+
+#: inc/template-functions.php:140
+msgid "Violet Night"
+msgstr ""
+
+#: inc/template-functions.php:151
+msgid "Off"
+msgstr ""
+
+#: inc/template-functions.php:152
+msgid "Subtle"
+msgstr ""
+
+#: inc/template-functions.php:153
+msgid "Full cyberpunk"
+msgstr ""
+
+#: inc/template-functions.php:172
+msgid "Block"
+msgstr ""
+
+#: inc/template-functions.php:174
+msgid "Hash"
+msgstr ""
+
+#: inc/template-functions.php:178
+msgid "Fee"
+msgstr ""
+
+#: inc/template-functions.php:178 page-templates/template-network.php:32 page-templates/template-network.php:36 template-parts/front-hero.php:33
+msgid "%s lep/vB"
+msgstr ""
+
+#: inc/template-functions.php:182
+msgid "Retarget"
+msgstr ""
+
+#: inc/template-functions.php:182 template-parts/front-hero.php:29
+msgid "%s%%"
+msgstr ""
+
+#: inc/template-tags.php:78
 msgid "Posted in %s"
 msgstr ""
 
-#: inc/template-tags.php:81
+#: inc/template-tags.php:84
 msgid "Tagged %s"
 msgstr ""
 
-#: inc/template-tags.php:91
+#: inc/template-tags.php:94
 msgid "Leave a Comment<span class="screen-reader-text"> on %s</span>"
 msgstr ""
 
-#: inc/template-tags.php:104 template-parts/content-page.php:40
+#: inc/template-tags.php:107 template-parts/content-page.php:40
 msgid "Edit <span class="screen-reader-text">%s</span>"
 msgstr ""
 
@@ -525,10 +625,6 @@ msgstr ""
 
 #: page-templates/template-network.php:32 template-parts/front-hero.php:33
 msgid "Fastest fee"
-msgstr ""
-
-#: page-templates/template-network.php:32 page-templates/template-network.php:36 template-parts/front-hero.php:33
-msgid "%s lep/vB"
 msgstr ""
 
 #: page-templates/template-network.php:36
@@ -841,10 +937,6 @@ msgstr ""
 
 #: template-parts/content.php:18
 msgid "Featured"
-msgstr ""
-
-#: template-parts/front-hero.php:29
-msgid "%s%%"
 msgstr ""
 
 #: template-parts/front-start.php:16

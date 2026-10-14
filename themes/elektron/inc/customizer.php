@@ -104,6 +104,74 @@ function elektron_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'elektron_palette',
+		array(
+			'default'           => 'blue',
+			'sanitize_callback' => 'elektron_sanitize_select',
+		)
+	);
+	$wp_customize->add_control(
+		'elektron_palette',
+		array(
+			'label'   => __( 'Color theme', 'elektron' ),
+			'section' => 'elektron_layout',
+			'type'    => 'select',
+			'choices' => elektron_palettes(),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'elektron_fx',
+		array(
+			'default'           => 'subtle',
+			'sanitize_callback' => 'elektron_sanitize_select',
+		)
+	);
+	$wp_customize->add_control(
+		'elektron_fx',
+		array(
+			'label'       => __( 'Cyberpunk effects', 'elektron' ),
+			'description' => __( 'Neon glow and HUD corners (Subtle), plus scanlines, grid floor, glitch headline, angular cards and the Orbitron font (Full). Visitors who prefer reduced motion see no animation.', 'elektron' ),
+			'section'     => 'elektron_layout',
+			'type'        => 'select',
+			'choices'     => elektron_fx_levels(),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'elektron_show_style_menu',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'elektron_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'elektron_show_style_menu',
+		array(
+			'label'   => __( 'Let visitors choose the color theme and effects', 'elektron' ),
+			'section' => 'elektron_layout',
+			'type'    => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'elektron_show_hud',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'elektron_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'elektron_show_hud',
+		array(
+			'label'       => __( 'Show the HUD status bar', 'elektron' ),
+			'description' => __( 'A strip above the header with block height, hash rate, fee and adjustment progress. It only appears when live data is available.', 'elektron' ),
+			'section'     => 'elektron_layout',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'elektron_show_scheme_toggle',
 		array(
 			'default'           => true,
@@ -361,6 +429,12 @@ function elektron_html_scheme_attribute( $output ) {
 	if ( in_array( $scheme, array( 'dark', 'light', 'auto' ), true ) ) {
 		$output .= ' data-default-scheme="' . esc_attr( $scheme ) . '"';
 	}
+
+	$palette = get_theme_mod( 'elektron_palette', 'blue' );
+	$output .= ' data-palette="' . esc_attr( array_key_exists( $palette, elektron_palettes() ) ? $palette : 'blue' ) . '"';
+
+	$fx      = get_theme_mod( 'elektron_fx', 'subtle' );
+	$output .= ' data-fx="' . esc_attr( array_key_exists( $fx, elektron_fx_levels() ) ? $fx : 'subtle' ) . '"';
 	return $output;
 }
 add_filter( 'language_attributes', 'elektron_html_scheme_attribute' );
