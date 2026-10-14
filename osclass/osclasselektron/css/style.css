@@ -3496,6 +3496,7 @@ body.subdomain-navigation.sd-with-icon #subdomains-list a img {
   }
 
   #sidebar.fixed-layout {
+    position: fixed;
     inset: 0 0 0 auto;
     width: min(360px, 92vw);
     padding: 56px 18px 24px;
