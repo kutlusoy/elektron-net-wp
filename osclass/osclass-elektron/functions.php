@@ -43,7 +43,8 @@ function elektron_style_options() {
       'full'   => __('Full cyberpunk', 'osclass-elektron'),
     ),
     'hero' => array(
-      'network' => __('Animated network', 'osclass-elektron'),
+      'three'   => __('3D blockchain and escrow (WebGL)', 'osclass-elektron'),
+      'network' => __('Animated network (lightweight)', 'osclass-elektron'),
       'grid'    => __('Perspective grid', 'osclass-elektron'),
       'minimal' => __('Minimal', 'osclass-elektron'),
     ),
@@ -63,7 +64,7 @@ function elektron_style_defaults() {
     'palette' => 'blue',
     'scheme'  => 'dark',
     'fx'      => 'subtle',
-    'hero'    => 'network',
+    'hero'    => 'three',
     'radius'  => 'round',
     'header'  => 'glass',
   );
@@ -78,6 +79,10 @@ function elektron_set_style_defaults($overwrite = true) {
   if($overwrite) {
     osc_set_preference('hero_title', '', 'osclass-elektron');
     osc_set_preference('hero_text', '', 'osclass-elektron');
+    osc_set_preference('logo_text', '', 'osclass-elektron');
+  }
+  if($overwrite || (string)osc_get_preference('logo_show_text', 'osclass-elektron') === '') {
+    osc_set_preference('logo_show_text', '1', 'osclass-elektron');
   }
 }
 
@@ -305,16 +310,29 @@ if(!function_exists('elektron_follow_construct')) {
   }
 }
 
-/* logo */
+/* logo: mark (uploaded logo or the bundled Elektron mark) plus optional text */
 if(!function_exists('logo_header')) {
   function logo_header() {
-    $title = osc_esc_html(osc_page_title());
+    $text = elektron_logo_text();
+    $upload = elektron_logo_url();
+    $src = $upload !== false ? $upload : osc_current_web_theme_url('images/logo.png');
+    $class = $upload !== false ? 'with-img' : 'only-text';
+    $showText = osc_get_preference('logo_show_text', 'osclass-elektron') !== '0';
 
-    if(elektron_logo_url() !== false) {
-      return '<a href="' . osc_base_url() . '" class="logo-link with-img"><img class="logo-img" alt="' . $title . '" src="' . elektron_logo_url() . '"></a>';
+    $html = '<a href="' . osc_base_url() . '" class="logo-link ' . $class . '">';
+    $html .= '<img class="' . ($upload !== false ? 'logo-img' : 'logo-mark') . '" alt="' . ($showText ? '' : osc_esc_html($text)) . '" src="' . osc_esc_html($src) . '">';
+    if($showText) {
+      $html .= '<span class="logo-text">' . osc_esc_html($text) . '</span>';
     }
+    return $html . '</a>';
+  }
+}
 
-    return '<a href="' . osc_base_url() . '" class="logo-link only-text"><img class="logo-mark" alt="" width="36" height="36" src="' . osc_current_web_theme_url('images/logo.png') . '"><span class="logo-text">' . osc_page_title() . '</span></a>';
+/* logo text from the theme settings, the site title when empty */
+if(!function_exists('elektron_logo_text')) {
+  function elektron_logo_text() {
+    $text = trim((string)osc_get_preference('logo_text', 'osclass-elektron'));
+    return $text !== '' ? $text : osc_page_title();
   }
 }
 
@@ -638,6 +656,8 @@ function theme_elektron_actions_admin() {
         $value = (string)Params::getParam('style_' . $key);
         osc_set_preference($key, isset($options[$key][$value]) ? $value : $default, 'osclass-elektron');
       }
+      osc_set_preference('logo_text', mb_substr(trim(strip_tags((string)Params::getParam('logo_text'))), 0, 60), 'osclass-elektron');
+      osc_set_preference('logo_show_text', Params::getParam('logo_show_text') ? '1' : '0', 'osclass-elektron');
       osc_set_preference('hero_title', trim(strip_tags((string)Params::getParam('hero_title'))), 'osclass-elektron');
       osc_set_preference('hero_text', trim(strip_tags((string)Params::getParam('hero_text'))), 'osclass-elektron');
 

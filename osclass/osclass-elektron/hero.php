@@ -18,8 +18,8 @@
 ?>
 <?php $stats = elektron_hero_stats(); ?>
 <section class="hero home-search" data-hero="<?php echo osc_esc_html(elektron_style('hero')); ?>">
-  <?php if(elektron_style('hero') === 'network') { ?>
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+  <?php if(in_array(elektron_style('hero'), array('three', 'network'), true)) { ?>
+    <canvas class="hero-canvas" data-mode="<?php echo osc_esc_html(elektron_style('hero')); ?>" aria-hidden="true"></canvas>
   <?php } ?>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrapper hero-inner">

@@ -44,11 +44,19 @@ The theme ships with the same seven color themes as the WordPress theme, each in
 |---|---|
 | Color scheme | Dark, Light, Follow system |
 | Effects | Off, Subtle (glow, HUD brackets, accent lines, faint grid), Full cyberpunk (scanlines, glitch headline, cut corners, Orbitron and Share Tech Mono) |
-| Home hero | Animated network, Perspective grid, Minimal |
+| Home hero | 3D blockchain and escrow (WebGL, default), Animated network (lightweight 2D), Perspective grid, Minimal |
 | Corner style | Rounded, Sharp |
 | Header | Glass and sticky, Solid and static |
 
 Site owners pick the defaults under Appearance > Theme settings. Visitors can switch the color theme, the effects and the light or dark scheme in the header. The choice is remembered in their browser. All animation stops for visitors who prefer reduced motion.
+
+### Hero animation
+
+The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and renders one still frame for visitors who prefer reduced motion. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
+
+![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclass-elektron/hero-3d-violet-light.jpg)
+
+![3D hero on mobile](../screenshots/osclass-elektron/hero-3d-mobile.jpg)
 
 ### Previews
 
@@ -88,8 +96,16 @@ The theme styles the pages of [`osclass-escrow`](https://github.com/kutlusoy/ele
 
 Appearance > Theme settings contains the style options above, the hero title and text, the search placeholder, the default listing view (list or gallery), the location input mode and the ad slots. All Osclass hooks of the Sigma theme are kept, so existing plugins keep working.
 
-## 7. Notes
+## 7. Logo
+
+The header and the footer show the logo image and a text next to it. The image is the logo uploaded under Appearance > Header logo, without an upload the bundled Elektron mark is used. The text is set in Appearance > Theme settings > Logo text and falls back to the site title when empty. "Show logo text" turns the text off for logos that already contain the name.
+
+## 8. Development
+
+The WebGL scene lives in `osclass-elektron/js/src/hero-three.js` and is bundled with three.js into `js/hero-three.min.js`. From the repository root run `npm install` once, then `npm run build:osclass`. The bundle MUST be rebuilt and committed after every change to the source file. `npm run build:all` also rebuilds the WordPress hero.
+
+## 9. Notes
 
 - Category icons use Font Awesome 5 classes, loaded from cdnjs as in the Sigma theme. The header controls use inline SVG and work without it.
-- Fonts for the full effect level are bundled in `fonts/` (SIL Open Font License).
+- Fonts for the full effect level are bundled in `fonts/` (SIL Open Font License). three.js is MIT licensed, see `js/three.LICENSE.txt`.
 - The theme is derived from the Sigma theme of Osclass and keeps the Apache License 2.0, see `osclass-elektron/LICENSE`.

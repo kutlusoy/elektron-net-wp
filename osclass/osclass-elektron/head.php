@@ -33,7 +33,11 @@
   osc_register_script('delete-user-js', osc_current_web_theme_js_url('delete_user.js'), 'jquery-ui');
   osc_enqueue_script('global-theme-js');
 
-  if(osc_is_home_page() && elektron_style('hero') === 'network') {
+  if(osc_is_home_page() && in_array(elektron_style('hero'), array('three', 'network'), true)) {
+    if(elektron_style('hero') === 'three') {
+      osc_register_script('elektron-hero-three-js', osc_current_web_theme_js_url('hero-three.min.js?v=' . ELEKTRON_THEME_VERSION));
+      osc_enqueue_script('elektron-hero-three-js');
+    }
     osc_register_script('elektron-hero-js', osc_current_web_theme_js_url('hero.js?v=' . ELEKTRON_THEME_VERSION));
     osc_enqueue_script('elektron-hero-js');
   }

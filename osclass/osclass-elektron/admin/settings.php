@@ -50,6 +50,19 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
             </div>
             <?php } ?>
             <div class="form-row">
+                <div class="form-label"><?php _e('Logo text', 'osclass-elektron'); ?></div>
+                <div class="form-controls">
+                    <input type="text" class="xlarge" name="logo_text" maxlength="60" value="<?php echo osc_esc_html(osc_get_preference('logo_text', 'osclass-elektron')); ?>" placeholder="<?php echo osc_esc_html(osc_page_title()); ?>">
+                    <span class="help-box"><?php _e('Shown next to the logo in the header and footer. Empty uses the site title. The logo image is uploaded under Appearance > Header logo, without an upload the Elektron mark is used.', 'osclass-elektron'); ?></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-label"><?php _e('Show logo text', 'osclass-elektron'); ?></div>
+                <div class="form-controls">
+                    <div class="form-label-checkbox"><label><input type="checkbox" name="logo_show_text" value="1" <?php echo (osc_get_preference('logo_show_text', 'osclass-elektron') !== '0' ? 'checked="checked"' : ''); ?>> <?php _e('Show the text next to the logo image. Turn it off if your logo already contains the name.', 'osclass-elektron'); ?></label></div>
+                </div>
+            </div>
+            <div class="form-row">
                 <div class="form-label"><?php _e('Hero title', 'osclass-elektron'); ?></div>
                 <div class="form-controls"><input type="text" class="xlarge" name="hero_title" value="<?php echo osc_esc_html(osc_get_preference('hero_title', 'osclass-elektron')); ?>" placeholder="<?php echo osc_esc_html(elektron_hero_title()); ?>"></div>
             </div>
