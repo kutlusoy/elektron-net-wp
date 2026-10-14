@@ -130,10 +130,19 @@
     update();
   }
 
-  initScheme();
-  initStyleMenu();
-  initNav();
-  initHeaderState();
+  // Osclass prints enqueued scripts in the head, so wait for the markup
+  function init() {
+    initScheme();
+    initStyleMenu();
+    initNav();
+    initHeaderState();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 }());
 
 jQuery(function($) {
