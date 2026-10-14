@@ -16,6 +16,7 @@
 |---|---|
 | `themes/elektron/` | The **Elektron** theme: classic theme with block editor support, dark and light scheme, three.js hero, seven color themes with cyberpunk effects, front page and three page templates. |
 | `plugins/elektron-live-blocks/` | The **Elektron Live Blocks** plugin: nine blocks and a shortcode that show live data from the explorer API. |
+| `osclass/osclass-elektron/` | The **Osclass Elektron** theme for [Osclass](https://github.com/osclass-classifieds/Osclass) classifieds sites: same seven color themes, light and dark scheme and effect levels, plus hero, layout and corner variations. See [`osclass/README.md`](osclass/README.md). |
 | `screenshots/` | Preview images taken from a real WordPress 7.1 installation. They are not part of either package. |
 | `package.json` | Build tooling for the three.js hero bundle (development only). |
 
