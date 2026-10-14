@@ -14,8 +14,10 @@ function elektronHero() {
     if (!ctx) {
       return;
     }
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var root = document.documentElement;
+    var prefersReduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var reduced = prefersReduced && root.getAttribute('data-motion') === 'respect';
+    var speed = prefersReduced ? 0.5 : 1;
     var hero = canvas.parentNode;
     var nodes = [];
     var width = 0;
@@ -93,8 +95,8 @@ function elektronHero() {
     function step() {
       for (var i = 0; i < nodes.length; i++) {
         var n = nodes[i];
-        n.x += n.vx;
-        n.y += n.vy;
+        n.x += n.vx * speed;
+        n.y += n.vy * speed;
         if (n.x < 0 || n.x > width) {
           n.vx *= -1;
         }

@@ -33,6 +33,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
               'scheme'  => __('Default color scheme', 'osclass-elektron'),
               'fx'      => __('Effects', 'osclass-elektron'),
               'hero'    => __('Home hero background', 'osclass-elektron'),
+              'motion'  => __('Hero animation', 'osclass-elektron'),
               'radius'  => __('Corner style', 'osclass-elektron'),
               'header'  => __('Header', 'osclass-elektron'),
             );

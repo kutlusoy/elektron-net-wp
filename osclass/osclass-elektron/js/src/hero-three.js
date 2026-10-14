@@ -31,7 +31,11 @@ function init() {
   }
 
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prefersReduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var alwaysAnimate = root.getAttribute('data-motion') !== 'respect';
+  // Devices that ask for less motion still get the scene, at half speed, unless the site owner chose to respect the setting
+  var reduceMotion = prefersReduced && !alwaysAnimate;
+  var speed = prefersReduced ? 0.5 : 1;
   var small = window.matchMedia && window.matchMedia('(max-width: 720px)').matches;
 
   var renderer;
@@ -389,12 +393,13 @@ function init() {
     pulseGeometry.attributes.position.needsUpdate = true;
   }
 
-  function step(time) {
+  function step(rawTime) {
+    var time = rawTime * speed;
     for (var n = 0; n < NODE_COUNT; n++) {
       for (var k = 0; k < 3; k++) {
         var idx = n * 3 + k;
         var bound = k === 0 ? BOX.x : k === 1 ? BOX.y : BOX.z;
-        positions[idx] += velocities[idx];
+        positions[idx] += velocities[idx] * speed;
         if (positions[idx] > bound || positions[idx] < -bound) {
           velocities[idx] *= -1;
         }
