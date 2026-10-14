@@ -16,7 +16,7 @@
  */
 
 
-define('ELEKTRON_THEME_VERSION', '110');
+define('ELEKTRON_THEME_VERSION', '120');
 define('THEME_COMPATIBLE_WITH_OSCLASS_HOOKS', 830);     // Compatibility with new hooks up to version
 
 require_once __DIR__ . '/inc/network.php';
