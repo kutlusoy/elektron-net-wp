@@ -101,7 +101,7 @@ osc_current_web_theme_path('header.php');
           }
         }
         ?>
-        <label><?php echo $current; ?> <i class="fa fa-angle-down"></i></label>
+        <label><?php echo $current; ?></label>
         <?php $i = 0; ?>
         <ul>
           <?php
@@ -119,8 +119,8 @@ osc_current_web_theme_path('header.php');
       <!--   END sort by     -->
 
       <span class="doublebutton">
-         <a href="<?php echo osc_esc_html(osc_update_search_url(array('sShowAs'=> 'list'))); ?>" class="list-button btn btn-secondary <?php echo ($buttonClass == 'list' ? 'active' : ''); ?>" data-class-toggle="listing-list" data-destination="#listing-card-list"><i class="fas fa-bars"></i></a>
-         <a href="<?php echo osc_esc_html(osc_update_search_url(array('sShowAs'=> 'gallery'))); ?>" class="grid-button btn btn-secondary <?php echo ($buttonClass == 'grid' ? 'active' : ''); ?>" data-class-toggle="listing-grid" data-destination="#listing-card-list"><i class="fas fa-border-all"></i></a>
+         <a href="<?php echo osc_esc_html(osc_update_search_url(array('sShowAs'=> 'list'))); ?>" class="list-button btn btn-secondary <?php echo ($buttonClass == 'list' ? 'active' : ''); ?>" data-class-toggle="listing-list" data-destination="#listing-card-list"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></a>
+         <a href="<?php echo osc_esc_html(osc_update_search_url(array('sShowAs'=> 'gallery'))); ?>" class="grid-button btn btn-secondary <?php echo ($buttonClass == 'grid' ? 'active' : ''); ?>" data-class-toggle="listing-grid" data-destination="#listing-card-list"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg></a>
       </span>
     </div>
 

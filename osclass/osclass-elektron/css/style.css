@@ -438,6 +438,10 @@ hr {
   gap: 18px;
 }
 
+#content > .actions {
+  display: none;
+}
+
 body.home #content {
   display: block;
   max-width: none;
@@ -607,11 +611,7 @@ body.home main > .flash2:has(.flashmessage) {
 
 /* Buttons */
 .btn,
-button.btn,
-a.btn,
-input.btn,
-.ui-button,
-#sub_alert button {
+.ui-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -979,10 +979,27 @@ p.empty {
   border-radius: 999px;
 }
 
-.nav .my-account img {
+.nav .avatar {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
   width: 28px;
   height: 28px;
+  flex: none;
+  overflow: hidden;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--e-ui), var(--pal-accent-2));
+  color: var(--e-on-accent);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.nav .avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -1527,12 +1544,16 @@ p.empty {
   box-shadow: 0 16px 34px -16px var(--e-glow);
 }
 
+/* Photo frame: a mat around every photo so white backgrounds keep a clean edge on dark and light schemes */
 .listing-card .listing-thumb {
   position: relative;
   display: block;
   aspect-ratio: 4 / 3;
+  padding: 10px;
   overflow: hidden;
-  background: var(--e-surface-2);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--e-surface-2) 88%, var(--e-ui)), var(--e-surface-2));
+  border-bottom: 1px solid var(--e-border);
 }
 
 .listing-card .listing-thumb img {
@@ -1540,17 +1561,49 @@ p.empty {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--e-radius-sm);
+  background: var(--e-surface);
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.45);
   transition: transform 0.4s ease;
 }
 
+.listing-card .listing-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: var(--e-radius-sm);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--e-text) 22%, transparent),
+    inset 0 0 0 2px color-mix(in srgb, var(--e-surface-2) 55%, transparent);
+  pointer-events: none;
+  transition: box-shadow 0.25s ease;
+}
+
 .listing-card:hover .listing-thumb img {
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+
+.listing-card:hover .listing-thumb::after {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--e-ui) 70%, transparent),
+    inset 0 0 0 2px color-mix(in srgb, var(--e-surface-2) 55%, transparent);
+}
+
+.listing-card.premium .listing-thumb::after {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pal-accent-2) 65%, transparent),
+    inset 0 0 0 2px color-mix(in srgb, var(--e-surface-2) 55%, transparent);
+}
+
+.listing-card .listing-thumb img[src$=".svg"] {
+  box-shadow: none;
 }
 
 .premium-badge {
   position: absolute;
-  inset-inline-start: 10px;
-  top: 10px;
+  z-index: 1;
+  inset-inline-start: 20px;
+  top: 20px;
   padding: 3px 10px;
   border-radius: 999px;
   background: var(--pal-accent-2);
@@ -1784,6 +1837,16 @@ body.user .list-header + form,
   font-weight: 500;
 }
 
+.see_by > label::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
 .see_by > label {
   display: inline-flex;
   align-items: center;
@@ -1835,6 +1898,7 @@ body.user .list-header + form,
 
 .doublebutton .btn {
   width: 42px;
+  height: 42px;
   padding-inline: 0;
 }
 
@@ -2070,8 +2134,8 @@ body.search #main > h2 {
   background: var(--e-surface);
   border: 1px solid var(--e-border);
   border-radius: var(--e-radius);
-  font-size: 2rem;
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  line-height: 1.15;
 }
 
 .item-header {
@@ -2098,19 +2162,28 @@ body.search #main > h2 {
 }
 
 .item-photos .main-photo {
-  display: block;
-  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 2.4vw, 26px);
   border: 1px solid var(--e-border);
   border-radius: var(--e-radius);
-  background: var(--e-surface-2);
+  background:
+    radial-gradient(520px 260px at 50% 0%, color-mix(in srgb, var(--e-ui) 12%, transparent), transparent 70%),
+    linear-gradient(145deg, color-mix(in srgb, var(--e-surface-2) 88%, var(--e-ui)), var(--e-surface-2));
 }
 
 .item-photos .main-photo img {
   display: block;
-  width: 100%;
-  max-height: 560px;
-  object-fit: contain;
-  background: var(--e-surface-2);
+  width: auto;
+  max-width: 100%;
+  max-height: 540px;
+  border-radius: var(--e-radius-sm);
+  background: var(--e-surface);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--e-text) 24%, transparent),
+    0 0 0 6px color-mix(in srgb, var(--e-surface) 70%, transparent),
+    0 0 0 7px var(--e-border),
+    0 18px 40px -14px rgba(0, 0, 0, 0.55);
 }
 
 .item-photos .thumbs {
@@ -2122,17 +2195,19 @@ body.search #main > h2 {
 
 .item-photos .thumbs a {
   display: block;
-  width: 84px;
-  height: 64px;
+  width: 88px;
+  height: 68px;
+  padding: 4px;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 1px solid var(--e-border);
   border-radius: var(--e-radius-sm);
   background: var(--e-surface-2);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .item-photos .thumbs a:hover {
   border-color: var(--e-ui);
+  box-shadow: 0 6px 16px -8px var(--e-glow);
 }
 
 .item-photos .thumbs img {
@@ -2140,6 +2215,8 @@ body.search #main > h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: calc(var(--e-radius-sm) - 3px);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--e-text) 20%, transparent);
 }
 
 #description {
@@ -3266,6 +3343,10 @@ body.subdomain-navigation.sd-with-icon #subdomains-list a img {
     flex: none;
     width: 100%;
     position: static;
+  }
+
+  #content > .actions {
+    display: block;
   }
 
   .btn.resp-toogle,

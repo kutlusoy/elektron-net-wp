@@ -52,7 +52,7 @@ $swatches = array(
         <?php if(osc_users_enabled()) { ?>
           <?php if(osc_is_web_user_logged_in()) { ?>
             <a href="<?php echo osc_user_dashboard_url(); ?>" class="my-account">
-              <img src="<?php echo osc_user_profile_img_url(osc_logged_user_id()); ?>" alt="" width="28" height="28"/>
+              <span class="avatar"><?php echo osc_esc_html(mb_strtoupper(mb_substr((string)osc_logged_user_name(), 0, 1))); ?><img src="<?php echo osc_user_profile_img_url(osc_logged_user_id()); ?>" alt="" width="28" height="28" onerror="this.remove()"/></span>
               <span><?php echo osc_logged_user_name(); ?></span>
             </a>
             <a href="<?php echo osc_user_logout_url(); ?>" class="logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> <span><?php _e('Logout', 'osclass-elektron'); ?></span></a>

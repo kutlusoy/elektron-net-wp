@@ -5,6 +5,7 @@
 - **Audience:** Site owners and developers who run an Osclass classifieds site in the Elektron look
 - **Reference implementation:** [`elektron-net-wp`](https://github.com/kutlusoy/elektron-net-wp) (`themes/elektron/`), the WordPress theme whose color themes and effects this theme mirrors
 - **Fork base:** [`Osclass`](https://github.com/osclass-classifieds/Osclass) Sigma theme structure, Apache License 2.0
+- **Consumer:** [`elektron-net-osclass`](https://github.com/kutlusoy/elektron-net-osclass), the repository of the escrow plugin this theme styles
 - **See also:** [`README.md`](../README.md)
 
 ---
@@ -61,11 +62,33 @@ Site owners pick the defaults under Appearance > Theme settings. Visitors can sw
 
 ![Listing page](../screenshots/osclass-elektron/item.jpg)
 
-## 4. Theme settings
+## 4. Photo frames
+
+Every listing photo sits in a framed mat: a padded surface with a thin inner ring and a soft shadow. Photos with a white background keep a clean, defined edge on dark and light schemes and in every color theme. The same frame is used for the main photo and the thumbnails on the listing page. Listings without a photo show a neutral placeholder.
+
+![Framed photos on the dark scheme](../screenshots/osclass-elektron/photo-frame-grid-dark.jpg)
+
+![Framed photos on the light scheme](../screenshots/osclass-elektron/photo-frame-grid-light.jpg)
+
+## 5. Elektron Net Escrow plugin
+
+The theme styles the pages of [`osclass-escrow`](https://github.com/kutlusoy/elektron-net-osclass/tree/main/osclass-escrow) (wallet connection, checkout, order status, order list) with `css/escrow.css`. The stylesheet loads only while the plugin is active and needs no change in the plugin. The plugin's inline styles use fixed light colors, so the theme overrides them with its own tokens. They follow the active color theme, scheme and corner style. The "Buy with Elektron (ELEK)" widget appears on the listing page, and the account menu shows the orders and wallet links with icons.
+
+![Buy with Elektron widget](../screenshots/osclass-elektron/escrow-widget.jpg)
+
+![Checkout](../screenshots/osclass-elektron/escrow-checkout.jpg)
+
+![Connect wallet](../screenshots/osclass-elektron/escrow-wallet.jpg)
+
+![Order page, Elektron Blue dark](../screenshots/osclass-elektron/escrow-order.jpg)
+
+![Order page, Neon Grid light](../screenshots/osclass-elektron/escrow-order-neon-light.jpg)
+
+## 6. Theme settings
 
 Appearance > Theme settings contains the style options above, the hero title and text, the search placeholder, the default listing view (list or gallery), the location input mode and the ad slots. All Osclass hooks of the Sigma theme are kept, so existing plugins keep working.
 
-## 5. Notes
+## 7. Notes
 
 - Category icons use Font Awesome 5 classes, loaded from cdnjs as in the Sigma theme. The header controls use inline SVG and work without it.
 - Fonts for the full effect level are bundled in `fonts/` (SIL Open Font License).

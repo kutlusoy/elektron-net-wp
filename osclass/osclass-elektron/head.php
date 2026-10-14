@@ -80,6 +80,10 @@
 <?php
 osc_enqueue_style('style', osc_current_web_theme_url('css/style.css?v=' . ELEKTRON_THEME_VERSION));
 
+if(function_exists('elektron_escrow_config')) {
+  osc_enqueue_style('elektron-escrow', osc_current_web_theme_url('css/escrow.css?v=' . ELEKTRON_THEME_VERSION));
+}
+
 if(osc_is_publish_page() || osc_is_edit_page() || osc_is_search_page()) {
   if($jquery_version == '1') {
     osc_enqueue_style('jquery-ui', osc_assets_url('css/jquery-ui/jquery-ui.css'));
