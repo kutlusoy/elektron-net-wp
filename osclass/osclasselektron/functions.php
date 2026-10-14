@@ -16,7 +16,7 @@
  */
 
 
-define('ELEKTRON_THEME_VERSION', '120');
+define('ELEKTRON_THEME_VERSION', '130');
 define('THEME_COMPATIBLE_WITH_OSCLASS_HOOKS', 830);     // Compatibility with new hooks up to version
 
 require_once __DIR__ . '/inc/network.php';
@@ -33,6 +33,9 @@ function elektron_style_options() {
       'rust'      => __('Rust', 'osclasselektron'),
       'iron'      => __('Iron', 'osclasselektron'),
       'violet'    => __('Violet Night', 'osclasselektron'),
+      'red'       => __('Hacker Red', 'osclasselektron'),
+      'frost'     => __('Frost', 'osclasselektron'),
+      'terminal'  => __('Terminal', 'osclasselektron'),
     ),
     'scheme' => array(
       'dark'  => __('Dark', 'osclasselektron'),

@@ -193,6 +193,69 @@ Bundled fonts: Orbitron and Share Tech Mono, SIL Open Font License, see fonts/
   --pal-l-link: #5b2fb8;
 }
 
+[data-palette="red"] {
+  --pal-accent: #ff2a3d;
+  --pal-hover: #ff5a68;
+  --pal-accent-2: #ff5c8a;
+  --pal-on-accent: #1a0508;
+  --pal-bg: #0a0405;
+  --pal-surface: #140809;
+  --pal-surface-2: #1e0c0e;
+  --pal-border: #3d1519;
+  --pal-text: #f4e6e8;
+  --pal-muted: #c3a0a5;
+  --pal-link: #ff6b78;
+  --pal-l-bg: #fdf3f4;
+  --pal-l-surface: #ffffff;
+  --pal-l-surface-2: #fbe6e8;
+  --pal-l-border: #efc9cd;
+  --pal-l-text: #2a0b0f;
+  --pal-l-muted: #6b4046;
+  --pal-l-link: #b0122c;
+}
+
+[data-palette="frost"] {
+  --pal-accent: #9be7ff;
+  --pal-hover: #bff0ff;
+  --pal-accent-2: #d5f3ff;
+  --pal-on-accent: #04141c;
+  --pal-bg: #081018;
+  --pal-surface: #0e1a24;
+  --pal-surface-2: #14242f;
+  --pal-border: #25414f;
+  --pal-text: #eaf6fb;
+  --pal-muted: #a5bfcc;
+  --pal-link: #b4ecff;
+  --pal-l-bg: #f1f9fd;
+  --pal-l-surface: #ffffff;
+  --pal-l-surface-2: #e1f2fa;
+  --pal-l-border: #c5e1ee;
+  --pal-l-text: #0a1c26;
+  --pal-l-muted: #476474;
+  --pal-l-link: #0b6e99;
+}
+
+[data-palette="terminal"] {
+  --pal-accent: #5af78e;
+  --pal-hover: #86ffab;
+  --pal-accent-2: #ffb86c;
+  --pal-on-accent: #04120a;
+  --pal-bg: #0b0c0d;
+  --pal-surface: #121415;
+  --pal-surface-2: #1a1d1f;
+  --pal-border: #2c3235;
+  --pal-text: #d8dee0;
+  --pal-muted: #8b979b;
+  --pal-link: #7dffa5;
+  --pal-l-bg: #f4f6f5;
+  --pal-l-surface: #ffffff;
+  --pal-l-surface-2: #e6ebe8;
+  --pal-l-border: #cdd6d1;
+  --pal-l-text: #101412;
+  --pal-l-muted: #4c5a54;
+  --pal-l-link: #0a6b32;
+}
+
 /* Scheme: dark is the base, light overrides it */
 :root,
 :root[data-scheme="dark"] {
@@ -269,6 +332,11 @@ Bundled fonts: Orbitron and Share Tech Mono, SIL Open Font License, see fonts/
 }
 
 /* Full effects switch the typography to the cyberpunk fonts */
+:root[data-palette="terminal"] {
+  --e-display: var(--e-mono);
+  --e-label: var(--e-mono);
+}
+
 :root[data-fx="full"] {
   --e-display: "Orbitron", var(--e-font);
   --e-label: "Share Tech Mono", var(--e-mono);

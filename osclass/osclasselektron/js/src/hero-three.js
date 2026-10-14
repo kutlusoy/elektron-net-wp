@@ -5,6 +5,11 @@ import {
   BufferGeometry,
   CanvasTexture,
   Color,
+  InstancedBufferAttribute,
+  InstancedBufferGeometry,
+  Mesh,
+  PlaneGeometry,
+  ShaderMaterial,
   EdgesGeometry,
   Group,
   LineBasicMaterial,
@@ -97,14 +102,16 @@ function init() {
   var pointGeometry = new BufferGeometry();
   pointGeometry.setAttribute('position', new BufferAttribute(positions, 3));
   var pointMaterial = new PointsMaterial({ size: 0.12, transparent: true, opacity: 0.9, depthWrite: false, blending: AdditiveBlending });
-  group.add(new Points(pointGeometry, pointMaterial));
+  var nodePoints = new Points(pointGeometry, pointMaterial);
+  group.add(nodePoints);
 
   var linePositions = new Float32Array(MAX_LINKS * 6);
   var lineGeometry = new BufferGeometry();
   lineGeometry.setAttribute('position', new BufferAttribute(linePositions, 3));
   lineGeometry.setDrawRange(0, 0);
   var lineMaterial = new LineBasicMaterial({ transparent: true, opacity: 0.28, depthWrite: false, blending: AdditiveBlending });
-  group.add(new LineSegments(lineGeometry, lineMaterial));
+  var nodeLines = new LineSegments(lineGeometry, lineMaterial);
+  group.add(nodeLines);
 
   // Blockchain: linked wireframe blocks
   var accent2Line = new LineBasicMaterial({ transparent: true, opacity: 0.7, depthWrite: false });
@@ -180,6 +187,160 @@ function init() {
 
   var redLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
   var greenLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
+
+
+  // Terminal palette: fast streams of terminal text flow upward in perspective.
+  // Most characters are pale, a few glow and spell hidden words, like a cipher.
+  var ATLAS_COLS = 16;
+  var ATLAS_ROWS = 6;
+  var GLYPHS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz$#%&*+=<>/\\|{}[]();:_-~@!?^';
+  var WORDS = ['ELEKTRON', 'ESCROW', 'TRUSTLESS', '2 OF 2', 'SIGN', 'VERIFY', 'NO KEYS', 'BLOCKS', 'MINING', 'LOCKTIME', 'PSBT', 'HASH'];
+  var RAIN_COLS = small ? 14 : 34;
+  var RAIN_ROWS = small ? 24 : 34;
+  var RAIN_ROW_H = 0.62;
+  var RAIN_H = RAIN_ROWS * RAIN_ROW_H;
+
+  function glyphAtlas() {
+    var cell = 64;
+    var c = document.createElement('canvas');
+    c.width = ATLAS_COLS * cell;
+    c.height = ATLAS_ROWS * cell;
+    var g = c.getContext('2d');
+    g.fillStyle = '#fff';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.font = '700 46px "Share Tech Mono", ui-monospace, Menlo, Consolas, "Courier New", monospace';
+    for (var i = 0; i < GLYPHS.length; i++) {
+      g.fillText(GLYPHS.charAt(i), (i % ATLAS_COLS + 0.5) * cell, (Math.floor(i / ATLAS_COLS) + 0.5) * cell + 3);
+    }
+    return c;
+  }
+
+  var atlasTexture = new CanvasTexture(glyphAtlas());
+  atlasTexture.colorSpace = SRGBColorSpace;
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('700 46px "Share Tech Mono"').then(function() {
+      atlasTexture.image = glyphAtlas();
+      atlasTexture.needsUpdate = true;
+    }).catch(function() {});
+  }
+
+  var rainCount = RAIN_COLS * RAIN_ROWS;
+  var rainBase = new Float32Array(rainCount * 3);
+  var rainGlyph = new Float32Array(rainCount);
+  var rainBright = new Float32Array(rainCount);
+  var rainSeed = new Float32Array(rainCount);
+  var rainSpeed = new Float32Array(rainCount);
+
+  function randomGlyph() {
+    return Math.floor(Math.random() * GLYPHS.length);
+  }
+
+  for (var rc = 0; rc < RAIN_COLS; rc++) {
+    var word = WORDS[Math.floor(Math.random() * WORDS.length)];
+    var stride = 2 + Math.floor(Math.random() * 3);
+    var wordStart = Math.floor(Math.random() * 6);
+    var colX = (rc - (RAIN_COLS - 1) / 2) * 1.0 + (Math.random() - 0.5) * 0.25;
+    var colZ = (Math.random() - 0.5) * 6;
+    var colSpeed = 3.2 + Math.random() * 7;
+    for (var rr = 0; rr < RAIN_ROWS; rr++) {
+      var idx = rc * RAIN_ROWS + rr;
+      rainBase[idx * 3] = colX;
+      rainBase[idx * 3 + 1] = (rr - RAIN_ROWS / 2) * RAIN_ROW_H;
+      rainBase[idx * 3 + 2] = colZ;
+      rainSeed[idx] = Math.random();
+      rainSpeed[idx] = colSpeed;
+      rainGlyph[idx] = randomGlyph();
+      rainBright[idx] = Math.random() < 0.025 ? 0.55 : 0;
+      var k = rr - wordStart;
+      if (k >= 0 && k % stride === 0 && k / stride < word.length) {
+        var letter = word.charAt(k / stride);
+        var pos = GLYPHS.indexOf(letter);
+        if (pos >= 0) {
+          rainGlyph[idx] = pos;
+          rainBright[idx] = 1;
+        }
+      }
+    }
+  }
+
+  var rainGeometry = new InstancedBufferGeometry();
+  var quad = new PlaneGeometry(1, 1);
+  rainGeometry.index = quad.index;
+  rainGeometry.setAttribute('position', quad.getAttribute('position'));
+  rainGeometry.setAttribute('uv', quad.getAttribute('uv'));
+  rainGeometry.setAttribute('aBase', new InstancedBufferAttribute(rainBase, 3));
+  var glyphAttribute = new InstancedBufferAttribute(rainGlyph, 1);
+  rainGeometry.setAttribute('aGlyph', glyphAttribute);
+  rainGeometry.setAttribute('aBright', new InstancedBufferAttribute(rainBright, 1));
+  rainGeometry.setAttribute('aSeed', new InstancedBufferAttribute(rainSeed, 1));
+  rainGeometry.setAttribute('aSpeed', new InstancedBufferAttribute(rainSpeed, 1));
+  rainGeometry.instanceCount = rainCount;
+
+  var rainMaterial = new ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uH: { value: RAIN_H },
+      uMaxX: { value: 18 },
+      uAtlas: { value: atlasTexture },
+      uDim: { value: new Color('#8b979b') },
+      uBright: { value: new Color('#5af78e') },
+      uDimAlpha: { value: 0.2 },
+      uBoost: { value: 1 }
+    },
+    vertexShader: [
+      'attribute vec3 aBase; attribute float aGlyph; attribute float aBright; attribute float aSeed; attribute float aSpeed;',
+      'uniform float uTime; uniform float uH; uniform float uMaxX;',
+      'varying vec2 vUv; varying float vBright; varying float vFade; varying float vSeed;',
+      'void main() {',
+      '  float y = mod(aBase.y + uTime * aSpeed + uH * 0.5, uH) - uH * 0.5;',
+      '  vec3 pos = vec3(aBase.x, y, aBase.z) + vec3(position.x * 0.5, position.y * 0.62, 0.0);',
+      '  if (abs(aBase.x) > uMaxX) { pos = vec3(0.0, 0.0, 1000.0); }',
+      '  vFade = smoothstep(-uH * 0.5, -uH * 0.5 + 3.0, y) * (1.0 - smoothstep(uH * 0.5 - 8.0, uH * 0.5, y));',
+      '  float col = mod(aGlyph, 16.0);',
+      '  float row = floor(aGlyph / 16.0);',
+      '  vUv = vec2((col + uv.x) / 16.0, 1.0 - (row + 1.0) / 6.0 + uv.y / 6.0);',
+      '  vBright = aBright; vSeed = aSeed;',
+      '  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);',
+      '}'
+    ].join('\n'),
+    fragmentShader: [
+      'uniform sampler2D uAtlas; uniform vec3 uDim; uniform vec3 uBright; uniform float uDimAlpha; uniform float uBoost; uniform float uTime;',
+      'varying vec2 vUv; varying float vBright; varying float vFade; varying float vSeed;',
+      'void main() {',
+      '  float a = texture2D(uAtlas, vUv).a;',
+      '  float pulse = vBright > 0.5 ? 0.78 + 0.22 * sin(uTime * 5.0 + vSeed * 40.0) : 1.0;',
+      '  vec3 col = mix(uDim, uBright * uBoost, vBright);',
+      '  float alpha = a * vFade * mix(uDimAlpha, 1.0, vBright) * pulse;',
+      '  gl_FragColor = vec4(col, alpha);',
+      '  #include <colorspace_fragment>',
+      '}'
+    ].join('\n')
+  });
+
+  var rainMesh = new Mesh(rainGeometry, rainMaterial);
+  rainMesh.frustumCulled = false;
+  var rain = new Group();
+  rain.add(rainMesh);
+  rain.position.set(0, -0.5, -7);
+  rain.rotation.x = -0.65;
+  rain.visible = false;
+  scene.add(rain);
+  var terminalMode = false;
+  var lastMutation = 0;
+
+  function mutateRain() {
+    for (var m = 0; m < 4; m++) {
+      var i = Math.floor(Math.random() * rainCount);
+      if (rainBright[i] === 0) {
+        rainGlyph[i] = randomGlyph();
+      }
+    }
+    glyphAttribute.needsUpdate = true;
+  }
 
   // Padlock icons are drawn on a canvas as flat, rounded icons, or taken from the system emoji font
   var useEmoji = root.getAttribute('data-lock') === 'emoji';
@@ -381,6 +542,15 @@ function init() {
       accent = new Color(style.getPropertyValue('--pal-l-link').trim() || '#0a67b4');
     }
     var bloom = !light && glow.strength > 0;
+    terminalMode = root.getAttribute('data-palette') === 'terminal';
+    rain.visible = terminalMode;
+    nodePoints.visible = nodeLines.visible = !terminalMode;
+    rainMaterial.uniforms.uBright.value.set(light ? (style.getPropertyValue('--pal-l-link').trim() || '#0a6b32') : (style.getPropertyValue('--pal-accent').trim() || '#5af78e'));
+    rainMaterial.uniforms.uDim.value.set(light ? (style.getPropertyValue('--pal-l-muted').trim() || '#4c5a54') : (style.getPropertyValue('--pal-muted').trim() || '#8b979b'));
+    rainMaterial.uniforms.uDimAlpha.value = light ? 0.34 : 0.2;
+    rainMaterial.uniforms.uBoost.value = bloom ? Math.max(1, 1.7 * glow.boost) : 1;
+    rainMaterial.blending = light ? NormalBlending : AdditiveBlending;
+    rainMaterial.needsUpdate = true;
     setBloom(bloom);
     function tint(material, color, boost, opacity) {
       material.color.copy(color);
@@ -436,6 +606,7 @@ function init() {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     layout(camera.aspect);
+    rainMaterial.uniforms.uMaxX.value = Math.min(18, 10 * camera.aspect + 1);
   }
   resize();
   if (window.ResizeObserver) {
@@ -502,6 +673,15 @@ function init() {
 
     pointer.x += (pointer.tx - pointer.x) * 0.04;
     pointer.y += (pointer.ty - pointer.y) * 0.04;
+    if (terminalMode) {
+      rainMaterial.uniforms.uTime.value = time * 0.001;
+      rain.rotation.y = pointer.x * 0.12;
+      rain.rotation.x = -0.65 + pointer.y * 0.06;
+      if (Math.floor(time / 90) !== lastMutation) {
+        lastMutation = Math.floor(time / 90);
+        mutateRain();
+      }
+    }
     group.rotation.y = time * 0.00006 + pointer.x * 0.18;
     group.rotation.x = pointer.y * 0.1;
     for (var m = 0; m < blocks.length; m++) {

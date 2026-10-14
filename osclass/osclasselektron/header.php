@@ -26,6 +26,9 @@ $swatches = array(
   'rust'      => array('#ff7a1a', '#e0b04a'),
   'iron'      => array('#9db7cf', '#ffb020'),
   'violet'    => array('#bd93f9', '#ff79c6'),
+  'red'       => array('#ff2a3d', '#ff5c8a'),
+  'frost'     => array('#9be7ff', '#d5f3ff'),
+  'terminal'  => array('#5af78e', '#ffb86c'),
 );
 ?>
 <!DOCTYPE html>
