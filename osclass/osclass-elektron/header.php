@@ -35,6 +35,18 @@ $swatches = array(
   </head>
 <body <?php elektron_body_class(); ?>>
 <a class="skip-link" href="#content"><?php _e('Skip to content', 'osclass-elektron'); ?></a>
+<?php $hud = elektron_network_items(); ?>
+<?php if(!empty($hud)) { ?>
+  <div class="hud-bar" role="region" aria-label="<?php echo osc_esc_html(__('Network status', 'osclass-elektron')); ?>">
+    <ul class="hud-list">
+      <?php $explorer = elektron_network_site_url(); ?>
+      <li class="hud-live"><?php if($explorer !== '') { ?><a href="<?php echo osc_esc_html($explorer); ?>" rel="noopener" target="_blank"><?php _e('Live', 'osclass-elektron'); ?></a><?php } else { _e('Live', 'osclass-elektron'); } ?></li>
+      <?php foreach($hud as $item) { ?>
+        <li><?php echo osc_esc_html($item[0]); ?> <b><?php echo osc_esc_html($item[1]); ?></b></li>
+      <?php } ?>
+    </ul>
+  </div>
+<?php } ?>
 <header class="site-header">
   <?php osc_run_hook('header_top'); ?>
   <div class="wrapper">

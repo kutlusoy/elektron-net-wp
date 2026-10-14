@@ -96,15 +96,27 @@ The theme styles the pages of [`osclass-escrow`](https://github.com/kutlusoy/ele
 
 Appearance > Theme settings contains the style options above, the hero title and text, the search placeholder, the default listing view (list or gallery), the location input mode and the ad slots. All Osclass hooks of the Sigma theme are kept, so existing plugins keep working.
 
-## 7. Logo
+## 7. Network status bar
+
+A slim bar above the header shows live figures of the Elektron Net chain, centered: block height, hash rate, fee, mempool size and retarget progress. The word Live links to the explorer website.
+
+![Network status bar](../screenshots/osclass-elektron/network-bar.jpg)
+
+- The default source is `https://mempool.elektron-net.org/api/v1`. It is built in and used whenever the list below is empty.
+- Appearance > Theme settings > Network status bar holds the list of sources, one API address per line, HTTPS only, at most 8. The sources are tried from top to bottom and the first one that answers is used, the lines after it are fallbacks.
+- The web server requests the data, visitors never contact the explorer. Answers are cached for 30 to 600 seconds (default 60) in `oc-content/uploads`. When the cache expires, one request refreshes it while other visitors still get the previous values. Values older than one hour are dropped.
+- Endpoints used: `/blocks/tip/height`, `/difficulty-adjustment`, `/fees/recommended`, `/mempool`, `/mining/hashrate/3d`. When no source answers, the bar is hidden. Placeholder numbers MUST NOT be displayed.
+- Sources that resolve to private or reserved addresses are skipped. A site that runs its explorer in a private network can allow it with the filter `elektron_network_allow_host`.
+
+## 8. Logo
 
 The header and the footer show the logo image and a text next to it. The image is the logo uploaded under Appearance > Header logo, without an upload the bundled Elektron mark is used. The text is set in Appearance > Theme settings > Logo text and falls back to the site title when empty. "Show logo text" turns the text off for logos that already contain the name.
 
-## 8. Development
+## 9. Development
 
 The WebGL scene lives in `osclass-elektron/js/src/hero-three.js` and is bundled with three.js into `js/hero-three.min.js`. From the repository root run `npm install` once, then `npm run build:osclass`. The bundle MUST be rebuilt and committed after every change to the source file. `npm run build:all` also rebuilds the WordPress hero.
 
-## 9. Notes
+## 10. Notes
 
 - Category icons use Font Awesome 5 classes, loaded from cdnjs as in the Sigma theme. The header controls use inline SVG and work without it.
 - Fonts for the full effect level are bundled in `fonts/` (SIL Open Font License). three.js is MIT licensed, see `js/three.LICENSE.txt`.

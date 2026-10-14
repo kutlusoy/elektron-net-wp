@@ -16,8 +16,10 @@
  */
 
 
-define('ELEKTRON_THEME_VERSION', '100');
+define('ELEKTRON_THEME_VERSION', '110');
 define('THEME_COMPATIBLE_WITH_OSCLASS_HOOKS', 830);     // Compatibility with new hooks up to version
+
+require_once __DIR__ . '/inc/network.php';
 
 
 // Style options. Keys map to the data attributes written on <html>.
@@ -83,6 +85,12 @@ function elektron_set_style_defaults($overwrite = true) {
   }
   if($overwrite || (string)osc_get_preference('logo_show_text', 'osclass-elektron') === '') {
     osc_set_preference('logo_show_text', '1', 'osclass-elektron');
+  }
+  if($overwrite || (string)osc_get_preference('network_show', 'osclass-elektron') === '') {
+    osc_set_preference('network_show', '1', 'osclass-elektron');
+  }
+  if($overwrite || (string)osc_get_preference('network_ttl', 'osclass-elektron') === '') {
+    osc_set_preference('network_ttl', '60', 'osclass-elektron');
   }
 }
 
@@ -656,6 +664,9 @@ function theme_elektron_actions_admin() {
         $value = (string)Params::getParam('style_' . $key);
         osc_set_preference($key, isset($options[$key][$value]) ? $value : $default, 'osclass-elektron');
       }
+      osc_set_preference('network_show', Params::getParam('network_show') ? '1' : '0', 'osclass-elektron');
+      osc_set_preference('network_sources', implode("\n", elektron_network_parse_sources((string)Params::getParam('network_sources', false, false))), 'osclass-elektron');
+      osc_set_preference('network_ttl', (string)min(600, max(30, (int)Params::getParam('network_ttl'))), 'osclass-elektron');
       osc_set_preference('logo_text', mb_substr(trim(strip_tags((string)Params::getParam('logo_text'))), 0, 60), 'osclass-elektron');
       osc_set_preference('logo_show_text', Params::getParam('logo_show_text') ? '1' : '0', 'osclass-elektron');
       osc_set_preference('hero_title', trim(strip_tags((string)Params::getParam('hero_title'))), 'osclass-elektron');

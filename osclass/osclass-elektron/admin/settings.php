@@ -115,6 +115,29 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
     </fieldset>
 <?php } ?>
 
+    <h2 class="render-title"><?php _e('Network status bar', 'osclass-elektron'); ?></h2>
+    <fieldset>
+        <div class="form-horizontal">
+            <div class="form-row">
+                <div class="form-label"><?php _e('Status bar', 'osclass-elektron'); ?></div>
+                <div class="form-controls">
+                    <div class="form-label-checkbox"><label><input type="checkbox" name="network_show" value="1" <?php echo elektron_network_enabled() ? 'checked="checked"' : ''; ?>> <?php _e('Show live block height, hash rate, fee, mempool and retarget progress above the header', 'osclass-elektron'); ?></label></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-label"><?php _e('API sources', 'osclass-elektron'); ?></div>
+                <div class="form-controls">
+                    <textarea style="height: 115px; width: 500px;" name="network_sources" spellcheck="false"><?php echo osc_esc_html(elektron_network_sources_text()); ?></textarea>
+                    <span class="help-box"><?php _e('One explorer API address per line, HTTPS only, at most 8. The sources are tried from top to bottom and the first one that answers is used. The default is the Elektron Net explorer. An empty list also falls back to it.', 'osclass-elektron'); ?></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-label"><?php _e('Cache in seconds', 'osclass-elektron'); ?></div>
+                <div class="form-controls"><input type="number" min="30" max="600" name="network_ttl" value="<?php echo (int)elektron_network_ttl(); ?>"></div>
+            </div>
+        </div>
+    </fieldset>
+
     <h2 class="render-title"><?php _e('Location input', 'osclass-elektron'); ?></h2>
     <fieldset>
         <div class="form-horizontal">
