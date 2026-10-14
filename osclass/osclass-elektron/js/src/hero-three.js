@@ -14,6 +14,9 @@ import {
   Points,
   PointsMaterial,
   Scene,
+  Sprite,
+  SpriteMaterial,
+  SRGBColorSpace,
   Vector2,
   WebGLRenderer,
 } from 'three';
@@ -177,47 +180,119 @@ function init() {
 
   var redLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
   var greenLine = new LineBasicMaterial({ transparent: true, opacity: 0.95, depthWrite: false });
-  var lockBodyEdges = new EdgesGeometry(new BoxGeometry(0.6, 0.44, 0.16));
 
-  function arcGeometry(radius, from, to, steps) {
-    var pts = [];
-    for (var a = 0; a < steps; a++) {
-      var t0 = from + (to - from) * a / steps;
-      var t1 = from + (to - from) * (a + 1) / steps;
-      pts.push(Math.cos(t0) * radius, Math.sin(t0) * radius, 0, Math.cos(t1) * radius, Math.sin(t1) * radius, 0);
-    }
-    var geo = new BufferGeometry();
-    geo.setAttribute('position', new BufferAttribute(new Float32Array(pts), 3));
-    return geo;
+  // Padlock icons are drawn on a canvas as flat, rounded icons, or taken from the system emoji font
+  var useEmoji = root.getAttribute('data-lock') === 'emoji';
+  var lockTextures = {};
+
+  function roundRect(g, x, y, w, h, r) {
+    g.beginPath();
+    g.moveTo(x + r, y);
+    g.arcTo(x + w, y, x + w, y + h, r);
+    g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r);
+    g.arcTo(x, y, x + w, y, r);
+    g.closePath();
   }
-  var shackleGeometry = arcGeometry(0.17, 0, Math.PI, 14);
 
-  function makeLock(lineMaterial, open) {
-    var lock = new Group();
-    var body = new LineSegments(lockBodyEdges, lineMaterial);
-    body.position.y = -0.1;
-    lock.add(body);
-
-    var shackle = new Group();
-    shackle.add(new LineSegments(shackleGeometry, lineMaterial));
-    var legs = new BufferGeometry();
-    legs.setAttribute('position', new BufferAttribute(new Float32Array([-0.17, 0, 0, -0.17, open ? 0.05 : 0.0, 0, 0.17, 0, 0, 0.17, -0.12, 0]), 3));
-    shackle.add(new LineSegments(legs, lineMaterial));
-    shackle.position.set(0, 0.12, 0);
-    if (open) {
-      shackle.position.set(-0.17, 0.2, 0);
-      shackle.rotation.z = 0.7;
-      shackle.position.x = 0.0;
+  function emojiTexture(open) {
+    var size = 256;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var g = c.getContext('2d');
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.font = '190px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+    g.fillText(open ? '🔓' : '🔒', size / 2, size / 2 + 10);
+    var data = g.getImageData(0, 0, size, size).data;
+    var colorful = 0;
+    for (var i = 0; i < data.length; i += 16) {
+      if (data[i + 3] > 128 && (Math.abs(data[i] - data[i + 1]) > 24 || Math.abs(data[i + 1] - data[i + 2]) > 24)) {
+        colorful++;
+      }
     }
-    lock.add(shackle);
+    return colorful > 120 ? c : null;
+  }
 
-    var keyhole = new BufferGeometry();
-    keyhole.setAttribute('position', new BufferAttribute(new Float32Array([0, -0.06, 0.09, 0, -0.18, 0.09]), 3));
-    lock.add(new LineSegments(keyhole, lineMaterial));
-    return lock;
+  function iconCanvas(open, palette) {
+    var size = 256;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var g = c.getContext('2d');
+    g.lineCap = 'round';
+    g.lineJoin = 'round';
+
+    // shackle
+    g.strokeStyle = palette.metal;
+    g.lineWidth = 22;
+    g.beginPath();
+    g.moveTo(88, 120);
+    g.lineTo(88, 88);
+    g.arc(128, 88, 40, Math.PI, 0);
+    g.lineTo(168, open ? 52 : 120);
+    g.stroke();
+    g.strokeStyle = 'rgba(255,255,255,0.35)';
+    g.lineWidth = 6;
+    g.beginPath();
+    g.moveTo(80, 112);
+    g.lineTo(80, 88);
+    g.arc(128, 88, 48, Math.PI, Math.PI * 1.55);
+    g.stroke();
+
+    // body
+    var body = g.createLinearGradient(0, 112, 0, 232);
+    body.addColorStop(0, palette.light);
+    body.addColorStop(1, palette.base);
+    g.fillStyle = body;
+    roundRect(g, 46, 112, 164, 120, 30);
+    g.fill();
+    g.strokeStyle = palette.dark;
+    g.lineWidth = 5;
+    g.stroke();
+
+    // highlight
+    g.fillStyle = 'rgba(255,255,255,0.22)';
+    roundRect(g, 58, 120, 140, 30, 15);
+    g.fill();
+
+    // keyhole
+    g.fillStyle = palette.dark;
+    g.beginPath();
+    g.arc(128, 168, 15, 0, Math.PI * 2);
+    g.fill();
+    g.beginPath();
+    g.moveTo(120, 174);
+    g.lineTo(136, 174);
+    g.lineTo(140, 204);
+    g.lineTo(116, 204);
+    g.closePath();
+    g.fill();
+    return c;
+  }
+
+  var PALETTES = {
+    red:         { base: '#ff2d4a', light: '#ff8a9a', dark: '#8e0c22', metal: '#ffd3d9' },
+    green:       { base: '#1fd76a', light: '#8dffb9', dark: '#0a6a31', metal: '#d6ffe6' },
+    redLight:    { base: '#d11a36', light: '#ee5b72', dark: '#750a1c', metal: '#c8485f' },
+    greenLight:  { base: '#0f9d4a', light: '#4fd286', dark: '#06592a', metal: '#2f9a63' }
+  };
+
+  function lockTexture(open, light) {
+    var key = (open ? 'o' : 'c') + (light ? 'l' : 'd') + (useEmoji ? 'e' : 'i');
+    if (!lockTextures[key]) {
+      var canvasSource = useEmoji ? emojiTexture(open) : null;
+      if (!canvasSource) {
+        canvasSource = iconCanvas(open, PALETTES[(open ? 'green' : 'red') + (light ? 'Light' : '')]);
+      }
+      var texture = new CanvasTexture(canvasSource);
+      texture.colorSpace = SRGBColorSpace;
+      lockTextures[key] = texture;
+    }
+    return lockTextures[key];
   }
 
   var lockLight = false;
+  var lockSprites = [];
   var lockedBlocks = [];
   var lockGlowMaterials = [];
 
@@ -227,9 +302,11 @@ function init() {
     var cube = new LineSegments(blockEdges, lineMaterial);
     item.add(cube);
 
-    var lock = makeLock(lineMaterial, open);
-    lock.position.z = 0.62;
-    item.add(lock);
+    var sprite = new Sprite(new SpriteMaterial({ map: lockTexture(open, false), transparent: true, depthWrite: false }));
+    sprite.scale.set(1.0, 1.0, 1);
+    sprite.position.z = 0.1;
+    lockSprites.push(sprite);
+    item.add(sprite);
 
     var glowGeometry = new BufferGeometry();
     glowGeometry.setAttribute('position', new BufferAttribute(new Float32Array([0, 0, 0.3]), 3));
@@ -322,6 +399,12 @@ function init() {
     tint(redLine, new Color(light ? RED_LIGHT : RED), 2.0, 1);
     tint(greenLine, new Color(light ? GREEN_LIGHT : GREEN), 1.6, 1);
     lockLight = light;
+    for (var si = 0; si < lockSprites.length; si++) {
+      var spriteMaterial = lockSprites[si].material;
+      spriteMaterial.map = lockTexture(lockedBlocks[si].userData.open, light);
+      spriteMaterial.color.setScalar(bloom ? Math.max(1, 1.25 * glow.boost) : 1);
+      spriteMaterial.needsUpdate = true;
+    }
     var blend = light ? NormalBlending : AdditiveBlending;
     for (var gi = 0; gi < lockGlowMaterials.length; gi++) {
       lockGlowMaterials[gi].blending = blend;

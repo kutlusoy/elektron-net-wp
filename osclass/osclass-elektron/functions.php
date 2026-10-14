@@ -56,6 +56,10 @@ function elektron_style_options() {
       'medium' => __('Medium', 'osclass-elektron'),
       'strong' => __('Strong', 'osclass-elektron'),
     ),
+    'lock' => array(
+      'icon'  => __('Drawn icon (identical on every device)', 'osclass-elektron'),
+      'emoji' => __('System emoji (Apple look on iPhone and Mac)', 'osclass-elektron'),
+    ),
     'motion' => array(
       'always'  => __('Always animate, also on phones with reduced motion settings', 'osclass-elektron'),
       'respect' => __('Respect the reduced motion setting of the device', 'osclass-elektron'),
@@ -78,6 +82,7 @@ function elektron_style_defaults() {
     'fx'      => 'subtle',
     'hero'    => 'three',
     'glow'    => 'medium',
+    'lock'    => 'icon',
     'motion'  => 'always',
     'radius'  => 'round',
     'header'  => 'glass',
@@ -121,6 +126,7 @@ function elektron_html_attributes() {
     'data-fx'             => elektron_style('fx'),
     'data-hero'           => elektron_style('hero'),
     'data-glow'           => elektron_style('glow'),
+    'data-lock'           => elektron_style('lock'),
     'data-motion'         => elektron_style('motion'),
     'data-radius'         => elektron_style('radius'),
     'data-header'         => elektron_style('header'),

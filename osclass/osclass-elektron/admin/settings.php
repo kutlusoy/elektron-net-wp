@@ -34,6 +34,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
               'fx'      => __('Effects', 'osclass-elektron'),
               'hero'    => __('Home hero background', 'osclass-elektron'),
               'glow'    => __('Glow of the 3D hero animation', 'osclass-elektron'),
+              'lock'    => __('Padlock style in the 3D hero', 'osclass-elektron'),
               'motion'  => __('Hero animation', 'osclass-elektron'),
               'radius'  => __('Corner style', 'osclass-elektron'),
               'header'  => __('Header', 'osclass-elektron'),
