@@ -1,9 +1,13 @@
 /* Editor styles for Elektron. */
-:root {
+:root,
+.editor-styles-wrapper {
 	--e-blue: #2da4fa;
 	--e-text: #e8eef8;
 	--e-muted: #a3b1c6;
 	--e-border: #213049;
+	--e-surface: #111a2b;
+	--e-surface-2: #16223a;
+	--e-link: #52bcfc;
 }
 
 .editor-styles-wrapper {
