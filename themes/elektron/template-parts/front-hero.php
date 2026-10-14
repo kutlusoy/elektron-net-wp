@@ -48,7 +48,7 @@ if ( $elektron_live ) {
 				<p class="eyebrow"><?php echo esc_html( elektron_front_option( 'eyebrow' ) ); ?></p>
 			<?php endif; ?>
 
-			<h1 class="hero-title"><?php echo esc_html( elektron_front_option( 'title' ) ); ?></h1>
+			<h1 class="hero-title" data-text="<?php echo esc_attr( elektron_front_option( 'title' ) ); ?>"><?php echo esc_html( elektron_front_option( 'title' ) ); ?></h1>
 			<p class="hero-text"><?php echo esc_html( elektron_front_option( 'text' ) ); ?></p>
 
 			<div class="hero-actions">

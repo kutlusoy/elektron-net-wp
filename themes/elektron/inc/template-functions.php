@@ -121,3 +121,66 @@ function elektron_front_option( $key ) {
 
 	return (string) get_theme_mod( 'elektron_' . $key, $default );
 }
+
+/**
+ * Returns the available color themes.
+ *
+ * The colors themselves live in style.css under [data-palette].
+ *
+ * @return array<string,string> Slug and label.
+ */
+function elektron_palettes() {
+	return array(
+		'blue'      => __( 'Elektron Blue', 'elektron' ),
+		'neon'      => __( 'Neon Grid', 'elektron' ),
+		'synthwave' => __( 'Synthwave', 'elektron' ),
+		'matrix'    => __( 'Matrix', 'elektron' ),
+		'rust'      => __( 'Rust', 'elektron' ),
+		'iron'      => __( 'Iron', 'elektron' ),
+		'violet'    => __( 'Violet Night', 'elektron' ),
+	);
+}
+
+/**
+ * Returns the effect levels.
+ *
+ * @return array<string,string> Slug and label.
+ */
+function elektron_fx_levels() {
+	return array(
+		'off'    => __( 'Off', 'elektron' ),
+		'subtle' => __( 'Subtle', 'elektron' ),
+		'full'   => __( 'Full cyberpunk', 'elektron' ),
+	);
+}
+
+/**
+ * Builds the items of the HUD status bar from live data.
+ *
+ * @return array<int,array{0:string,1:string}> Label and value pairs. Empty without live data.
+ */
+function elektron_hud_items() {
+	if ( ! get_theme_mod( 'elektron_show_hud', true ) ) {
+		return array();
+	}
+
+	$live = elektron_get_live_stats();
+	if ( ! $live ) {
+		return array();
+	}
+
+	$items = array( array( __( 'Block', 'elektron' ), number_format_i18n( $live['height'] ) ) );
+	if ( null !== $live['hashrate'] ) {
+		$items[] = array( __( 'Hash', 'elektron' ), elektron_format_hashrate( $live['hashrate'] ) );
+	}
+	if ( null !== $live['fee_fastest'] ) {
+		/* translators: %s: fee rate number */
+		$items[] = array( __( 'Fee', 'elektron' ), sprintf( __( '%s lep/vB', 'elektron' ), number_format_i18n( $live['fee_fastest'], 0 ) ) );
+	}
+	if ( null !== $live['progress'] ) {
+		/* translators: %s: percentage number */
+		$items[] = array( __( 'Retarget', 'elektron' ), sprintf( __( '%s%%', 'elektron' ), number_format_i18n( $live['progress'], 0 ) ) );
+	}
+
+	return $items;
+}
