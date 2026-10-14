@@ -1,4 +1,4 @@
-# Elektron Net: `osclass-elektron` Osclass Theme
+# Elektron Net: `osclasselektron` Osclass Theme
 
 - **Version:** 1.0.0 (draft)
 - **Date:** October 14, 2026
@@ -14,15 +14,17 @@
 
 | Path | What it is |
 |---|---|
-| `osclass-elektron/` | The theme. The folder name inside `oc-content/themes/` MUST stay `osclass-elektron`. |
-| `../screenshots/osclass-elektron/` | Preview images taken from a real Osclass 8.4 installation. They are not part of the theme package. |
+| `osclasselektron/` | The theme. The folder name inside `oc-content/themes/` MUST stay `osclasselektron`. |
+| `../screenshots/osclasselektron/` | Preview images taken from a real Osclass 8.4 installation. They are not part of the theme package. |
 
 ## 2. Installation
 
-1. Pack `osclass/osclass-elektron` as a zip file. The folder name inside the zip MUST stay `osclass-elektron`.
+1. Pack the folder `osclass/osclasselektron` as a zip file. The folder `osclasselektron` MUST be at the top level of the zip, directly containing `index.php`, `functions.php` and the other files. Do not zip the parent folder `osclass`.
 2. Upload it under Appearance > Themes > Add new theme in the Osclass admin, or copy the folder to `oc-content/themes/`.
 3. Activate **Osclass Elektron**. The first activation stores the default style options.
-4. Optional: upload a logo under Appearance > Header logo. Without an upload the theme shows the Elektron mark and the site title.
+4. Optional: upload a logo under Appearance > Header logo. Without an upload the Elektron mark is used.
+
+The folder name MUST consist of letters, digits and underscores only. Osclass skips every theme folder with a hyphen, which is why the folder is called `osclasselektron` while the theme is shown as **Osclass Elektron**. If an earlier upload created `oc-content/themes/osclass-elektron` or `oc-content/themes/osclass_elektron`, delete that folder.
 
 Requirements: Osclass 8.x, PHP 7.4 or newer.
 
@@ -57,45 +59,45 @@ Site owners pick the defaults under Appearance > Theme settings. Visitors can sw
 
 The default hero is the three.js scene of the WordPress theme, extended for a marketplace: a drifting node network, a chain of linked blocks and an escrow vault. Buyer and seller sit left and right of the vault and payments travel into it. Floating blocks carry padlocks: closed ones glow red (funds locked in escrow), open ones glow green (released). The padlocks are flat, rounded icons drawn by the theme and look the same on every device. Under Theme settings > Padlock style the owner can switch to the system emoji instead, which shows the Apple look on iPhone and Mac. Where the device has no emoji font, the drawn icon is used. On the dark scheme the scene is rendered with the three.js bloom post-processing (`UnrealBloomPass`), so every line, node, block and padlock glows in its own color. The strength is set under Theme settings > Glow of the 3D hero animation (Off, Subtle, Medium, Strong). The light scheme renders the same scene without bloom, because a glow needs a dark background. The scene follows the active color theme and scheme, reacts to the pointer, pauses when it is off screen and runs on phones and tablets as well. Devices with a reduced motion setting get the scene at half speed. Under Theme settings > Hero animation the site owner can switch to respecting that setting, the scene then shows one still frame. If WebGL is not available the lightweight 2D network takes over. Pick another hero under Appearance > Theme settings.
 
-![Glow levels: Off, Subtle, Medium, Strong](../screenshots/osclass-elektron/glow-levels.jpg)
+![Glow levels: Off, Subtle, Medium, Strong](../screenshots/osclasselektron/glow-levels.jpg)
 
-![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclass-elektron/hero-3d-violet-light.jpg)
+![3D hero with blockchain and escrow vault, Violet Night light](../screenshots/osclasselektron/hero-3d-violet-light.jpg)
 
-![3D hero on mobile](../screenshots/osclass-elektron/hero-3d-mobile.jpg)
+![3D hero on mobile](../screenshots/osclasselektron/hero-3d-mobile.jpg)
 
 ### Previews
 
-![Elektron Blue](../screenshots/osclass-elektron/home-blue.jpg)
+![Elektron Blue](../screenshots/osclasselektron/home-blue.jpg)
 
-![Neon Grid with full effects](../screenshots/osclass-elektron/home-neon-full.jpg)
+![Neon Grid with full effects](../screenshots/osclasselektron/home-neon-full.jpg)
 
-![Rust, light variant](../screenshots/osclass-elektron/home-rust-light.jpg)
+![Rust, light variant](../screenshots/osclasselektron/home-rust-light.jpg)
 
-![Synthwave with sharp corners, search page](../screenshots/osclass-elektron/search-synthwave-sharp.jpg)
+![Synthwave with sharp corners, search page](../screenshots/osclasselektron/search-synthwave-sharp.jpg)
 
-![Listing page](../screenshots/osclass-elektron/item.jpg)
+![Listing page](../screenshots/osclasselektron/item.jpg)
 
 ## 4. Photo frames
 
 Every listing photo sits in a framed mat: a padded surface with a thin inner ring and a soft shadow. Photos with a white background keep a clean, defined edge on dark and light schemes and in every color theme. The same frame is used for the main photo and the thumbnails on the listing page. Listings without a photo show a neutral placeholder.
 
-![Framed photos on the dark scheme](../screenshots/osclass-elektron/photo-frame-grid-dark.jpg)
+![Framed photos on the dark scheme](../screenshots/osclasselektron/photo-frame-grid-dark.jpg)
 
-![Framed photos on the light scheme](../screenshots/osclass-elektron/photo-frame-grid-light.jpg)
+![Framed photos on the light scheme](../screenshots/osclasselektron/photo-frame-grid-light.jpg)
 
 ## 5. Elektron Net Escrow plugin
 
 The theme styles the pages of [`osclass-escrow`](https://github.com/kutlusoy/elektron-net-osclass/tree/main/osclass-escrow) (wallet connection, checkout, order status, order list) with `css/escrow.css`. The stylesheet loads only while the plugin is active and needs no change in the plugin. The plugin's inline styles use fixed light colors, so the theme overrides them with its own tokens. They follow the active color theme, scheme and corner style. The "Buy with Elektron (ELEK)" widget appears on the listing page, and the account menu shows the orders and wallet links with icons.
 
-![Buy with Elektron widget](../screenshots/osclass-elektron/escrow-widget.jpg)
+![Buy with Elektron widget](../screenshots/osclasselektron/escrow-widget.jpg)
 
-![Checkout](../screenshots/osclass-elektron/escrow-checkout.jpg)
+![Checkout](../screenshots/osclasselektron/escrow-checkout.jpg)
 
-![Connect wallet](../screenshots/osclass-elektron/escrow-wallet.jpg)
+![Connect wallet](../screenshots/osclasselektron/escrow-wallet.jpg)
 
-![Order page, Elektron Blue dark](../screenshots/osclass-elektron/escrow-order.jpg)
+![Order page, Elektron Blue dark](../screenshots/osclasselektron/escrow-order.jpg)
 
-![Order page, Neon Grid light](../screenshots/osclass-elektron/escrow-order-neon-light.jpg)
+![Order page, Neon Grid light](../screenshots/osclasselektron/escrow-order-neon-light.jpg)
 
 ## 6. Theme settings
 
@@ -105,7 +107,7 @@ Appearance > Theme settings contains the style options above, the hero title and
 
 A slim bar above the header shows live figures of the Elektron Net chain, centered: block height, hash rate, fee, mempool size and retarget progress. The word Live links to the explorer website.
 
-![Network status bar](../screenshots/osclass-elektron/network-bar.jpg)
+![Network status bar](../screenshots/osclasselektron/network-bar.jpg)
 
 - The default source is `https://mempool.elektron-net.org/api/v1`. It is built in and used whenever the list below is empty.
 - Appearance > Theme settings > Network status bar holds the list of sources, one API address per line, HTTPS only, at most 8. The sources are tried from top to bottom and the first one that answers is used, the lines after it are fallbacks.
@@ -119,10 +121,10 @@ The header and the footer show the logo image and a text next to it. The image i
 
 ## 9. Development
 
-The WebGL scene lives in `osclass-elektron/js/src/hero-three.js` and is bundled with three.js into `js/hero-three.min.js`. From the repository root run `npm install` once, then `npm run build:osclass`. The bundle MUST be rebuilt and committed after every change to the source file. `npm run build:all` also rebuilds the WordPress hero.
+The WebGL scene lives in `osclasselektron/js/src/hero-three.js` and is bundled with three.js into `js/hero-three.min.js`. From the repository root run `npm install` once, then `npm run build:osclass`. The bundle MUST be rebuilt and committed after every change to the source file. `npm run build:all` also rebuilds the WordPress hero.
 
 ## 10. Notes
 
 - Category icons use Font Awesome 5 classes, loaded from cdnjs as in the Sigma theme. The header controls use inline SVG and work without it.
 - Fonts for the full effect level are bundled in `fonts/` (SIL Open Font License). three.js is MIT licensed, see `js/three.LICENSE.txt`.
-- The theme is derived from the Sigma theme of Osclass and keeps the Apache License 2.0, see `osclass-elektron/LICENSE`.
+- The theme is derived from the Sigma theme of Osclass and keeps the Apache License 2.0, see `osclasselektron/LICENSE`.
