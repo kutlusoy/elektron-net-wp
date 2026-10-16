@@ -16,7 +16,7 @@
  */
 
 
-define('ELEKTRON_THEME_VERSION', '130');
+define('ELEKTRON_THEME_VERSION', '140');
 define('THEME_COMPATIBLE_WITH_OSCLASS_HOOKS', 830);     // Compatibility with new hooks up to version
 
 require_once __DIR__ . '/inc/network.php';
@@ -340,6 +340,24 @@ if(!function_exists('elektron_follow_construct')) {
     echo '<meta name="googlebot" content="index, follow" />' . PHP_EOL;
   }
 }
+
+/*
+ * Prices with many decimals (ELEK has 8) drop their trailing zeros but keep at least two
+ * decimals: 2500.00000000 shows 2500.00 and 0.00200000 shows 0.002.
+ */
+if(!function_exists('elektron_trim_price')) {
+  function elektron_trim_price($formatted) {
+    $point = osc_locale_dec_point();
+    $point = ($point === '' || $point === null) ? '.' : $point;
+
+    return preg_replace_callback('/(\d)' . preg_quote($point, '/') . '(\d+)/', function($m) use ($point) {
+      $decimals = rtrim($m[2], '0');
+      return $m[1] . $point . str_pad($decimals, 2, '0');
+    }, $formatted);
+  }
+}
+
+osc_add_filter('item_price', 'elektron_trim_price');
 
 /* logo: mark (uploaded logo or the bundled Elektron mark) plus optional text */
 if(!function_exists('logo_header')) {
