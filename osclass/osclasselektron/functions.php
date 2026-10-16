@@ -16,7 +16,7 @@
  */
 
 
-define('ELEKTRON_THEME_VERSION', '140');
+define('ELEKTRON_THEME_VERSION', '150');
 define('THEME_COMPATIBLE_WITH_OSCLASS_HOOKS', 830);     // Compatibility with new hooks up to version
 
 require_once __DIR__ . '/inc/network.php';
@@ -358,6 +358,19 @@ if(!function_exists('elektron_trim_price')) {
 }
 
 osc_add_filter('item_price', 'elektron_trim_price');
+
+/* The price field of the publish and edit form, with the same shortened decimals */
+if(!function_exists('elektron_price_input')) {
+  function elektron_price_input() {
+    ob_start();
+    ItemForm::price_input_text();
+    $html = ob_get_clean();
+
+    echo preg_replace_callback('/value="([^"]*)"/', function($m) {
+      return 'value="' . elektron_trim_price($m[1]) . '"';
+    }, $html, 1);
+  }
+}
 
 /* logo: mark (uploaded logo or the bundled Elektron mark) plus optional text */
 if(!function_exists('logo_header')) {

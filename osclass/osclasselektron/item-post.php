@@ -91,7 +91,7 @@
               <div class="control-group control-group-price">
                 <label class="control-label" for="price"><?php _e('Price', 'osclasselektron'); ?></label>
                 <div class="controls">
-                  <?php ItemForm::price_input_text(); ?>
+                  <?php elektron_price_input(); ?>
                   <?php ItemForm::currency_select(); ?>
                 </div>
               </div>
